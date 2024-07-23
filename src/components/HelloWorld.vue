@@ -1,34 +1,28 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+  <div class="justify-center">
+    <h1 class="flex justify-start mb-7 text-2xl font-medium">{{ msg }}</h1>
+    <p class="font-light">
+      I'm a fullstack developer, software student and webdesigner since 2019. I worked in <a class="underline"
+        href="https://github.com/felipe-sbm/piaf-ufrn">PIAF - UFRN</a> and made some
+      projects in my own.I keed practicing and learning new technologies to improve my skills. Welcome!
     </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <div class="grid grid-cols-2 grid-rows-4 sm:grid-rows-3 sm:grid-cols-3 gap-4 my-8">
+      <div class="relative h-40"><img alt="Me speaking on stage at React Summit about the future of Next.js"
+          class="rounded-lg object-cover" v-bind:src="Orchestra"></div>
+      <div class="relative sm:row-span-2 row-span-1"><img
+          alt="Me standing on stage at Reactathon delivering the keynote" fetchpriority="high" decoding="async"
+          class="rounded-lg object-cover object-top sm:object-center" v-bind:src="GoRn"></div>
+      <div class="relative"><img
+          alt="Me and Guillermo Rauch on stage for Vercel Ship, answering questions from the Next.js community"
+          decoding="async" data-nimg="fill" class="rounded-lg object-cover" v-bind:src="Lab"></div>
+      <div class="relative row-span-2"><img alt="Me, Lydia, and Delba filming the Next.js Conf keynote" decoding="async"
+          data-nimg="fill" class="rounded-lg object-cover sm:object-center" v-bind:src="Maps"></div>
+      <div class="relative row-span-2"><img alt="My badge on top of a pile of badges from a Vercel meetup we held"
+          decoding="async" data-nimg="fill" class="rounded-lg object-cover" v-bind:src="Subaru"></div>
+      <div class="relative h-40"><img
+          alt="Me standing on stage at SmashingConf giving a talk about my optimism for the web" fetchpriority="high"
+          class="rounded-lg object-cover" v-bind:src="Selfie"></div>
+    </div>
   </div>
 </template>
 
@@ -36,27 +30,19 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  data() {
+    return {
+      Orchestra: require('@/assets/photos/shalom.webp'),
+      GoRn: require('@/assets/photos/gorn-2023.webp'),
+      Lab: require('@/assets/photos/laboratory.webp'),
+      Maps: require('@/assets/photos/maps.webp'),
+      Selfie: require('@/assets/photos/classic.webp'),
+      Subaru: require('@/assets/photos/spotting.webp')
+    };
+  },
   name: 'HelloWorld',
   props: {
     msg: String,
   },
 });
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <HelloWorld msg="Hey, i'm Samuel 👋🏼"/>
+    <HelloWorld msg="Hey, I'm Samuel 👋🏼"/>
   </div>
 </template>
 
