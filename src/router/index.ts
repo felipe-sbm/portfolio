@@ -1,10 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/HomeView.vue')
+    component: () => import('../views/HomeView.vue'),
+    meta: {
+      title: 'Samuel | Portfolio'
+    }
   },
   {
     path: '/about',
@@ -12,17 +16,34 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    meta: {
+      title: 'What about me?'
+    }
+  },
+  {
+    path: '/projects',
+    name: 'projects',
+    component: () => import('../views/GuestbookView.vue'),
+    meta: {
+      title: 'Samuel | Projects'
+    }
   },
   {
     path: '/blog',
     name: 'blog',
-    component: () => import('../views/BlogView.vue')
+    component: () => import('../views/BlogView.vue'),
+    meta: {
+      title: 'Samuel | Blog'
+    }
   },
   {
     path: '/guestbook',
     name: 'guestbook',
-    component: () => import('../views/GuestbookView.vue')
+    component: () => import('../views/GuestbookView.vue'),
+    meta: {
+      title: 'Samuel | Guestbook'
+    }
   }
 ]
 
@@ -30,5 +51,9 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title as string;
+  next();
+});
 
 export default router
