@@ -2,19 +2,19 @@
   <div class="justify-center">
     <h1 class="flex justify-start mb-7 text-2xl font-medium text-zinc-950 dark:text-zinc-100">{{ msg }}</h1>
     <p class="font-light subpixel-antialiased text-zinc-900 dark:text-zinc-300">
-      I'm a fullstack developer, computer engineer, software student and webdesigner since 2019. I worked in<a
+      I'm a fullstack developer, computer engineer, software student and webdesigner since 2019. I worked in <a
         href="https://github.com/felipe-sbm/piaf-ufrn"><span
-          class="inline-flex items-center rounded-full bg-red-100 dark:bg-red-700 text-sm px-2.5 py-0.5 text-red-700 dark:text-red-100">
+          class="inline-flex items-center rounded-md bg-red-100 dark:bg-red-700 text-sm px-2.5 py-0.5 text-red-700 dark:text-red-100">
           <img v-bind:src="Piaf" alt="PIAF Logo" class="-ms-1 me-1.5 h-3.5 w-3.5 justify-start">
           &emsp;PIAF - UFRN
         </span></a>
       and made some
       projects in my own, like <a href="https://github.com/felipe-sbm/spiral"><span
-          class="inline-flex items-center rounded-full bg-purple-100 dark:bg-purple-900 px-2.5 text-sm py-0.5 text-purple-700 dark:text-purple-100">
+          class="inline-flex items-center rounded-md bg-purple-100 dark:bg-purple-900 px-2.5 text-sm py-0.5 text-purple-700 dark:text-purple-100">
           <img v-bind:src="Spiral" alt="Spiral Logo" class="-ms-1 me-1.5 h-3.5 w-3.5 justify-start rounded-full">
           &emsp;Spiral
         </span></a>. <br> I keep practicing every day<span class="text-xs italic font-thin">/7*</span> and learning new
-      technologies to improve my skills. ようこそ!
+      technologies to improve my skills. <span class="font-semibold">ようこそ!</span>
     </p>
     <PhotoAlbum />
     <p class="font-light mb-8 subpixel-antialiased text-zinc-900 dark:text-zinc-300">
@@ -29,7 +29,25 @@
     <p class="font-light subpixel-antialiased text-zinc-900 dark:text-zinc-300 my-16">Some time ago, I just started a
       Blog and a Youtube
       Channel to teach people in the dev world. Tutorials, Q&A and news from technologies its just a slice of the
-      content that im actually creating. Typescript, Ruby, Julia and C# are my favourites lenguages, check it out!</p>
+      content that im actually creating. Making projects and sharing knowledge is my passion, and I'm happy to share it.
+      I can show that 
+      <span
+        class="rounded-md bg-blue-100 dark:bg-blue-700 px-1 py-0.5 text-xs text-blue-500 dark:text-blue-300">
+        Typescript
+      </span>,
+      <span
+        class="rounded-md bg-red-100 dark:bg-red-700 px-1 py-0.5 text-xs text-red-500 dark:text-red-300">
+        Ruby
+      </span>,
+      <span
+        class="rounded-md bg-purple-100 dark:bg-purple-700 px-1 py-0.5 text-xs text-purple-500 dark:text-purple-300">
+        Julia
+      </span>,
+      <span
+        class="rounded-md bg-lime-100 dark:bg-lime-700 px-1 py-0.5 text-xs text-lime-500 dark:text-lime-300">
+        C#
+      </span>. These lenguages are fun, check it out!
+    </p>
   </div>
 </template>
 
