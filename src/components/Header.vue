@@ -7,9 +7,9 @@
     </nav>
 </template>
 
+// My favorite color: #318811;
 <style>
 nav a.router-link-exact-active {
-    color: #318811;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 </style>
