@@ -88,11 +88,6 @@ import HomeCards from './HomeCards.vue';
 import TeachPages from './TeachPages.vue';
 
 export default defineComponent({
-  data() {
-    return {
-      Spiral: require('@/assets/spiral.svg'),
-    };
-  },
   name: 'HelloWorld',
   props: {
     msg: String,
