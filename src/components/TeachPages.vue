@@ -2,7 +2,7 @@
     <div class="grid grid-cols-1 -gap-1 lg:grid-cols-2 lg:gap-4">
         <a href="https://felipe-sbm.blogspot.com/">
             <article
-                class="relative group mb-4 rounded-lg bg-zinc-950 dark:bg-zinc-50 p-0.5 drop-shadow-xl transition hover:shadow-2xl">
+                class="relative group mb-4 rounded-lg bg-zinc-300 dark:bg-zinc-700 p-0.5 drop-shadow-xl transition hover:shadow-2xl">
                 <div class="flex rounded-[6px] bg-zinc-50 dark:bg-zinc-950 p-4"
                     title="Calculus are a C# calculator, I'm working to made it be 3d graphic calculator.">
                     <div class="relative flex mr-3">
@@ -26,7 +26,7 @@
             </article>
         </a> <a href="https://www.youtube.com/@felipe_sbm">
             <article
-                class="relative group mb-4 rounded-lg bg-zinc-950 dark:bg-zinc-50 p-0.5 drop-shadow-xl transition hover:shadow-2xl">
+                class="relative group mb-4 rounded-lg bg-zinc-300 dark:bg-zinc-700 p-0.5 drop-shadow-xl transition hover:shadow-2xl">
                 <div class="flex rounded-[6px] bg-zinc-50 dark:bg-zinc-950 p-4"
                     title="Calculus are a C# calculator, I'm working to made it be 3d graphic calculator.">
                     <div class="relative flex mr-3">
