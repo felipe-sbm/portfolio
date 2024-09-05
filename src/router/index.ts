@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/projects',
     name: 'projects',
-    component: () => import('../views/GuestbookView.vue'),
+    component: () => import('../views/ProjectsView.vue'),
     meta: {
       title: 'Samuel | Projects'
     }

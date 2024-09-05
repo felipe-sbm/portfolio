@@ -15,9 +15,9 @@
                         <h3 class="text-sm font-mono font-light text-zinc-800 dark:text-zinc-400">
                             @felipe-sbm
                         </h3>
-                        <h3 class="font-sans font-semibold">
+                        <h2 class="font-sans font-semibold">
                             Blog do Samuka
-                        </h3>
+                        </h2>
                     </div>
                     <div class="absolute right-5 top-5 transition group-hover:rotate-6 duration-500">
                         <SquareArrowOutUpRight class="text-zinc-950 dark:text-zinc-50 lg:w-5 w-3" />
@@ -39,9 +39,9 @@
                         <h3 class="text-sm font-mono font-light text-zinc-800 dark:text-zinc-400">
                             @felipe_sbm
                         </h3>
-                        <h3 class="font-sans font-semibold">
+                        <h2 class="font-sans font-semibold">
                             Codando com Samuka
-                        </h3>
+                        </h2>
                     </div>
                     <div class="absolute right-5 top-5 transition group-hover:rotate-6 duration-500">
                         <SquareArrowOutUpRight class="text-zinc-950 dark:text-zinc-50 lg:w-5 w-3" />
