@@ -1,8 +1,8 @@
 <template>
   <div class="flex grid lg:grid-cols-2 sm:grid-cols-1 gap-4 lg:gap-4 pb-8">
-    <div v-for="project in Projects" :key="project.title" class="project-card">
+    <div v-for="project in Projects" :key="project.title">
       <a :href="project.link">
-        <article :class="[project.className, 'overflow-hidden group mb-4 rounded-xl p-0.5 drop-shadow-xl transition hover:shadow-2xl']">
+        <article :class="[project.className, 'overflow-hidden group max-w-xs mb-4 rounded-xl p-0.5 drop-shadow-xl transition hover:shadow-2xl']">
           <img
             :alt="project.alt"
             :src="project.image"
@@ -29,15 +29,6 @@
               class="absolute right-4 top-4 transition group-hover:rotate-45 delay-75 duration-500"
             >
               <CircleArrowOutUpRight class="lg:w-5 w-4" />
-            </div>
-            <div class="mt-4 flex flex-wrap gap-1">
-              <span
-                v-for="tag in project.tags"
-                :key="tag"
-                class="whitespace-nowrap rounded-md px-2.5 py-0.5 text-xs"
-              >
-                {{ tag }}
-              </span>
             </div>
           </div>
         </article>
