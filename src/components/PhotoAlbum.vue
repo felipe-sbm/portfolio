@@ -67,9 +67,6 @@ export default defineComponent({
       Subaru: require("@/assets/photos/spotting.webp"),
     };
   },
-  name: "PhotoAl",
-  props: {
-    msg: String,
-  },
+  name: "PhotoAlbum",
 });
 </script>

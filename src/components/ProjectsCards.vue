@@ -2,7 +2,12 @@
   <div class="flex grid lg:grid-cols-2 sm:grid-cols-1 gap-4 lg:gap-4 pb-8">
     <div v-for="project in Projects" :key="project.title">
       <a :href="project.link">
-        <article :class="[project.className, 'overflow-hidden group max-w-xs mb-4 rounded-xl p-0.5 drop-shadow-xl transition hover:shadow-2xl']">
+        <article
+          :class="[
+            project.className,
+            'overflow-hidden group max-w-xs mb-4 rounded-xl p-0.5 drop-shadow-xl transition hover:shadow-2xl',
+          ]"
+        >
           <img
             :alt="project.alt"
             :src="project.image"
