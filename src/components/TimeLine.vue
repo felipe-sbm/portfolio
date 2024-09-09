@@ -9,7 +9,7 @@
       <img
         v-bind:src="Me"
         alt="Me:"
-        class="absolute right-0 lg:w-20 w-14 mx-1 shadow-md sm"
+        class="absolute right-0 lg:w-20 w-14 mx-1 sm"
       />
     </div>
     <span class="inline-flex items-baseline py-2">
@@ -155,7 +155,7 @@
         <img
           v-bind:src="Graduate"
           alt="Me celebrating."
-          class="h-20 w-20 mx-1 shadow-md"
+          class="h-20 w-20 mx-1"
         />&nbsp;
         <i class="text-sm text-zinc-500 dark:text-zinc-500">on 6 Apr, 2024</i>
       </p>
@@ -198,7 +198,7 @@
         <img
           v-bind:src="Amen"
           alt="Me thanking God."
-          class="h-20 w-20 mx-1 shadow-md"
+          class="h-20 w-20 mx-1"
         />&nbsp; <br class="lg:hidden" />
         <i class="text-sm text-zinc-500 dark:text-zinc-500">on 8 Sep, 2024</i>
       </p>

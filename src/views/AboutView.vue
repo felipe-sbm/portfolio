@@ -34,9 +34,13 @@
         alt="My snapchat character saying 'hi'."
         class="absolute w-20 h-20 right-0"
       />
-      <h6>Yeah, that's my history. Thanks for reading it!</h6>
-      <i
-        >「世の中には10種類の人がいて、2進数を理解している人と理解していない人です」</i
+      <h6>
+        Yeah, that's my history. <br class="lg:hidden" />
+        Thanks for reading it!
+      </h6>
+      <i class="text-xs"
+        >「世の中には10種類の人がいて、<br class="lg:hidden" />
+        2進数を理解している人と理解していない人です」</i
       >
     </div>
     <TeachPages class="my-4" />
