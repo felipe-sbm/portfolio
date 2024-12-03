@@ -194,13 +194,27 @@
         <a href="/" class="font-semibold" alt="Link Samuel's portfolio"
           >Felipe Samuel</a
         >
+        got a Technician Diploma by IMD - UFRN <br class="lg:hidden" />
+        <i class="text-sm text-zinc-500 dark:text-zinc-500">on 2 Dec, 2024</i>
+      </p>
+    </span>
+    <span class="inline-flex items-baseline py-2">
+      <img
+        v-bind:src="ProfilePicture"
+        alt="My profile picture."
+        class="self-center w-7 h-7 rounded-full mx-1 bg-teal-100 shadow-md"
+      />
+      <p class="content-center rounded-lg lg:w-max mx-2">
+        <a href="/" class="font-semibold" alt="Link Samuel's portfolio"
+          >Felipe Samuel</a
+        >
         still studying and making projects
         <img
           v-bind:src="Amen"
           alt="Me thanking God."
           class="h-20 w-20 mx-1"
         />&nbsp; <br class="lg:hidden" />
-        <i class="text-sm text-zinc-500 dark:text-zinc-500">on 8 Sep, 2024</i>
+        <i class="text-sm text-zinc-500 dark:text-zinc-500">on 2 Dec, 2024</i>
       </p>
     </span>
   </div>
