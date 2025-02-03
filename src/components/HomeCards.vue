@@ -1,11 +1,11 @@
 <template>
-  <a href="https://spiral-sbm.vercel.app">
+  <a href="https://otsuki.vercel.app">
     <article
       class="relative group mb-4 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-fuchsia-800 p-0.5 drop-shadow-xl transition hover:shadow-2xl"
     >
       <div
         class="rounded-[10px] bg-zinc-50 dark:bg-zinc-950 p-6"
-        title="Spiral is a company that make websites, systems, and servers for other companies with low cost and high quality."
+        title="Otsuki is a company focused in making programs for small business. We are working to make the best app for you and your company!"
       >
         <time
           datetime="2024-02-14"
@@ -14,7 +14,7 @@
           14th Feb 2024
         </time>
         <h3 class="mt-0.5 text-md font-medium text-zinc-900 dark:text-zinc-300">
-          Spiral: A new way to build your dreams.
+          Otsuki: A new way to build your dreams.
         </h3>
         <div
           class="absolute right-5 top-5 transition group-hover:rotate-45 delay-75 duration-500"

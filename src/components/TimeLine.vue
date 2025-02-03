@@ -112,10 +112,10 @@
         >
         started the project
         <a
-          href="https://spiral-sbm.vercel.app/"
+          href="https://otsuki.vercel.app/"
           class="font-semibold"
-          alt="Link for the Spiral SBM website"
-          >Spiral 🌀 </a
+          alt="Link for the Otsuki website"
+          >Otsuki </a
         ><br class="lg:hidden" />
         <i class="text-sm text-zinc-500 dark:text-zinc-500">on 15 Feb, 2024</i>
       </p>
@@ -175,10 +175,10 @@
         >
         joined to
         <a
-          href="https://spiral-sbm.vercel.app/"
+          href="https://otsuki.vercel.app/"
           class="font-semibold"
-          alt="Link for the Spiral SBM website"
-          >Spiral
+          alt="Link for the Otsuki website"
+          >Otsuki
         </a>
         <br class="lg:hidden" />
         <i class="text-sm text-zinc-500 dark:text-zinc-500">on 28 Jun, 2024</i>

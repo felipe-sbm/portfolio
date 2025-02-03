@@ -10,14 +10,14 @@ export interface Project {
 }
 
 export const Projects = {
-  spiral: {
-    title: "Spiral: A New Way to build your dreams",
+  otsuki: {
+    title: "Otsuki: A New Way to build your dreams",
     description:
-      "The Spiral is a platform that allows you to create your own website, system, blog, or portfolio in a simple and dynamic way",
-    link: "https://spiral-sbm.vercel.app/",
+      "The Otsuki is a startup that fucus in creating smart programs for small business.",
+    link: "https://otsuki.vercel.app/",
     date: "2024-14-02",
     image: "https://i.imgur.com/mbpze3b.png",
-    alt: "The Spiral logo with they clients brands.",
+    alt: "The Otsuki logo",
     tags: ["Typescript", "Ruby", "Next.js", "TailwindCSS"],
     className: "bg-gradient-to-r from-blue-500 via-purple-500 to-fuchsia-800",
   },

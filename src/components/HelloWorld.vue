@@ -34,8 +34,8 @@
       >
       and made some projects in my own, like
       <a
-        href="https://github.com/felipe-sbm/spiral"
-        alt="Link for the Spiral SBM repository"
+        href="https://github.com/otsuki-dev"
+        alt="Link for the Otsuki repository"
         ><span
           class="inline-flex items-center rounded-md bg-purple-100 dark:bg-purple-900 px-2.5 text-sm py-0.5 text-purple-700 dark:text-purple-100"
         >
@@ -97,7 +97,7 @@
               </filter>
             </defs>
           </svg>
-          Spiral
+          Otsuki
         </span></a
       >. <br />
       I keep practicing every day<i class="text-xs font-thin">/7*</i> and
@@ -110,10 +110,10 @@
     >
       Currently I'm working at project
       <a
-        href="https://spiral-sbm.vercel.app"
+        href="https://utsuki.vercel.app"
         class="underline text-zinc-950 dark:text-zinc-50"
-        alt="Link for the Spiral SBM website"
-        >Spiral SBM</a
+        alt="Link for the Otsuki website"
+        >Otsuki</a
       >. I actually work as a Freelancer, making websites, systems, repairing
       computers and building home servers. But that's not that all, I made some
       project in my own, look some of they.

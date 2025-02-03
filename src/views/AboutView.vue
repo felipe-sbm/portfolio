@@ -19,7 +19,7 @@
         <a
           href="/projects"
           class="underline font-medium text-zinc-950 dark:text-zinc-50"
-          alt="Link for the Spiral SBM website"
+          alt="Link for the Otsuki's website"
           >projects page</a
         >. Recently, I’ve been studying Japanese to improve my connection with
         other cultures. You are ready to see my timeline? Let's go!
