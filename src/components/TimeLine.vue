@@ -21,7 +21,7 @@
       <p
         class="content-center border-2 border border-zinc-800 dark:border-zinc-400 rounded-lg lg:w-max mx-2"
       >
-        &nbsp;My history start in 2005 when I was born in
+        &nbsp;My history started in 2005 when I was born in
         <a
           href="https://www.bing.com/search?pglt=675&q=parnamirim"
           class="font-semibold"
@@ -208,13 +208,34 @@
         <a href="/" class="font-semibold" alt="Link Samuel's portfolio"
           >Felipe Samuel</a
         >
-        still studying and making projects
+        started a new journey at
+        <a
+          href="https://portal.imd.ufrn.br/"
+          class="font-semibold"
+          alt="Link to Metropole Digital's website"
+          >IMD - UFRN</a
+        >
+        as student of Artificial intelligence <br class="lg:hidden" />
+        <i class="text-sm text-zinc-500 dark:text-zinc-500">on 17 Mar, 2025</i>
+      </p>
+    </span>
+    <span class="inline-flex items-baseline py-2">
+      <img
+        v-bind:src="ProfilePicture"
+        alt="My profile picture."
+        class="self-center w-7 h-7 rounded-full mx-1 bg-teal-100 shadow-md"
+      />
+      <p class="content-center rounded-lg lg:w-max mx-2">
+        <a href="/" class="font-semibold" alt="Link Samuel's portfolio"
+          >Felipe Samuel</a
+        >
+        still studying and doing projects
         <img
           v-bind:src="Amen"
           alt="Me thanking God."
           class="h-20 w-20 mx-1"
         />&nbsp; <br class="lg:hidden" />
-        <i class="text-sm text-zinc-500 dark:text-zinc-500">on 2 Dec, 2024</i>
+        <i class="text-sm text-zinc-500 dark:text-zinc-500">on 5 Mar, 2025</i>
       </p>
     </span>
   </div>
