@@ -1,0 +1,38 @@
+$title: #2e7b70;
+$subtitle: #f88d2b;
+$text-light: #53372a;
+$text-dark: #ffffff;
+$background-light: #fff8f5;
+$background-dark: #000000;
+
+$red-hat-text: "Red Hat Text", sans-serif;
+
+:root {
+  font-family: $red-hat-text;
+  color: $text-dark;
+  background-color: $background-dark;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  a {
+    color: #fff8f5;
+  }
+}
+
+header {
+  li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 1rem 0 1rem;
+  }
+  router-link {
+    color: $text-dark;
+    transition: all 0.3s ease-in-out;
+  }
+  router-link:hover {
+    color: $subtitle;
+    font-weight: 500;
+  }
+  #gallery router-link:focus {
+    
+  }
+}
