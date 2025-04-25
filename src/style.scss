@@ -1,11 +1,12 @@
-$title: #2e7b70;
-$subtitle: #f88d2b;
+$primary: #2e7b70;
+$secondary: #f88d2b;
 $text-light: #53372a;
 $text-dark: #ffffff;
 $background-light: #fff8f5;
 $background-dark: #000000;
 
 $red-hat-text: "Red Hat Text", sans-serif;
+$rocksalt: "Rock Salt", cursive;
 
 :root {
   font-family: $red-hat-text;
@@ -29,10 +30,9 @@ header {
     transition: all 0.3s ease-in-out;
   }
   router-link:hover {
-    color: $subtitle;
+    color: $secondary;
     font-weight: 500;
   }
   #gallery router-link:focus {
-    
   }
 }
