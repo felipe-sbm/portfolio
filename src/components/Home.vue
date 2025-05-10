@@ -92,34 +92,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../style.scss";
-.welcome {
-  font-family: $rocksalt;
-  font-weight: 400;
-  font-style: normal;
-  white-space: pre;
-  .bio {
-    p {
-      margin: 0;
-      font-family: $red-hat-text;
-    }
-  }
-  span {
-    color: $primary;
-  }
-  img {
-    width: 100rem;
-  }
-}
-.timeline {
-  .title {
+  @use "../style.scss" as *;
+  
+  .welcome {
     font-family: $rocksalt;
+    font-weight: 400;
+    font-style: normal;
+    white-space: pre;
+    .bio {
+      p {
+        margin: 0;
+        font-family: $red-hat-text;
+      }
+    }
     span {
       color: $primary;
     }
+    img {
+      width: 100rem;
+    }
   }
-  span {
-    color: $secondary;
+  .timeline {
+    .title {
+      font-family: $rocksalt;
+      span {
+        color: $primary;
+      }
+    }
+    span {
+      color: $secondary;
+    }
   }
-}
 </style>

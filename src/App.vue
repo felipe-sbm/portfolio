@@ -17,6 +17,6 @@ import Home from "./components/Home.vue";
 
 <style lang="scss" scoped>
 .container {
-  max-width: 30rem;
+  max-width: 50rem;
 }
 </style>
