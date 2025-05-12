@@ -99,17 +99,16 @@ export default {
     font-weight: 400;
     font-style: normal;
     white-space: pre;
+    
     .bio {
       p {
         margin: 0;
         font-family: $red-hat-text;
       }
-    }
-    span {
+    } span {
       color: $primary;
-    }
-    img {
-      width: 100rem;
+    } img {
+      width: 15rem;
     }
   }
   .timeline {

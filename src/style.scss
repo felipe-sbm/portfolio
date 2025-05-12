@@ -24,21 +24,3 @@ $rocksalt: "Rock Salt", cursive;
     color: #fff8f5;
   }
 }
-
-header {
-  li {
-    list-style: none;
-    display: inline-block;
-    margin: 0 1rem 0 1rem;
-  }
-  router-link {
-    color: $text-dark;
-    transition: all 0.3s ease-in-out;
-  }
-  router-link:hover {
-    color: $secondary;
-    font-weight: 500;
-  }
-  #gallery router-link:focus {
-  }
-}

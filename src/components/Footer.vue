@@ -35,11 +35,20 @@ export default {
 };
 </script>
 
-<style>
-footer {
-  display: flex;
-}
-img {
-  max-width: 10rem;
-}
+<style lang="scss" scoped>
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      max-width: 10rem;
+    }
+    li {
+      list-style: none;
+    }
+    li router-link:active {
+      list-style: url("../assets/select.gif");
+    }
+  }
 </style>
