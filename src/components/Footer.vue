@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div>
+    <div class="page-finder">
       <ul>
         <li><router-link to="/">home</router-link></li>
         <li><router-link to="/about">about me</router-link></li>
@@ -9,7 +9,7 @@
         <li><router-link to="/guestbook">guestbook</router-link></li>
       </ul>
     </div>
-    <div>
+    <div class="information">
       <a href="https://notbyai.fyi/how-it-works"> &copy; 2025 Felipe SBM. </a>
       <a href="https://www.otsuki.dev">
         <img :src="Otsuki" alt="Logo da Otsuki LTDA" />
@@ -36,19 +36,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    img {
-      max-width: 10rem;
+  .information {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      margin: 0 1rem 0 1rem;
+      img {
+        max-width: 7rem;
+      }
     }
-    li {
-      list-style: none;
-    }
-    li router-link:active {
+  }
+
+  img {
+    max-width: 10rem;
+  }
+  li {
+    list-style: none;
+
+    router-link:active {
       list-style: url("../assets/select.gif");
     }
   }
+}
 </style>
