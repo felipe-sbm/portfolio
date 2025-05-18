@@ -7,11 +7,18 @@
         <p>full-stack developer<span>&</span></p>
         <p>computer engineer<span>&</span></p>
         <p>web-designer<span>&</span></p>
-        <p>ai expert<span>&</span></p>
-        <p>a curious guy.</p>
+        <p>ai expert<span>.</span></p>
       </div>
     </div>
-    <div class="right-div"></div>
+    <div class="right-div">
+      <div class="frame">
+        <div class="frame-box-1">
+          <img :src="Dev" alt="Computador com o VsCode aberto." />
+        </div>
+        <div class="frame-box-2"></div>
+        <div class="frame-box-3"></div>
+      </div>
+    </div>
   </div>
   <div class="timeline">
     <div class="title"><h2>years passes, but this website don't stops</h2></div>
@@ -23,8 +30,7 @@
           Metropolis Institute) so I started to know and learn about programming
           things. This version has nothing too exciting, it has only my name and
           a skeleton (that I took from a reference link from IMD material) with
-          the text: “me with you x me without you”, a reference to a person that
-          I feel in love with.
+          a text. It was only a single HTML:5 page.
         </p>
         <p>
           Made with:
@@ -81,45 +87,69 @@
 
 <script lang="ts">
 import Logo from "../assets/sbm-logo.svg";
+import Dev from "../assets/pexels-luis-gomes-166706-546819.jpg";
 
 export default {
   data: function () {
     return {
       Logo: Logo,
+      Dev: Dev,
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  @use "../style.scss" as *;
-  
-  .welcome {
-    font-family: $rocksalt;
-    font-weight: 400;
-    font-style: normal;
-    white-space: pre;
-    
+@use "../style.scss" as *;
+
+.welcome {
+  font-family: $rocksalt;
+  font-weight: 400;
+  font-style: normal;
+  white-space: pre;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+
+  .left-div {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
     .bio {
       p {
         margin: 0;
         font-family: $red-hat-text;
       }
-    } span {
-      color: $primary;
-    } img {
-      width: 15rem;
-    }
-  }
-  .timeline {
-    .title {
-      font-family: $rocksalt;
-      span {
-        color: $primary;
-      }
     }
     span {
-      color: $secondary;
+      color: $primary;
+    }
+    img {
+      max-width: 15rem;
     }
   }
+  .right-div {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin-top: 2rem;
+
+    img {
+      max-width: 25rem;
+      border-radius: 1rem;
+    }
+  }
+}
+
+.timeline {
+  .title {
+    font-family: $rocksalt;
+    span {
+      color: $primary;
+    }
+  }
+  span {
+    color: $secondary;
+  }
+}
 </style>

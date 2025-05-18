@@ -2,11 +2,11 @@
   <footer>
     <div class="page-finder">
       <ul>
-        <li><router-link to="/">home</router-link></li>
-        <li><router-link to="/about">about me</router-link></li>
-        <li><router-link to="/ai">ai</router-link></li>
-        <li><router-link to="/projects">projects</router-link></li>
-        <li><router-link to="/guestbook">guestbook</router-link></li>
+        <li><router-link class="nav-link" to="/">home</router-link></li>
+        <li><router-link class="nav-link" to="/about">about me</router-link></li>
+        <li><router-link class="nav-link" to="/ai">ai</router-link></li>
+        <li><router-link class="nav-link" to="/projects">projects</router-link></li>
+        <li><router-link class="nav-link" to="/guestbook">guestbook</router-link></li>
       </ul>
     </div>
     <div class="information">
@@ -56,11 +56,30 @@ footer {
   img {
     max-width: 10rem;
   }
-  li {
-    list-style: none;
-
-    router-link:active {
-      list-style: url("../assets/select.gif");
+  .page-finder {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-link {
+      position: relative;
+      padding-left: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+      &.router-link-active::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-35%);
+        width: 1rem;
+        height: 1rem;
+        background-image: url("../assets/select.gif");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
     }
   }
 }
