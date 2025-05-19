@@ -14,6 +14,6 @@ import Footer from "./components/Footer.vue";
 
 <style lang="scss" scoped>
 .container {
-  max-width: 50rem;
+  max-width: 75rem;
 }
 </style>

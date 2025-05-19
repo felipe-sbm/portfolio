@@ -62,7 +62,7 @@ header {
       margin-left: -1.25rem;
       width: 1rem;
       height: 1rem;
-      background-image: url("../assets/select.gif");
+      background-image: url("../assets/images/select.gif");
       background-size: contain;
       background-repeat: no-repeat;
     }

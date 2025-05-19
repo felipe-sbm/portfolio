@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts">
-import Otsuki from "../assets/otsuki-logo.svg";
-import NotByAI from "../assets/Produced-By-Human-Not-By-AI-Badge-black.svg";
+import Otsuki from "../assets/icons/otsuki-logo.svg";
+import NotByAI from "../assets/icons/Produced-By-Human-Not-By-AI-Badge-black.svg";
 
 export default {
   data: function () {
@@ -40,6 +40,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 5rem;
 
   .information {
     display: flex;
@@ -76,7 +77,7 @@ footer {
         transform: translateY(-35%);
         width: 1rem;
         height: 1rem;
-        background-image: url("../assets/select.gif");
+        background-image: url("../assets/images/select.gif");
         background-size: contain;
         background-repeat: no-repeat;
       }
