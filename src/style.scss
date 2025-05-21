@@ -3,7 +3,7 @@ $secondary: #f88d2b;
 $text-light: #53372a;
 $text-dark: #ffffff;
 $background-light: #fff8f5;
-$background-dark: #000000;
+$background-dark: linear-gradient(0deg,#070709 0%, #070709 100%);
 
 $red-hat-text: "Red Hat Text", sans-serif;
 $rocksalt: "Rock Salt", cursive;
@@ -11,7 +11,7 @@ $rocksalt: "Rock Salt", cursive;
 :root {
   font-family: $red-hat-text;
   color: $text-dark;
-  background-color: $background-dark;
+  background-image: $background-dark;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

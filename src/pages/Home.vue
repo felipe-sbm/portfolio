@@ -12,7 +12,6 @@
     </div>
     <div class="right-div">
       <div class="frame">
-        <Coding ref="codingRef" />
       </div>
     </div>
   </div>
