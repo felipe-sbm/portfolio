@@ -1,5 +1,8 @@
 <template>
   <header>
+    <div class="location-hour">
+      <p>Natal, Brazil</p>
+    </div>
     <nav>
       <ul>
         <li><router-link class="nav-link" to="/">home</router-link></li>
@@ -15,8 +18,36 @@
         </li>
       </ul>
     </nav>
+    <div class="location-hour">
+      <p>{{ natalTime }}</p>
+    </div>
   </header>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref, onMounted } from "vue";
+
+export default defineComponent({
+  name: "NatalTime",
+  setup() {
+    const natalTime = ref("");
+    const updateTime = () => {
+      const date = new Date();
+      natalTime.value = new Intl.DateTimeFormat("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZone: "America/Fortaleza",
+      }).format(date);
+    };
+    onMounted(() => {
+      updateTime();
+      setInterval(updateTime, 1000);
+    });
+    return { natalTime };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 @use "../style.scss" as *;
@@ -25,11 +56,16 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
 
   nav {
-    background-color: #1e1e1e;
+    margin-top: 1rem;
+    background-color: #1e1e1ea4;
     padding: 0rem 1.5rem;
+    border: 2px solid #1a1a1a;
+    backdrop-filter: blur(1rem);
     border-radius: 2rem;
     box-shadow: 0 0 2.5rem #1a1a1a;
 
@@ -66,6 +102,12 @@ header {
       background-size: contain;
       background-repeat: no-repeat;
     }
+  }
+
+  .location-hour {
+    display: flex;
+    justify-content: center;
+    font-weight: lighter;
   }
 }
 </style>

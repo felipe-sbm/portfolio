@@ -115,7 +115,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import Coding from "../components/Coding.vue";
 import Logo from "../assets/icons/sbm-logo.svg";
 import Test from "../assets/images/pexels-luis-gomes-166706-546819.jpg";
 
@@ -144,7 +143,6 @@ $chocolate-sans: "Chocolate Classical Sans", sans-serif;
 $rubik: "Rubik Puddles", system-ui;
 
 .welcome {
-  font-family: $rocksalt;
   font-weight: 400;
   font-style: normal;
   white-space: pre;
@@ -197,7 +195,6 @@ $rubik: "Rubik Puddles", system-ui;
   margin-top: 5rem;
 
   .title {
-    font-family: $rocksalt;
     margin-bottom: 2rem;
     h2 {
       font-size: 1.8rem;
