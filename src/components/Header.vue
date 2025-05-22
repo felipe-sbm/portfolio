@@ -59,6 +59,9 @@ header {
   position: sticky;
   top: 0;
   justify-content: space-between;
+  background-image: linear-gradient(0deg, #00000000, #000000);
+  overflow: hidden;
+  width: 100%;
 
   nav {
     margin-top: 1rem;
@@ -67,7 +70,7 @@ header {
     border: 2px solid #1a1a1a;
     backdrop-filter: blur(1rem);
     border-radius: 2rem;
-    box-shadow: 0 0 2.5rem #1a1a1a;
+    box-shadow: 0 0 0.5rem #1a1a1a;
 
     ul {
       list-style: none;
@@ -107,7 +110,8 @@ header {
   .location-hour {
     display: flex;
     justify-content: center;
-    font-weight: lighter;
+    font-weight: normal;
+    padding: 0 2rem 0 2rem;
   }
 }
 </style>
