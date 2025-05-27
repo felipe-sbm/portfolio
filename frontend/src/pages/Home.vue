@@ -118,7 +118,7 @@
 </template>
 
 <script setup lang="ts">
-import Logo from "../assets/icons/sbm-logo.svg";
+import Logo from "../assets/images/sbm-logo.svg";
 import Test from "../assets/images/pexels-luis-gomes-166706-546819.jpg";
 </script>
 

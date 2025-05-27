@@ -67,10 +67,10 @@
   </footer>
 </template>
 
-<script lang="ts" setup>
-import ProfilePicture from "../assets/icons/pfp.webp";
-import Otsuki from "../assets/icons/otsuki-logo.svg";
-import NotByAI from "../assets/icons/Developed-By-Human-Not-By-AI-Badge-black.svg";
+<script setup lang="ts">
+import ProfilePicture from "../assets/images/pfp.webp";
+import Otsuki from "../assets/images/otsuki-logo.svg";
+import NotByAI from "../assets/images/Developed-By-Human-Not-By-AI-Badge-black.svg";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
 </script>
 
@@ -109,14 +109,21 @@ footer {
 
     .message {
       display: flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid $border-color;
       border-radius: 10rem;
       padding: 0.25rem;
       padding-right: 1rem;
 
       img {
-        margin-right: 0.75rem;
-        max-width: 3rem;
+      margin-right: 0.75rem;
+      max-width: 3rem;
+      max-height: 3rem;
+      }
+
+      p {
+        margin: 0;
       }
     }
 
@@ -177,7 +184,7 @@ footer {
         transform: translateY(-35%);
         width: 1rem;
         height: 1rem;
-        background-image: url("../assets/images/select.gif");
+        background-image: url("../assets/icons/select.gif");
         background-size: contain;
         background-repeat: no-repeat;
       }
