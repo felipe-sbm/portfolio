@@ -118,10 +118,6 @@ export default {
         border-radius: 0.5rem;
         cursor: pointer;
         font-size: 1rem;
-
-        &:hover {
-          background-color: darken($primary, 10%);
-        }
       }
     }
   }
