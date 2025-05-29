@@ -1,21 +1,26 @@
-/* Este aquivo é temporário, somente para testar o card enquanto o backend não está finalizado. */
-
 export interface ProjectData {
-    ProjectName: string;
-    ProjectImage: string;
-    ProjectImageAlt?: string;
-    ProjectDescription: string;
-    ProjectLink: string;
+  name: string;
+  image: string;
+  imageAlt?: string;
+  description: string;
+  link: string;
 }
 
 export const projects: ProjectData[] = [
+  {
+    name: "insomnia machine",
+    image: "https://images.pexels.com/photos/1233529/pexels-photo-1233529.jpeg?auto=compress&cs=tinysrgb&w=240&h=240&dpr=1",
+    imageAlt: "a automatic coffee machine",
+    description:
+      "a automatic coffee machine made with C++ and a ESP32. in this project, we explored the IoT area making a very smart and independent coffee machine.",
+    link: "https://www.github.com/felipe-sbm/insomnia-machine",
+  },
     {
-        ProjectName: "Projeto Exemplo",
-        ProjectImage: "/assets/images/pexels-luis-gomes-166706-546819.jpg",
-        ProjectImageAlt: "Imagem do Projeto",
-        ProjectDescription: "Descrição do Projeto Exemplo.",
-        ProjectLink: "https://www.github.com/felipe-sbm"
-    }
+    name: "p.a. registration portal",
+    image: "https://images.pexels.com/photos/3763870/pexels-photo-3763870.jpeg?auto=compress&cs=tinysrgb&w=240&h=240&dpr=1",
+    imageAlt: "a automatic coffee machine",
+    description:
+      "a system made for the Fedral University of Rio Grande do Norte. This website is responsible for registering users who wish to carry out physical activities on campus.",
+    link: "https://www.github.com/otsuki-dev/piaf-ufrn",
+  },
 ];
-
-/* CÓDIGO TEMPORÁRIO */

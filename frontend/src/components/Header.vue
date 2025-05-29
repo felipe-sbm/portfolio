@@ -5,16 +5,35 @@
     </div>
     <nav>
       <ul>
-        <li><router-link class="nav-link" to="/">home</router-link></li>
         <li>
-          <router-link class="nav-link" to="/about">about me</router-link>
-        </li>
-        <li><router-link class="nav-link" to="/ai">ai</router-link></li>
-        <li>
-          <router-link class="nav-link" to="/projects">projects</router-link>
+          <router-link class="nav-link" to="/">
+            <span class="nav-icon"><HomeIcon /></span>
+            <span class="nav-text">home</span>
+          </router-link>
         </li>
         <li>
-          <router-link class="nav-link" to="/guestbook">guestbook</router-link>
+          <router-link class="nav-link" to="/about">
+            <span class="nav-icon"><UserIcon /></span>
+            <span class="nav-text">about me</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link class="nav-link" to="/ai">
+            <span class="nav-icon"><BotIcon /></span>
+            <span class="nav-text">ai</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link class="nav-link" to="/projects">
+            <span class="nav-icon"><Cog /></span>
+            <span class="nav-text">projects</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link class="nav-link" to="/guestbook">
+            <span class="nav-icon"><BookOpenIcon /></span>
+            <span class="nav-text">guestbook</span>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -26,9 +45,17 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
+import {
+  HomeIcon,
+  UserIcon,
+  BotIcon,
+  Cog,
+  BookOpenIcon,
+} from "lucide-vue-next";
 
 export default defineComponent({
   name: "NatalTime",
+  components: { HomeIcon, UserIcon, BotIcon, Cog, BookOpenIcon },
   setup() {
     const natalTime = ref("");
     const updateTime = () => {
@@ -87,6 +114,8 @@ header {
     transition: all 0.3s ease-in-out;
     position: relative;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 
     &:hover {
       color: $secondary;
@@ -105,6 +134,13 @@ header {
       background-size: contain;
       background-repeat: no-repeat;
     }
+    .nav-icon {
+      display: none;
+      margin-right: 0.5rem;
+    }
+    .nav-text {
+      display: inline;
+    }
   }
 
   .location-hour {
@@ -112,6 +148,28 @@ header {
     justify-content: center;
     font-weight: normal;
     padding: 0 2rem 0 2rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    margin: auto;
+    position: sticky;
+  }
+
+  header .nav-link .nav-icon {
+    display: inline !important;
+  }
+
+  header .nav-link .nav-text {
+    display: none !important;
+  }
+
+  header .location-hour {
+    display: none !important;
   }
 }
 </style>

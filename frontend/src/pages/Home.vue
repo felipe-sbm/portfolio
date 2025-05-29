@@ -151,9 +151,9 @@ $rubik: "Rubik Puddles", system-ui;
       }
     }
     h1 {
-      font-size: 30px;
-      font-weight: normal;
-      margin: 0;
+      font-size: 1.75rem;
+      font-weight: medium;
+      margin: 0 0 1rem 0;
     }
     span {
       color: $primary;

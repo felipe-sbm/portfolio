@@ -117,9 +117,9 @@ footer {
       padding-right: 1rem;
 
       img {
-      margin-right: 0.75rem;
-      max-width: 3rem;
-      max-height: 3rem;
+        margin-right: 0.75rem;
+        max-width: 3rem;
+        max-height: 3rem;
       }
 
       p {

@@ -3,8 +3,8 @@
     <div class="main-content">
       <div class="title">
         <h1>
-          here is the <span>guestbook</span>, write <br />
-          something to be there <span>forever!</span>
+          here is the <span>guestbook</span>, write something to be there
+          <span>forever!</span>
         </h1>
         <p>please, <span>don't write inapropriate things.</span></p>
       </div>
@@ -22,11 +22,11 @@
       </div>
     </div>
 
-      <div v-if="isLoading">loading...</div>
-      <div v-else>
-        <div v-if="comments.length === 0" class="no-comments">
-          Nenhum comentário ainda. <span>Seja o primeiro!</span>
-        </div>
+    <div v-if="isLoading">loading...</div>
+    <div v-else>
+      <div v-if="comments.length === 0" class="no-comments">
+        Nenhum comentário ainda. <span>Seja o primeiro!</span>
+      </div>
 
       <div v-else class="comments-list">
         <div v-for="comment in comments" :key="comment.id" class="comment">
@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @use "../style.scss" as *;
 
 .guestbook {
@@ -72,9 +72,10 @@ export default {
     margin-bottom: 2rem;
 
     .title {
+      max-width:30rem;
       h1 {
-        font-size: 30px;
-        font-weight: normal;
+        font-size: 1.75rem;
+        font-weight: medium;
         margin: 0;
 
         span {
