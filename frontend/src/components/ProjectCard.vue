@@ -34,7 +34,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use "@/style.scss" as *;
 
 .card {
   background-image: $card-background;

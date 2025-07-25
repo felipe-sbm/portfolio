@@ -1,37 +1,47 @@
 <template>
   <header>
     <div class="location-hour">
-      <p>Natal, Brazil</p>
+      <p>natal, brazil</p>
     </div>
     <nav>
       <ul>
         <li>
           <router-link class="nav-link" to="/">
-            <span class="nav-icon"><HomeIcon /></span>
+            <span class="nav-icon">
+              <HomeIcon />
+            </span>
             <span class="nav-text">home</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/about">
-            <span class="nav-icon"><UserIcon /></span>
+            <span class="nav-icon">
+              <UserIcon />
+            </span>
             <span class="nav-text">about me</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/ai">
-            <span class="nav-icon"><BotIcon /></span>
+            <span class="nav-icon">
+              <BotIcon />
+            </span>
             <span class="nav-text">ai</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/projects">
-            <span class="nav-icon"><Cog /></span>
+            <span class="nav-icon">
+              <Cog />
+            </span>
             <span class="nav-text">projects</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/guestbook">
-            <span class="nav-icon"><BookOpenIcon /></span>
+            <span class="nav-icon">
+              <BookOpenIcon />
+            </span>
             <span class="nav-text">guestbook</span>
           </router-link>
         </li>
@@ -77,7 +87,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use "@/style.scss" as *;
 
 header {
   display: flex;
@@ -89,6 +99,7 @@ header {
   background-image: linear-gradient(0deg, #00000000, #000000);
   overflow: hidden;
   width: 100%;
+  z-index: 100;
 
   nav {
     margin-top: 1rem;
@@ -102,6 +113,7 @@ header {
     ul {
       list-style: none;
       padding: 0rem;
+
       li {
         list-style: none;
         display: inline-block;
@@ -109,6 +121,7 @@ header {
       }
     }
   }
+
   .nav-link {
     color: $text-dark;
     transition: all 0.3s ease-in-out;
@@ -121,6 +134,7 @@ header {
       color: $secondary;
       font-weight: 500;
     }
+
     &.router-link-active::before {
       content: "";
       position: absolute;
@@ -130,14 +144,16 @@ header {
       margin-left: -1.25rem;
       width: 1rem;
       height: 1rem;
-      background-image: url("../assets/icons/select.gif");
+      background-image: url("@/assets/icons/select.gif");
       background-size: contain;
       background-repeat: no-repeat;
     }
+
     .nav-icon {
       display: none;
       margin-right: 0.5rem;
     }
+
     .nav-text {
       display: inline;
     }
@@ -151,7 +167,7 @@ header {
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   header {
     flex-direction: column;
     align-items: center;

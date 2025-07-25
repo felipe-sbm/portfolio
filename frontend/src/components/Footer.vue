@@ -68,14 +68,14 @@
 </template>
 
 <script setup lang="ts">
-import ProfilePicture from "../assets/images/pfp.webp";
-import Otsuki from "../assets/images/otsuki-logo.svg";
-import NotByAI from "../assets/images/Developed-By-Human-Not-By-AI-Badge-black.svg";
+import ProfilePicture from "@/assets/images/pfp.webp";
+import Otsuki from "@/assets/images/otsuki-logo.svg";
+import NotByAI from "@/assets/images/Developed-By-Human-Not-By-AI-Badge-black.svg";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
 </script>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use "@/style.scss" as *;
 
 footer {
   max-width: 75rem;
@@ -184,7 +184,7 @@ footer {
         transform: translateY(-35%);
         width: 1rem;
         height: 1rem;
-        background-image: url("../assets/icons/select.gif");
+        background-image: url("@/assets/icons/select.gif");
         background-size: contain;
         background-repeat: no-repeat;
       }

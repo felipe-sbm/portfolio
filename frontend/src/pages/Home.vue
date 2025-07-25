@@ -38,8 +38,8 @@
             </p>
           </div>
           <div class="image">
-            <a href="/" target="_blank">
-              <img :src="Test" alt="Preview 2022" />
+            <a href="/visualizer">
+              <img :src="WebSite1" alt="Preview 2022" />
             </a>
           </div>
         </div>
@@ -61,8 +61,8 @@
             </p>
           </div>
           <div class="image">
-            <a href="/" target="_blank">
-              <img :src="Test" alt="Preview 2022" />
+            <a href="/visualizer">
+              <img :src="WebSite2" alt="Preview 2023" />
             </a>
           </div>
         </div>
@@ -84,8 +84,8 @@
             </p>
           </div>
           <div class="image">
-            <a href="/" target="_blank">
-              <img :src="Test" alt="Preview 2022" />
+            <a href="/visualizer">
+              <img :src="WebSite3" alt="Preview 2024" />
             </a>
           </div>
         </div>
@@ -107,7 +107,7 @@
             </p>
           </div>
           <div class="image">
-            <a href="/" target="_blank">
+            <a href="/">
               <img :src="Test" alt="Preview 2022" />
             </a>
           </div>
@@ -118,12 +118,15 @@
 </template>
 
 <script setup lang="ts">
-import Logo from "../assets/images/sbm-logo.svg";
-import Test from "../assets/images/pexels-luis-gomes-166706-546819.jpg";
+import Logo from "@/assets/images/sbm-logo.svg";
+import Test from "@/assets/images/pexels-luis-gomes-166706-546819.jpg";
+import WebSite1 from "@/assets/images/visualizer/2022/website.webp";
+import WebSite2 from "@/assets/images/visualizer/2023/website.webp";
+import WebSite3 from "@/assets/images/visualizer/2024/website.webp";
 </script>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use "@/style.scss" as *;
 
 $notosans-jp: "Noto Sans JP", sans-serif;
 $geologica: "Geologica", sans-serif;
@@ -141,8 +144,10 @@ $rubik: "Rubik Puddles", system-ui;
     display: flex;
     flex-direction: column;
     font-size: small;
+
     .bio {
       padding: 0;
+
       li {
         margin: 0;
         font-family: $red-hat-text;
@@ -150,18 +155,22 @@ $rubik: "Rubik Puddles", system-ui;
         list-style: none;
       }
     }
+
     h1 {
       font-size: 1.75rem;
       font-weight: medium;
       margin: 0 0 1rem 0;
     }
+
     span {
       color: $primary;
     }
+
     img {
       max-width: 15rem;
     }
   }
+
   .right-div {
     display: flex;
     flex-direction: column;
@@ -179,16 +188,20 @@ $rubik: "Rubik Puddles", system-ui;
 
   .title {
     margin-bottom: 2rem;
+
     h2 {
       font-size: 1.8rem;
     }
+
     span {
       color: $primary;
     }
   }
+
   span {
     color: $secondary;
   }
+
   .versions {
     display: flex;
     flex-direction: column;
@@ -208,6 +221,7 @@ $rubik: "Rubik Puddles", system-ui;
         h3 {
           font-size: 3rem;
           margin-bottom: 1rem;
+
           span {
             color: $primary;
           }
@@ -241,12 +255,15 @@ $rubik: "Rubik Puddles", system-ui;
     .title-22 {
       font-family: $notosans-jp;
     }
+
     .title-23 {
       font-family: $geologica;
     }
+
     .title-24 {
       font-family: $chocolate-sans;
     }
+
     .title-25 {
       font-family: $rubik;
     }
