@@ -18,6 +18,22 @@ $card-background: radial-gradient(#070709 0%, #090910 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  scrollbar-color: $primary $button-color;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $button-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $primary;
+    border-radius: 0.5rem;
+    border: 3px solid $button-color;
+  }
+
   a {
     color: #fff8f5;
   }

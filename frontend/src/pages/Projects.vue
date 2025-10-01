@@ -1,13 +1,5 @@
 <template>
   <div class="projects-body">
-    <div class="information">
-      <h1>projects</h1>
-      <p>
-        see below the projects I've created over the time I've been a
-        programmer. they're sorted from newest to oldest, so the best ones are
-        up here. lol
-      </p>
-    </div>
     <div class="message">
       <img
         :src="ProfilePicture"
@@ -70,7 +62,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     max-width: 100%;
-    gap: 4rem;
+    gap: 2rem;
     justify-items: center;
     align-items: stretch;
     margin: 0 auto 2rem auto;

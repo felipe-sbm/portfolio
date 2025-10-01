@@ -46,7 +46,6 @@ export default defineComponent({
   a {
     text-decoration: none;
     color: inherit;
-    text-align: justify;
   }
 
   .card-body {

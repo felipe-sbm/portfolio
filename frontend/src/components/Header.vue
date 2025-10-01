@@ -1,44 +1,54 @@
 <template>
   <header>
     <div class="location-hour">
-      <p>Natal, Brazil</p>
+      <p class="location">Natal, Brazil</p>
     </div>
     <nav>
       <ul>
         <li>
           <router-link class="nav-link" to="/">
-            <span class="nav-icon"><HomeIcon /></span>
+            <span class="nav-icon">
+              <HomeIcon />
+            </span>
             <span class="nav-text">home</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/about">
-            <span class="nav-icon"><UserIcon /></span>
+            <span class="nav-icon">
+              <UserIcon />
+            </span>
             <span class="nav-text">about me</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/ai">
-            <span class="nav-icon"><BotIcon /></span>
+            <span class="nav-icon">
+              <BotIcon />
+            </span>
             <span class="nav-text">ai</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/projects">
-            <span class="nav-icon"><Cog /></span>
+            <span class="nav-icon">
+              <Cog />
+            </span>
             <span class="nav-text">projects</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/guestbook">
-            <span class="nav-icon"><BookOpenIcon /></span>
+            <span class="nav-icon">
+              <BookOpenIcon />
+            </span>
             <span class="nav-text">guestbook</span>
           </router-link>
         </li>
       </ul>
     </nav>
     <div class="location-hour">
-      <p>{{ natalTime }}</p>
+      <p class="time">{{ natalTime }}</p>
     </div>
   </header>
 </template>
@@ -98,10 +108,12 @@ header {
     backdrop-filter: blur(1rem);
     border-radius: 2rem;
     box-shadow: 0 0 0.5rem #1a1a1a;
+    max-width: 26.5rem;
 
     ul {
       list-style: none;
       padding: 0rem;
+
       li {
         list-style: none;
         display: inline-block;
@@ -109,6 +121,7 @@ header {
       }
     }
   }
+
   .nav-link {
     color: $text-dark;
     transition: all 0.3s ease-in-out;
@@ -121,6 +134,7 @@ header {
       color: $secondary;
       font-weight: 500;
     }
+
     &.router-link-active::before {
       content: "";
       position: absolute;
@@ -130,24 +144,40 @@ header {
       margin-left: -1.25rem;
       width: 1rem;
       height: 1rem;
-      background-image: url("../assets/icons/select.gif");
+      background-image: url("../assets/icons/new-select.gif");
       background-size: contain;
       background-repeat: no-repeat;
     }
+
     .nav-icon {
       display: none;
       margin-right: 0.5rem;
     }
+
     .nav-text {
       display: inline;
     }
   }
 
   .location-hour {
+    position: relative;
     display: flex;
     justify-content: center;
     font-weight: normal;
     padding: 0 2rem 0 2rem;
+    width: 3rem;
+
+    .location {
+      position: absolute;
+      top: -1.1rem;
+      left: 1rem;
+    }
+
+    .time {
+      position: absolute;
+      top: -1.1rem;
+      right: 1rem;
+    }
   }
 }
 
