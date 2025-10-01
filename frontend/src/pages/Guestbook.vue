@@ -51,8 +51,8 @@
 </template>
 
 <script lang="ts">
-import ProfilePicture from "../assets/images/pfp.webp";
-import { GuestbookComponent } from "../services/GuestbookService";
+import ProfilePicture from "@/assets/images/pfp.webp";
+import { GuestbookComponent } from "@/services/GuestbookService";
 
 export default {
   extends: GuestbookComponent,
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use "@/style.scss" as *;
 
 .guestbook {
   .main-content {

@@ -1,3 +1,9 @@
 {
-    "dotnet.defaultSolution": "Backend.sln"
+    "dotnet.defaultSolution": "Backend.sln",
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "typescript.suggest.autoImports": true,
+    "vue.server.hybridMode": true,
+    "vetur.validation.template": false,
+    "vetur.validation.style": false,
+    "vetur.validation.script": false
 }

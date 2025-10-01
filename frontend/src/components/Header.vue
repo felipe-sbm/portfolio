@@ -10,11 +10,17 @@
             <span class="nav-icon">
               <HomeIcon />
             </span>
+            <span class="nav-icon">
+              <HomeIcon />
+            </span>
             <span class="nav-text">home</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/about">
+            <span class="nav-icon">
+              <UserIcon />
+            </span>
             <span class="nav-icon">
               <UserIcon />
             </span>
@@ -26,6 +32,9 @@
             <span class="nav-icon">
               <BotIcon />
             </span>
+            <span class="nav-icon">
+              <BotIcon />
+            </span>
             <span class="nav-text">ai</span>
           </router-link>
         </li>
@@ -34,11 +43,17 @@
             <span class="nav-icon">
               <Cog />
             </span>
+            <span class="nav-icon">
+              <Cog />
+            </span>
             <span class="nav-text">projects</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/guestbook">
+            <span class="nav-icon">
+              <BookOpenIcon />
+            </span>
             <span class="nav-icon">
               <BookOpenIcon />
             </span>
@@ -87,7 +102,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use "@/style.scss" as *;
 
 header {
   display: flex;
@@ -99,6 +114,7 @@ header {
   background-image: linear-gradient(0deg, #00000000, #000000);
   overflow: hidden;
   width: 100%;
+  z-index: 100;
 
   nav {
     margin-top: 1rem;
@@ -114,6 +130,7 @@ header {
       list-style: none;
       padding: 0rem;
 
+
       li {
         list-style: none;
         display: inline-block;
@@ -121,6 +138,7 @@ header {
       }
     }
   }
+
 
   .nav-link {
     color: $text-dark;
@@ -134,6 +152,7 @@ header {
       color: $secondary;
       font-weight: 500;
     }
+
 
     &.router-link-active::before {
       content: "";
@@ -149,10 +168,12 @@ header {
       background-repeat: no-repeat;
     }
 
+
     .nav-icon {
       display: none;
       margin-right: 0.5rem;
     }
+
 
     .nav-text {
       display: inline;
@@ -181,7 +202,7 @@ header {
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   header {
     flex-direction: column;
     align-items: center;

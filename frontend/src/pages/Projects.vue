@@ -24,9 +24,9 @@
 </template>
 
 <script lang="ts">
-import ProjectCard from "../components/ProjectCard.vue";
-import { projects } from "../data/projectData";
-import ProfilePicture from "../assets/images/pfp.webp";
+import ProjectCard from "@/components/ProjectCard.vue";
+import { projects } from "@/data/projectData";
+import ProfilePicture from "@/assets/images/pfp.webp";
 
 export default {
   components: { ProjectCard },
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use "../style.scss" as *;
+@use "@/style.scss" as *;
 
 .projects-body {
   .message {
