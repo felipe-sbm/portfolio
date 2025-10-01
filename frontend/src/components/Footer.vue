@@ -17,11 +17,7 @@
     </div>
     <div class="contact">
       <div class="message">
-        <img
-          :src="ProfilePicture"
-          alt="Profile picture of Felipe SBM"
-          class="profile-picture"
-        />
+        <img :src="ProfilePicture" alt="Profile picture of Felipe SBM" class="profile-picture" />
         <p>hey, check out my last project!</p>
       </div>
       <div class="social-media">
@@ -200,6 +196,7 @@ footer {
 
     .page-finder {
       width: 100%;
+
       ul {
         display: flex;
         flex-direction: column;
@@ -208,6 +205,7 @@ footer {
         margin: 0;
         gap: 0.5rem;
       }
+
       .nav-link {
         padding-left: 0;
         text-align: center;
@@ -230,11 +228,13 @@ footer {
     .information {
       flex-direction: column;
       align-items: center;
+
       a,
       img {
         margin: 0.5rem 0;
       }
     }
+
     .contact {
       display: flex;
       flex-direction: column;
@@ -254,11 +254,13 @@ footer {
           max-width: 2.5rem;
           max-height: 2.5rem;
         }
+
         p {
           margin: 0;
           flex: 1;
         }
       }
+
       .social-media {
         flex-direction: column;
         align-items: center;
@@ -266,6 +268,7 @@ footer {
         padding: 0.5rem;
       }
     }
+
     .page-finder {
       ul {
         gap: 0.25rem;

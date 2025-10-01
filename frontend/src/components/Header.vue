@@ -130,7 +130,6 @@ header {
       list-style: none;
       padding: 0rem;
 
-
       li {
         list-style: none;
         display: inline-block;
@@ -138,7 +137,6 @@ header {
       }
     }
   }
-
 
   .nav-link {
     color: $text-dark;
@@ -163,17 +161,15 @@ header {
       margin-left: -1.25rem;
       width: 1rem;
       height: 1rem;
-      background-image: url("../assets/icons/new-select.gif");
+      background-image: url("@/assets/icons/select.gif");
       background-size: contain;
       background-repeat: no-repeat;
     }
-
 
     .nav-icon {
       display: none;
       margin-right: 0.5rem;
     }
-
 
     .nav-text {
       display: inline;
