@@ -33,11 +33,9 @@ async function loadMarkdown(slugVal: string) {
     const modules = import.meta.glob('../projects/*.{md,mdx}', { as: 'raw' }) as Record<string, () => Promise<string>>;
     const possible = [`../projects/${slugVal}.mdx`, `../projects/${slugVal}.md`];
     let loader: (() => Promise<string>) | undefined;
-    let foundPath = '';
     for (const p of possible) {
       if (modules[p]) {
         loader = modules[p];
-        foundPath = p;
         break;
       }
     }
