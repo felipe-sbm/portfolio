@@ -1,0 +1,48 @@
+{
+  "name": "portfolio",
+  "version": "0.0.2",
+  "private": true,
+  "description": "Creating a new portfolio with AI chatbot integration.",
+  "keywords": [
+    "portfolio",
+    "typescript",
+    "AI",
+    "vue",
+    "vite",
+    "vercel."
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felipe-sbm/portfolio"
+  },
+  "license": "MIT",
+  "author": "Felipe SBM",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "dev:bun": "bun --bun vite",
+    "build": "vue-tsc -b && vite build",
+    "build:bun": "bun --bun vue-tsc -b && bun --bun vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide": "^0.525.0",
+    "lucide-vue-next": "^0.511.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1",
+    "markdown-it": "^13.0.1",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.19",
+    "@types/node": "^24.1.0",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/runtime-core": "^3.5.14",
+    "@vue/tsconfig": "^0.7.0",
+    "sass": "^1.89.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.3.5",
+    "vue-tsc": "^2.2.4"
+  }
+}
