@@ -10,17 +10,11 @@
             <span class="nav-icon">
               <HomeIcon />
             </span>
-            <span class="nav-icon">
-              <HomeIcon />
-            </span>
             <span class="nav-text">home</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/about">
-            <span class="nav-icon">
-              <UserIcon />
-            </span>
             <span class="nav-icon">
               <UserIcon />
             </span>
@@ -32,9 +26,6 @@
             <span class="nav-icon">
               <BotIcon />
             </span>
-            <span class="nav-icon">
-              <BotIcon />
-            </span>
             <span class="nav-text">ai</span>
           </router-link>
         </li>
@@ -43,17 +34,11 @@
             <span class="nav-icon">
               <Cog />
             </span>
-            <span class="nav-icon">
-              <Cog />
-            </span>
             <span class="nav-text">projects</span>
           </router-link>
         </li>
         <li>
           <router-link class="nav-link" to="/guestbook">
-            <span class="nav-icon">
-              <BookOpenIcon />
-            </span>
             <span class="nav-icon">
               <BookOpenIcon />
             </span>
@@ -161,7 +146,7 @@ header {
       margin-left: -1.25rem;
       width: 1rem;
       height: 1rem;
-      background-image: url("@/assets/icons/select.gif");
+      background-image: url("@/assets/icons/new-select.gif");
       background-size: contain;
       background-repeat: no-repeat;
     }

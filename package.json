@@ -27,6 +27,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^12.6.0",
     "gray-matter": "^4.0.3",
     "lucide": "^0.525.0",
     "lucide-vue-next": "^0.511.0",

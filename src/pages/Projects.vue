@@ -61,12 +61,16 @@ export default {
 
   .projects-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 1fr;
     max-width: 100%;
     gap: 2rem;
     justify-items: center;
     align-items: stretch;
     margin: 0 auto 2rem auto;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr;
+    }
 
     @media (min-width: 900px) {
       grid-template-columns: repeat(2, 1fr);
