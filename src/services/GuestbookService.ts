@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 
 interface Comment {
-  id: number;
+  id: string;
   username: string;
   content: string;
   createdAt: string;
@@ -17,26 +17,37 @@ interface ComponentState {
   error: string | null;
 }
 
-const API_URL = 'http://localhost:5044/api/Guestbook';
+const FIREBASE_BASE = 'https://portifolio-sbm-default-rtdb.firebaseio.com';
+const COMMENTS_PATH = `${FIREBASE_BASE}/comments`;
 
 async function fetchComments(): Promise<Comment[]> {
-  const response = await fetch(API_URL);
+  const response = await fetch(`${COMMENTS_PATH}.json`);
   if (!response.ok) throw new Error(`Erro HTTP! status: ${response.status}`);
-  return await response.json();
+  const data = await response.json();
+  if (!data) return [];
+
+  return Object.keys(data).map((key) => ({
+    id: key,
+    username: data[key].username,
+    content: data[key].content,
+    createdAt: data[key].createdAt,
+  }));
 }
 
 async function addComment(comment: Omit<Comment, 'id' | 'createdAt'>): Promise<Comment> {
-  const response = await fetch(API_URL, {
+  const payload = { ...comment, createdAt: new Date().toISOString() };
+  const response = await fetch(`${COMMENTS_PATH}.json`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(comment)
+    body: JSON.stringify(payload),
   });
   if (!response.ok) throw new Error('Erro ao enviar comentário');
-  return await response.json();
+  const data = await response.json();
+  return { id: data.name, username: payload.username, content: payload.content, createdAt: payload.createdAt };
 }
 
 async function deleteAllComments(): Promise<void> {
-  const response = await fetch(API_URL, { method: 'DELETE' });
+  const response = await fetch(`${COMMENTS_PATH}.json`, { method: 'DELETE' });
   if (!response.ok) throw new Error('Erro ao apagar comentários');
 }
 
@@ -46,14 +57,12 @@ function formatDate(dateString: string): string {
     month: 'short',
     day: 'numeric',
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
   });
 }
 
 function handleError(error: unknown, defaultMessage: string): string {
-  return error instanceof Error 
-    ? `${defaultMessage}: ${error.message}`
-    : `${defaultMessage}: Erro desconhecido`;
+  return error instanceof Error ? `${defaultMessage}: ${error.message}` : `${defaultMessage}: Erro desconhecido`;
 }
 
 export const GuestbookComponent = defineComponent({
@@ -63,7 +72,7 @@ export const GuestbookComponent = defineComponent({
       comments: [],
       newComment: { username: '', content: '' },
       isLoading: false,
-      error: null
+      error: null,
     };
   },
   async created() {
@@ -100,7 +109,7 @@ export const GuestbookComponent = defineComponent({
     },
     async deleteAll() {
       if (!confirm('Apagar todos os comentários?')) return;
-      
+
       this.isLoading = true;
       try {
         await deleteAllComments();
@@ -110,6 +119,6 @@ export const GuestbookComponent = defineComponent({
       } finally {
         this.isLoading = false;
       }
-    }
-  }
+    },
+  },
 });

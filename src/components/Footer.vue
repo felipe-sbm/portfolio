@@ -18,7 +18,7 @@
     <div class="contact">
       <div class="message">
         <img :src="ProfilePicture" alt="Profile picture of Felipe SBM" class="profile-picture" />
-        <p>hey, check out my last project!</p>
+        <p>{{ randomPhrase() }}</p>
       </div>
       <div class="social-media">
         <ul>
@@ -68,6 +68,21 @@ import ProfilePicture from "@/assets/images/pfp.webp";
 import Otsuki from "@/assets/images/otsuki-logo.svg";
 import NotByAI from "@/assets/images/Developed-By-Human-Not-By-AI-Badge-black.svg";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
+
+function randomPhrase(): string {
+  const phrases = [
+    "stay curious!",
+    "code with passion.",
+    "embrace the journey.",
+    "keep learning.",
+    "build something amazing.",
+    "dream big, code bigger.",
+    "create, innovate, inspire.",
+    "think outside the box.",
+    "God is good all the time."
+  ];
+  return phrases[Math.floor(Math.random() * phrases.length)];
+}
 </script>
 
 <style lang="scss" scoped>

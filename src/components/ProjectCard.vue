@@ -13,7 +13,7 @@
           <p class="project-description">{{ description }}</p>
         </div>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 

@@ -19,7 +19,6 @@ import { projects } from '@/data/projectData';
 
 // lazy imports for markdown parsing
 import MarkdownIt from 'markdown-it';
-import matter from 'gray-matter';
 
 const route = useRoute();
 const slug = route.params.slug as string;
@@ -30,24 +29,47 @@ const loading = ref(true);
 
 async function loadMarkdown(slugVal: string) {
   try {
-    // import raw markdown content
-    const mdModule = await import(`../projects/${slugVal}.md?raw`);
-    const raw = mdModule.default as string;
+    // load markdown/mdx files via import.meta.glob to allow dynamic resolution by Vite
+    const modules = import.meta.glob('../projects/*.{md,mdx}', { as: 'raw' }) as Record<string, () => Promise<string>>;
+    const possible = [`../projects/${slugVal}.mdx`, `../projects/${slugVal}.md`];
+    let loader: (() => Promise<string>) | undefined;
+    let foundPath = '';
+    for (const p of possible) {
+      if (modules[p]) {
+        loader = modules[p];
+        foundPath = p;
+        break;
+      }
+    }
+    if (!loader) {
+      const available = Object.keys(modules).join('\n');
+      throw new Error(`not found; available:\n${available}`);
+    }
+    const raw = await loader();
 
-    // parse frontmatter
-    const parsed = matter(raw);
-    title.value = parsed.data.title || '';
+    // parse simple YAML frontmatter (avoid gray-matter on client)
+    let content = raw;
+    const fm = raw.match(/^---\n([\s\S]*?)\n---/);
+    if (fm) {
+      const fmBody = fm[1];
+      content = raw.slice(fm[0].length);
+      const titleMatch = fmBody.match(/title:\s*(?:"([^"]+)"|'([^']+)'|(.+))/);
+      if (titleMatch) title.value = (titleMatch[1] || titleMatch[2] || titleMatch[3]).trim();
+      const linkMatch = fmBody.match(/link:\s*(?:"([^"]+)"|'([^']+)'|(.+))/);
+      if (linkMatch) projectLink.value = (linkMatch[1] || linkMatch[2] || linkMatch[3]).trim();
+    }
 
     // convert markdown to HTML
     const md = new MarkdownIt({ html: true });
-    htmlContent.value = md.render(parsed.content);
+    htmlContent.value = md.render(content);
 
-    // get project external link from projects list if available
+    // fallback to projectData link if not in frontmatter
     const proj = projects.find((p) => p.slug === slugVal);
-    projectLink.value = proj?.link || parsed.data.link || '';
-  } catch (err) {
-    htmlContent.value = '<p>Conteúdo não encontrado.</p>';
-  } finally {
+    if (!projectLink.value) projectLink.value = proj?.link || '';
+  } catch (err: any) {
+    console.error('loadMarkdown error:', err);
+    htmlContent.value = `<p>Conteúdo não encontrado.</p><pre style="white-space:pre-wrap;color:#f88d2b">${err?.message || String(err)}</pre>`;
+  } finally { // "finally 🙌", lol
     loading.value = false;
   }
 }

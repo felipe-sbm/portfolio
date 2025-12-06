@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Chatbot AI</h1>
+    <h1>chatbot ai</h1>
     <p>
-      Currently the Chatbot isn't working. The API reached the quota.
+      currently the chatbot isn't working. the api reached the quota.
     </p>
   </div>
 </template>

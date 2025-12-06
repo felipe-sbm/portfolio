@@ -5,10 +5,10 @@
         <h1>hey there! I'm felipe</h1>
         <img :src="Logo" alt="SBM's Logo" />
         <ul class="bio">
-          <li>full-stack developer<span>&</span></li>
+          <li>front-end developer<span>&</span></li>
           <li>computer engineer<span>&</span></li>
           <li>web-designer<span>&</span></li>
-          <li>ai expert<span>.</span></li>
+          <li>ai expert<mark>.</mark></li>
         </ul>
       </div>
       <div class="right-div">
@@ -153,6 +153,11 @@ $rubik: "Rubik Puddles", system-ui;
         font-family: $red-hat-text;
         font-size: medium;
         list-style: none;
+
+        mark {
+          color: $secondary;
+          background-color: transparent;
+        }
       }
     }
 
