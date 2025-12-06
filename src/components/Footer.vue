@@ -71,15 +71,15 @@ import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
 
 function randomPhrase(): string {
   const phrases = [
-    "stay curious!",
-    "code with passion.",
-    "embrace the journey.",
-    "keep learning.",
-    "build something amazing.",
-    "dream big, code bigger.",
-    "create, innovate, inspire.",
-    "think outside the box.",
-    "God is good all the time."
+    "stay curious!              ",
+    "code with passion.         ",
+    "embrace the journey.       ",
+    "keep learning.             ",
+    "build something amazing.   ",
+    "dream big, code bigger.    ",
+    "create, innovate, inspire. ",
+    "think outside the box.     ",
+    "God is good all the time.  "
   ];
   return phrases[Math.floor(Math.random() * phrases.length)];
 }
@@ -195,7 +195,7 @@ footer {
         transform: translateY(-35%);
         width: 1rem;
         height: 1rem;
-        background-image: url("@/assets/icons/select.gif");
+        background-image: url("@/assets/icons/new-select.gif");
         background-size: contain;
         background-repeat: no-repeat;
       }
@@ -225,6 +225,11 @@ footer {
         padding-left: 0;
         text-align: center;
         display: block;
+
+        &.router-link-active::before {
+          left: -1.4rem;
+          transform: translateY(-37%);
+        }
       }
     }
 
