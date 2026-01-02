@@ -1,92 +1,93 @@
-$primary: #2e7b70;
-$secondary: #f88d2b;
-$text-light: #53372a;
-$text-dark: #ffffff;
-$background-light: #fff8f5;
-$background-dark: radial-gradient(#070709 0%, #0a0a15 100%);
-$red-hat-text: "Red Hat Text", sans-serif;
-
-$border-color: #1a1a1a;
-$button-color: #070710;
-$card-background: radial-gradient(#070709 0%, #090910 100%);
+@use './styles/variables' as *;
 
 :root {
-  font-family: $red-hat-text;
-  color: $text-dark;
-  background-image: $background-dark;
+  font-family: $primary-font;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-  scrollbar-color: $primary $button-color;
-  scrollbar-width: thin;
-  scrollbar-gutter: stable;
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  &::-webkit-scrollbar-track {
-    background: $button-color;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: $primary;
-    border-radius: 0.5rem;
-    border: 3px solid $button-color;
-  }
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
 
-  a {
-    color: #fff8f5;
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
   }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
+  a:hover {
+    color: #747bff;
   }
-
-  .profile-picture {
-    border-radius: 100%;
-    border: solid 1px $border-color;
-  }
-
-  .dot-alert {
-    position: absolute;
-    display: inline-flex;
-    width: 8px;
-    height: 8px;
-
-    .dot {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 100%;
-      background-color: $secondary;
-      
-      &.animate {
-        background-color: $secondary;
-        opacity: 0.75;
-        animation: ping 1.5s infinite ease-in-out;
-      }
-      @keyframes ping {
-        0% {
-          transform: scale(1);
-          opacity: 0.75;
-        }
-        100% {
-          transform: scale(2);
-          opacity: 0;
-        }
-      }
-    }
+  button {
+    background-color: #f9f9f9;
   }
 }
 
-/* Garantir que a área de overscroll mostre fundo preto
-   e que o app ocupe toda a altura para evitar revelar fundo branco. */
-html,
-body,
-#app {
-  background-color: #000;
-  height: 100%;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
+/* Fadezinho quando troca de idioma */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 500ms ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }

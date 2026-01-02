@@ -1,207 +1,227 @@
-<template>
-  <header>
-    <div class="location-hour">
-      <p class="location">Natal, Brazil</p>
-    </div>
-    <nav>
-      <ul>
-        <li>
-          <router-link class="nav-link" to="/">
-            <span class="nav-icon">
-              <HomeIcon />
-            </span>
-            <span class="nav-text">home</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-link" to="/about">
-            <span class="nav-icon">
-              <UserIcon />
-            </span>
-            <span class="nav-text">about me</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-link" to="/ai">
-            <span class="nav-icon">
-              <BotIcon />
-            </span>
-            <span class="nav-text">ai</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-link" to="/projects">
-            <span class="nav-icon">
-              <Cog />
-            </span>
-            <span class="nav-text">projects</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-link" to="/guestbook">
-            <span class="nav-icon">
-              <BookOpenIcon />
-            </span>
-            <span class="nav-text">guestbook</span>
-          </router-link>
-        </li>
-      </ul>
-    </nav>
-    <div class="location-hour">
-      <p class="time">{{ natalTime }}</p>
-    </div>
-  </header>
-</template>
+<script setup lang="ts">;
+import type { Locale } from '@/i18n/types';
+import { inject, computed, ref } from 'vue';
+import i18nData from '@/i18n';
+import Logo from '@/assets/svg/logo.svg';
+import Select from '@/assets/icons/select.gif';
+import ChordAudio from '@/assets/audio/chord.mp3';
+const logo = Logo as string;
+const select = Select as string;
+const chordAudio = ChordAudio as string;
 
-<script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
-import {
-  HomeIcon,
-  UserIcon,
-  BotIcon,
-  Cog,
-  BookOpenIcon,
-} from "lucide-vue-next";
+const locale = inject('locale') as { value: Locale } | undefined;
+const toggleLocale = inject('toggleLocale') as any;
 
-export default defineComponent({
-  name: "NatalTime",
-  components: { HomeIcon, UserIcon, BotIcon, Cog, BookOpenIcon },
-  setup() {
-    const natalTime = ref("");
-    const updateTime = () => {
-      const date = new Date();
-      natalTime.value = new Intl.DateTimeFormat("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        timeZone: "America/Fortaleza",
-      }).format(date);
-    };
-    onMounted(() => {
-      updateTime();
-      setInterval(updateTime, 1000);
-    });
-    return { natalTime };
-  },
-});
-</script>
+const texts = computed(() => i18nData[(locale?.value ?? 'en') as Locale]);
 
-<style lang="scss" scoped>
-@use "@/style.scss" as *;
+const localeLabel = computed(() => {
+    const val = locale?.value ?? 'en';
+    if (val === 'ch') return 'CN';
+    return String(val).toUpperCase();
+})
 
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  justify-content: space-between;
-  background-image: linear-gradient(0deg, #00000000, #000000);
-  overflow: hidden;
-  width: 100%;
-  z-index: 100;
+const logoClickCount = ref(0);
+const logoClickTimeout = ref<ReturnType<typeof setTimeout> | null>(null);
+const chordPlayed = ref(false)
 
-  nav {
-    margin-top: 1rem;
-    background-color: #1e1e1ea4;
-    padding: 0rem 1.5rem;
-    border: 2px solid #1a1a1a;
-    backdrop-filter: blur(1rem);
-    border-radius: 2rem;
-    box-shadow: 0 0 0.5rem #1a1a1a;
-    max-width: 26.5rem;
+const handleLogoClick = () => {
+    logoClickCount.value++;
 
-    ul {
-      list-style: none;
-      padding: 0rem;
-
-      li {
-        list-style: none;
-        display: inline-block;
-        margin: 0 1rem 0 1rem;
-      }
-    }
-  }
-
-  .nav-link {
-    color: $text-dark;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-
-    &:hover {
-      color: $secondary;
-      font-weight: 500;
+    if (logoClickTimeout.value) {
+        clearTimeout(logoClickTimeout.value);
     }
 
-
-    &.router-link-active::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: -1.25rem;
-      width: 1rem;
-      height: 1rem;
-      background-image: url("@/assets/icons/new-select.gif");
-      background-size: contain;
-      background-repeat: no-repeat;
+    if (logoClickCount.value === 3) {
+        playChordAudio();
+        logoClickCount.value = 0;
+    } else {
+        logoClickTimeout.value = setTimeout(() => {
+            logoClickCount.value = 0;
+        }, 1000);
     }
-
-    .nav-icon {
-      display: none;
-      margin-right: 0.5rem;
-    }
-
-    .nav-text {
-      display: inline;
-    }
-  }
-
-  .location-hour {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    font-weight: normal;
-    padding: 0 2rem 0 2rem;
-    width: 3rem;
-
-    .location {
-      position: absolute;
-      top: -1.1rem;
-      left: 1rem;
-    }
-
-    .time {
-      position: absolute;
-      top: -1.1rem;
-      right: 1rem;
-    }
-  }
 }
 
-@media only screen and (max-width: 800px) {
-  header {
-    flex-direction: column;
+const playChordAudio = () => {
+    if (chordPlayed.value) return;
+    chordPlayed.value = true;
+    const audio = new Audio(chordAudio);
+    audio.play().catch((error) => {
+        console.error('Erro ao reproduzir áudio:', error);
+    });
+}
+</script>
+
+<template>
+    <header class="header">
+        <div class="container max-w-5xl">
+            <div class="header-left">
+                <img :src="logo" :alt="texts.header.brand.logoAlt" @click="handleLogoClick" style="cursor: pointer;">
+                <span class="brand">{{ texts.header.brand.first }} <b>{{ texts.header.brand.last }}</b></span>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active">
+                        <img :src="select" :alt="texts.header.brand.selectAlt">
+                        <a href="#welcome">{{ texts.header.nav.welcome }}</a>
+                    </li>
+                    <li><a href="#aboutme">{{ texts.header.nav.about }}</a></li>
+                    <li><a href="#projects">{{ texts.header.nav.projects }}</a></li>
+                    <li><a href="#guestbook">{{ texts.header.nav.guestbook }}</a></li>
+                </ul>
+            </nav>
+
+            <div class="lang-toggle">
+                <button class="lang-btn" @click="toggleLocale" :title="texts.header.langToggle.title">{{ localeLabel
+                    }}</button>
+            </div>
+        </div>
+    </header>
+</template>
+
+<style scoped lang="scss">
+@use '@/styles/variables' as *;
+
+header {
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    background: $primary-bg;
+    font-family: $primary-font;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 3rem 1rem 3rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 900px) {
+        .container {
+            padding: 1rem 1.2rem 1rem 1.2rem;
+        }
+
+        .brand {
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            gap: 1.2rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .container {
+            padding: 1rem 0.5rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.7rem;
+        }
+
+        .header-left {
+            margin-bottom: 0.7rem;
+        }
+
+        nav ul {
+            gap: 0.7rem;
+            font-size: 0.98rem;
+        }
+    }
+}
+
+.header-left {
+    display: flex;
     align-items: center;
-    padding: 1rem 0;
-    margin: auto;
-    position: sticky;
-  }
+    gap: 0.5rem;
 
-  header .nav-link .nav-icon {
-    display: inline !important;
-  }
+    img {
+        width: 40px;
+        height: 40px;
+    }
 
-  header .nav-link .nav-text {
-    display: none !important;
-  }
+    .brand {
+        font-size: 1.5rem;
+        color: $off-white;
+        letter-spacing: 0.25px;
 
-  header .location-hour {
-    display: none !important;
-  }
+        b {
+            color: $off-white;
+            font-weight: 1000;
+            letter-spacing: 0px;
+        }
+    }
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+
+    .active {
+        display: flex;
+        align-items: center;
+
+        a {
+            color: $off-white;
+            font-weight: 800;
+        }
+
+        img {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.3rem;
+        }
+    }
+
+    li a {
+        text-decoration: none;
+        color: $off-white;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+        position: relative;
+    }
+}
+
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+
+    .lang-btn {
+        background: $primary-bg;
+        color: $off-white;
+        border: 3px solid $off-white;
+        padding: 0.5rem 1rem;
+        border-radius: 0px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+        transition: all 0.15s ease;
+        position: relative;
+        top: 0;
+        left: 0;
+
+        &:hover {
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+            top: 2px;
+            left: 2px;
+        }
+
+        &:active {
+            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
+            top: 4px;
+            left: 4px;
+        }
+    }
 }
 </style>

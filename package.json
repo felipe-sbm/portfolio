@@ -2,11 +2,12 @@
   "name": "portfolio",
   "version": "0.0.2",
   "private": true,
-  "description": "Creating a new portfolio with AI chatbot integration.",
+  "description": "Creating a new portfolio with neobrutalism style and AI chatbot integration.",
   "keywords": [
     "portfolio",
     "typescript",
     "AI",
+    "neobrutalism",
     "vue",
     "vite",
     "vercel."
@@ -21,30 +22,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "dev:bun": "bun --bun vite",
     "build": "vue-tsc -b && vite build",
-    "build:bun": "bun --bun vue-tsc -b && bun --bun vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "firebase": "^12.6.0",
-    "gray-matter": "^4.0.3",
-    "lucide": "^0.525.0",
-    "lucide-vue-next": "^0.511.0",
-    "markdown-it": "^13.0.1",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.1"
+    "vue": "^3.5.24"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.19",
-    "@types/markdown-it": "^14.1.2",
-    "@types/node": "^24.1.0",
-    "@vitejs/plugin-vue": "^5.2.4",
-    "@vue/runtime-core": "^3.5.14",
-    "@vue/tsconfig": "^0.7.0",
-    "sass": "^1.89.0",
-    "typescript": "~5.7.2",
-    "vite": "^6.3.5",
-    "vue-tsc": "^2.2.4"
+    "@types/node": "^24.10.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "sass-embedded": "^1.96.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4",
+    "vue-tsc": "^3.1.4"
   }
 }

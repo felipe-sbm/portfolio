@@ -1,20 +1,8 @@
 {
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "baseUrl": ".",
-    "types": ["bun-types"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    "skipLibCheck": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
+  "strict": true,
+  "forceConsistentCasingInFileNames": true,
+},
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+// Variável de fonte primária
+$primary-font: 'Bricolage Grotesque', system-ui, Avenir, Helvetica, Arial, sans-serif;
+$cursive-font: 'Caveat', cursive;
+// Paleta básica
+$off-white: #FFF8D3;
+$orange: #F88D2B;
+$green: #2E7B70;
+
+$primary-bg: #354D18;
+
+// Equivalente Tailwind: max-w-5xl (64rem)
+$max-w-5xl: 64rem;
+
+// Utilitárias globais (sem usar Tailwind)
+.max-w-5xl {
+	max-width: $max-w-5xl;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	box-sizing: border-box;
+}
+
+.center-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
