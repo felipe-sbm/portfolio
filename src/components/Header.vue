@@ -3,50 +3,107 @@
     <div class="location-hour">
       <p class="location">Natal, Brazil</p>
     </div>
-    <nav>
-      <ul>
-        <li>
-          <router-link class="nav-link" to="/">
-            <span class="nav-icon">
-              <HomeIcon />
-            </span>
-            <span class="nav-text">home</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-link" to="/about">
-            <span class="nav-icon">
-              <UserIcon />
-            </span>
-            <span class="nav-text">about me</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-link" to="/ai">
-            <span class="nav-icon">
-              <BotIcon />
-            </span>
-            <span class="nav-text">ai</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-link" to="/projects">
-            <span class="nav-icon">
-              <Cog />
-            </span>
-            <span class="nav-text">projects</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-link" to="/guestbook">
-            <span class="nav-icon">
-              <BookOpenIcon />
-            </span>
-            <span class="nav-text">guestbook</span>
-          </router-link>
-        </li>
-      </ul>
-    </nav>
+    <div class="liquid-glass dock">
+      <div class="liquid-glass-effect"></div>
+      <div class="liquid-glass-tint"></div>
+      <div class="liquid-glass-shine"></div>
+      <div class="liquid-glass-content">
+        <nav>
+          <ul>
+            <li>
+              <router-link class="nav-link" to="/">
+                <span class="nav-icon">
+                  <HomeIcon />
+                </span>
+                <span class="nav-text">home</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link class="nav-link" to="/about">
+                <span class="nav-icon">
+                  <UserIcon />
+                </span>
+                <span class="nav-text">about me</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link class="nav-link" to="/ai">
+                <span class="nav-icon">
+                  <BotIcon />
+                </span>
+                <span class="nav-text">ai</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link class="nav-link" to="/projects">
+                <span class="nav-icon">
+                  <Cog />
+                </span>
+                <span class="nav-text">projects</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link class="nav-link" to="/guestbook">
+                <span class="nav-icon">
+                  <BookOpenIcon />
+                </span>
+                <span class="nav-text">guestbook</span>
+              </router-link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <svg class="liquid-glass-svg" aria-hidden="true">
+      <filter
+        id="glass-distortion"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+        filterUnits="objectBoundingBox"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.01 0.01"
+          numOctaves="1"
+          seed="5"
+          result="turbulence"
+        />
+        <feComponentTransfer in="turbulence" result="mapped">
+          <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+          <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+          <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+        </feComponentTransfer>
+        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+        <feSpecularLighting
+          in="softMap"
+          surfaceScale="5"
+          specularConstant="1"
+          specularExponent="100"
+          lighting-color="white"
+          result="specLight"
+        >
+          <fePointLight x="-200" y="-200" z="300" />
+        </feSpecularLighting>
+        <feComposite
+          in="specLight"
+          operator="arithmetic"
+          k1="0"
+          k2="1"
+          k3="1"
+          k4="0"
+          result="litImage"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="softMap"
+          scale="150"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    </svg>
     <div class="location-hour">
       <p class="time">{{ natalTime }}</p>
     </div>
@@ -96,19 +153,12 @@ header {
   position: sticky;
   top: 0;
   justify-content: space-between;
-  background-image: linear-gradient(0deg, #00000000, #000000);
   overflow: hidden;
-  width: 100%;
   z-index: 100;
 
   nav {
-    margin-top: 1rem;
-    background-color: #1e1e1ea4;
+    margin-top: 0.2rem;
     padding: 0rem 1.5rem;
-    border: 2px solid #1a1a1a;
-    backdrop-filter: blur(1rem);
-    border-radius: 2rem;
-    box-shadow: 0 0 0.5rem #1a1a1a;
     max-width: 26.5rem;
 
     ul {
@@ -123,8 +173,70 @@ header {
     }
   }
 
+  .liquid-glass {
+    position: relative;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 2rem;
+    box-shadow: 0 0 0.5rem #1a1a1a;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  }
+
+  .liquid-glass-effect {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    backdrop-filter: blur(0.25rem);
+    filter: url(#glass-distortion);
+  }
+
+  .liquid-glass-tint {
+    z-index: 1;
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .liquid-glass-shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    box-shadow:
+      inset 2px 2px 1px 0 rgba(255, 255, 255, 0.4),
+      inset -1px -1px 1px 1px rgba(255, 255, 255, 0.3);
+  }
+
+  .liquid-glass-content {
+    z-index: 3;
+    position: relative;
+  }
+
+  .liquid-glass-svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .dock,
+  .dock > div {
+    border-radius: 2rem;
+  }
+
+  .dock:hover {
+    padding: 0.2rem;
+    border-radius: 1rem;
+  }
+
+  .dock:hover > div {
+    border-radius: 2.5rem;
+  }
+
   .nav-link {
-    color: $text-dark;
+    color: $text-color;
     transition: all 0.3s ease-in-out;
     position: relative;
     text-decoration: none;

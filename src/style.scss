@@ -1,24 +1,22 @@
 $primary: #2e7b70;
 $secondary: #f88d2b;
-$text-light: #53372a;
-$text-dark: #ffffff;
-$background-light: #fff8f5;
-$background-dark: radial-gradient(#070709 0%, #0a0a15 100%);
+$text-color: #53372a;
+$background-color: #f8f4f2;
 $red-hat-text: "Red Hat Text", sans-serif;
 
-$border-color: #1a1a1a;
+$border-color: #e7e2de;
 $button-color: #070710;
-$card-background: radial-gradient(#070709 0%, #090910 100%);
+$card-background: #F2EDE9;
 
 :root {
   font-family: $red-hat-text;
-  color: $text-dark;
-  background-image: $background-dark;
+  color: $text-color;
+  background-color: background-color;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  scrollbar-color: $primary $button-color;
+  scrollbar-color: $primary $background-color;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
   &::-webkit-scrollbar {
@@ -26,7 +24,7 @@ $card-background: radial-gradient(#070709 0%, #090910 100%);
     height: 8px;
   }
   &::-webkit-scrollbar-track {
-    background: $button-color;
+    background: $background-color;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $primary;
@@ -85,8 +83,11 @@ $card-background: radial-gradient(#070709 0%, #090910 100%);
 html,
 body,
 #app {
-  background-color: #000;
+  background-color: background-color-color;
+  color: $text-color;
   height: 100%;
+  scrollbar-color: #cfc9c5;
+  scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
 }
