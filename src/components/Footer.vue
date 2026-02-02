@@ -66,7 +66,7 @@
 <script setup lang="ts">
 import ProfilePicture from "@/assets/images/pfp.webp";
 import Otsuki from "@/assets/images/otsuki-logo.svg";
-import NotByAI from "@/assets/images/Developed-By-Human-Not-By-AI-Badge-black.svg";
+import NotByAI from "@/assets/images/Developed-By-Human-CN.png";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
 
 function randomPhrase(): string {
@@ -113,7 +113,7 @@ footer {
   }
 
   .contact {
-    background-image: $card-background;
+    background-color: $card-background;
     border-radius: 1rem;
     border: 1px solid $border-color;
     padding: 0.5rem 1rem 0 1rem;
@@ -139,8 +139,6 @@ footer {
     }
 
     .social-media {
-      color: white;
-
       ul {
         list-style: none;
         padding: 0rem;
@@ -163,6 +161,7 @@ footer {
       .icon {
         width: 1.25rem;
         height: 1.25rem;
+        color: $text-color;
       }
     }
   }

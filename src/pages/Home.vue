@@ -3,7 +3,6 @@
     <div class="welcome">
       <div class="left-div">
         <h1>hey there! I'm felipe</h1>
-        <img :src="Logo" alt="SBM's Logo" />
         <ul class="bio">
           <li>front-end developer<span>&</span></li>
           <li>computer engineer<span>&</span></li>
@@ -39,7 +38,6 @@
           </div>
           <div class="image">
             <a href="/visualizer">
-              <img :src="WebSite1" alt="Preview 2022" />
             </a>
           </div>
         </div>
@@ -62,7 +60,6 @@
           </div>
           <div class="image">
             <a href="/visualizer">
-              <img :src="WebSite2" alt="Preview 2023" />
             </a>
           </div>
         </div>
@@ -85,7 +82,6 @@
           </div>
           <div class="image">
             <a href="/visualizer">
-              <img :src="WebSite3" alt="Preview 2024" />
             </a>
           </div>
         </div>
@@ -108,7 +104,6 @@
           </div>
           <div class="image">
             <a href="/">
-              <img :src="Test" alt="Preview 2022" />
             </a>
           </div>
         </div>
@@ -118,11 +113,6 @@
 </template>
 
 <script setup lang="ts">
-import Logo from "@/assets/images/sbm-logo.svg";
-import Test from "@/assets/images/pexels-luis-gomes-166706-546819.jpg";
-import WebSite1 from "@/assets/images/visualizer/2022/website.webp";
-import WebSite2 from "@/assets/images/visualizer/2023/website.webp";
-import WebSite3 from "@/assets/images/visualizer/2024/website.webp";
 </script>
 
 <style lang="scss" scoped>
