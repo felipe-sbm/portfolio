@@ -192,11 +192,11 @@ footer {
         left: 0;
         top: 50%;
         transform: translateY(-35%);
-        width: 1rem;
-        height: 1rem;
-        background-image: url("@/assets/icons/new-select.gif");
-        background-size: contain;
-        background-repeat: no-repeat;
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 50%;
+        background: linear-gradient(180deg, $secondary, #f06f00);
+        box-shadow: 0 0 0 0.2rem rgba($secondary, 0.2);
       }
     }
   }

@@ -256,11 +256,6 @@ header {
       top: 50%;
       transform: translateY(-50%);
       margin-left: -1.25rem;
-      width: 1rem;
-      height: 1rem;
-      background-image: url("@/assets/icons/new-select.gif");
-      background-size: contain;
-      background-repeat: no-repeat;
     }
 
     .nav-icon {
