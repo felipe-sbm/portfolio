@@ -2,16 +2,18 @@ $primary: #2e7b70;
 $secondary: #f88d2b;
 $text-color: #53372a;
 $background-color: #f8f4f2;
+$background-color-start: #F9F4F0;
+$background-color-end: #F6F1EC;
 $red-hat-text: "Red Hat Text", sans-serif;
 
 $border-color: #e7e2de;
 $button-color: #070710;
-$card-background: #F2EDE9;
+$card-background: #FBE2CE;
 
 :root {
   font-family: $red-hat-text;
   color: $text-color;
-  background-color: background-color;
+  background-image: linear-gradient(90deg, $background-color-start 0%, $background-color-end 100%);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

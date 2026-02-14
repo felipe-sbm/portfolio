@@ -1,48 +1,57 @@
 <template>
   <div class="guestbook">
-    <div class="main-content">
-      <div class="title">
-        <h1>
-          guestbook
-        </h1>
-        <p>write something special to be here forever!</p>
-        <small>please, <span>don't write inapropriate things.</span></small>
-      </div>
+    <section class="intro-card">
+      <h1>Guestbook</h1>
+      <p>Leave a thoughtful message. It will stay here as part of this portfolio story.</p>
+      <small>Please keep it respectful and kind. 😭🙏</small>
+    </section>
 
-      <div class="comment-form">
-        <div v-if="!isAuthenticated" class="auth-section">
-          <p>Login with GitHub to comment:</p>
-          <button @click="loginWithGitHub" class="github-btn">
-            Login with github
-          </button>
-        </div>
-
-        <div v-else class="auth-info">
-          <small>Authenticated: {{ user?.displayName || user?.email || 'Anonymous' }}</small>
-          <button @click="logout" class="logout-btn">logout</button>
-        </div>
-
-        <textarea v-model="newComment.content" placeholder="Bla bla bla bla! Jhon Cena was here..."
-          :disabled="!isAuthenticated"></textarea>
-        <button @click="submitComment" :disabled="!isAuthenticated || !newComment.content.trim()">
-          Enviar
+    <section class="comment-form">
+      <div v-if="!isAuthenticated" class="auth-section">
+        <p>Sign in with GitHub to post and react to comments.</p>
+        <button @click="loginWithGitHub" class="github-btn">
+          Continue with GitHub
         </button>
       </div>
-    </div>
 
-    <div v-if="isLoading">loading...</div>
+      <div v-else class="auth-info">
+        <div class="user-chip">
+          <img :src="user?.photoURL || ProfilePicture" alt="Your profile picture" class="profile-picture" />
+          <small>{{ user?.displayName }}</small>
+        </div>
+        <button @click="logout" class="logout-btn">Log out</button>
+      </div>
+
+      <textarea v-model="newComment.content" placeholder="Share a memory, thought, or feedback..."
+        :disabled="!isAuthenticated"></textarea>
+
+      <div class="composer-footer">
+        <small>{{ isAuthenticated ? "Your message is public." : "Login required to post." }}</small>
+        <button @click="submitComment" :disabled="!isAuthenticated || !newComment.content.trim()">
+          Post message
+        </button>
+      </div>
+    </section>
+
+    <p v-if="error" class="state-card error">{{ error }}</p>
+
+    <div v-if="isLoading" class="state-card">Loading comments...</div>
     <div v-else>
-      <div v-if="comments.length === 0" class="no-comments">
-        Seems like nobody has commented yet. <span>Be the first!</span>
+      <div v-if="comments.length === 0" class="state-card no-comments">
+        No comments yet. <span>Be the first to write one.</span>
       </div>
 
       <div v-else class="comments-list">
-        <div v-for="comment in comments" :key="comment.id" class="comment">
+        <article v-for="comment in comments" :key="comment.id" class="comment">
           <img :src="comment.photoURL || ProfilePicture" :alt="`Profile picture of ${comment.username}`"
             class="profile-picture" />
           <div class="comment-body">
             <div class="comment-header">
-              <a :href="comment.githubUrl" target="_blank" rel="noopener noreferrer">{{ comment.username }}</a>
+              <a v-if="comment.githubUrl" :href="comment.githubUrl" target="_blank" rel="noopener noreferrer"
+                class="author-link">
+                {{ comment.username }}
+              </a>
+              <span v-else class="author-name">{{ comment.username }}</span>
               <span class="comment-date">
                 {{ formatDate(comment.createdAt) }}
               </span>
@@ -61,7 +70,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </div>
@@ -82,241 +91,308 @@ export default {
       ThumbsDown,
     };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@use "@/style.scss" as *;
+.comment-form,
+.state-card,
+.comment {
+  border: 2px solid #F8F2EE;
+  border-radius: 1.5rem;
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 24px 48px rgba(0, 0, 0, 0.08);
+}
 
-.guestbook {
-  .main-content {
-    margin-bottom: 2rem;
+.intro-card {
+  padding: 1.8rem 0;
+  margin-bottom: 1rem;
 
-    .title {
-      max-width: 30rem;
+  h1 {
+    margin: 0;
+    line-height: 1.03;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
 
-      h1 {
-        font-size: 1.75rem;
-        font-weight: medium;
-        margin: 0;
+  p {
+    margin: 0.65rem 0 0;
+    font-size: 1.05rem;
+    max-width: 38rem;
+    line-height: 1.45;
+  }
 
-        span {
-          color: $primary;
-        }
-      }
+  small {
+    display: inline-block;
+    margin-top: 0.75rem;
+  }
+}
 
-      p {
-        margin: 0;
-      }
+.comment-form {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  margin-bottom: 1rem;
 
-      small {
-        margin-top: 0;
+  .auth-section,
+  .auth-info {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 0.95rem;
+  }
 
-        span {
-          color: $secondary;
-        }
-      }
-    }
-
-    .comment-form {
-      background-image: $card-background;
-      border: 1px solid $border-color;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      border-radius: 1rem;
-      max-width: 40rem;
-      margin: 1rem auto;
-
-      .auth-section,
-      .auth-info {
-        margin-bottom: 1rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid $border-color;
-      }
-
-      .auth-section {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        p {
-          margin: 0 0 0.5rem 0;
-          font-size: 0.9rem;
-        }
-
-        .github-btn {
-          padding: 0.5rem 1rem;
-          border: 1px solid $border-color;
-          border-radius: 0.5rem;
-          cursor: pointer;
-          font-size: 0.9rem;
-          transition: background-color 0.2s;
-
-          &:hover {
-            background-color: rgba($primary, 0.2);
-          }
-        }
-
-        .github-btn {
-          background-color: $primary;
-          color: white;
-          border: none;
-
-          &:hover {
-            background-color: $secondary;
-          }
-        }
-
-      }
-
-      .auth-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        small {
-          color: $secondary;
-        }
-
-        .logout-btn {
-          padding: 0.25rem 0.75rem;
-          font-size: 0.8rem;
-          background-color: transparent;
-          border: 1px solid $secondary;
-          color: $secondary;
-          border-radius: 0.25rem;
-          cursor: pointer;
-
-          &:hover {
-            background-color: rgba($secondary, 0.1);
-          }
-        }
-      }
-
-      textarea {
-        padding: 0.5rem;
-        border: 1px solid $border-color;
-        border-radius: 0.5rem;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-        background-image: $card-background;
-        color: white;
-        min-height: 100px;
-        resize: vertical;
-
-        &:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-      }
-
-      button:not(.github-btn):not(.anon-btn):not(.logout-btn) {
-        background-color: $primary;
-        color: white;
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        font-size: 1rem;
-
-        &:disabled {
-          background-color: $button-color;
-          cursor: not-allowed;
-          opacity: 0.5;
-        }
-
-        &:hover:not(:disabled) {
-          background-color: rgba($primary, 0.1);
-        }
-      }
+  .auth-section {
+    p {
+      margin: 0 0 0.75rem;
+      line-height: 1.35;
+      font-size: 0.92rem;
     }
   }
 
-  .no-comments {
-    text-align: center;
-    color: white;
-    margin-top: 2rem;
+  .auth-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
 
-    span {
-      color: $secondary;
-      font-weight: bold;
+  .user-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+    min-width: 0;
+
+    small {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .profile-picture {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  textarea {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 1rem;
+    min-height: 8.2rem;
+    resize: vertical;
+    padding: 0.85rem 1rem;
+    font-size: 0.97rem;
+    line-height: 1.45;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+
+    &::placeholder {
+      color: rgba(29, 29, 31, 0.45);
+    }
+
+    &:focus {
+      border-color: rgba(0, 113, 227, 0.65);
+      box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
+    }
+
+    &:disabled {
+      opacity: 0.58;
+      cursor: not-allowed;
+    }
+  }
+
+  .composer-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+
+    small {
+      font-size: 0.82rem;
+    }
+  }
+}
+
+.state-card {
+  padding: 1rem 1.25rem;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  &.error {
+    font-weight: 500;
+  }
+
+  &.no-comments span {
+    font-weight: 600;
+  }
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem;
+  border-radius: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  .profile-picture {
+    width: 2.7rem;
+    height: 2.7rem;
+    min-width: 2.7rem;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+    margin-top: 0.1rem;
+  }
+
+  .comment-body {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .comment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .author-link,
+  .author-name {
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    color: #53372a;
+  }
+
+  .comment-date {
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  .comment-content {
+    margin: 0;
+    color: rgba(29, 29, 31, 0.9);
+    line-height: 1.5;
+    word-break: break-word;
+  }
+
+  .comment-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.65rem;
+  }
+}
+
+.reaction-btn,
+.github-btn,
+.logout-btn,
+.composer-footer button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.github-btn,
+.composer-footer button {
+  background: linear-gradient(180deg, #1180ef, #0071e3);
+  color: #fff;
+  padding: 0.55rem 1rem;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    transform: none;
+  }
+}
+
+.logout-btn {
+  background: #00000008;
+  border-color: #0000001f;
+  padding: 0.45rem 0.85rem;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+}
+
+.reaction-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.32rem 0.65rem;
+  background: #f5f5f7;
+  border-color: rgba(0, 0, 0, 0.1);
+  font-size: 0.82rem;
+
+  img {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  &:hover:not(:disabled) {
+    background: #ececef;
+  }
+
+  &.active {
+    background: rgba(0, 113, 227, 0.12);
+    border-color: rgba(0, 113, 227, 0.35);
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+@media (max-width: 700px) {
+  .guestbook {
+    padding-bottom: 1.25rem;
+  }
+
+  .intro-card {
+    padding: 1.3rem;
+  }
+
+  .comment-form {
+    padding: 1rem;
+
+    .auth-info {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .composer-footer {
+      flex-direction: column;
+      align-items: stretch;
+
+      button {
+        width: 100%;
+      }
     }
   }
 
   .comment {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid $border-color;
-    border-radius: 10rem;
-    padding: 0.25rem;
-    padding-right: 1rem;
-    background-image: $card-background;
-    margin-bottom: 1rem;
-    max-width: 30rem;
-    min-width: 25rem;
-    word-break: break-word;
-
-    .profile-picture {
-      margin-right: 0.75rem;
-      max-width: 3rem;
-      max-height: 3rem;
-      border-radius: 100%;
-      margin: auto 0;
-    }
-
-    .comment-body {
-      flex: 1;
-      display: flex;
+    .comment-header {
       flex-direction: column;
-      min-width: 0;
-      margin-left: 1rem;
-
-      .comment-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .comment-date {
-          font-size: 0.8rem;
-          color: $secondary;
-          margin: 0 0.5rem;
-          white-space: nowrap;
-        }
-      }
-
-      .comment-content {
-        margin-top: 0.5rem;
-        font-size: 1rem;
-        word-break: break-word;
-        margin: 0;
-      }
-
-      .comment-actions {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 0.5rem 0;
-
-        .reaction-btn {
-          background: transparent;
-          border: none;
-          color: white;
-          font-weight: bold;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          font-size: 0.9rem;
-          padding: 0;
-
-          img {
-            width: 1rem;
-            height: 1rem;
-            margin-right: 0.25rem;
-          }
-        }
-      }
+      align-items: flex-start;
+      gap: 0.2rem;
     }
   }
 }
