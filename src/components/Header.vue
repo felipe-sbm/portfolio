@@ -15,7 +15,7 @@
                 <span class="site-header__nav-icon">
                   <HomeIcon />
                 </span>
-                <span class="site-header__nav-text">home</span>
+                <span class="site-header__nav-text">Home</span>
               </router-link>
             </li>
             <li>
@@ -23,7 +23,7 @@
                 <span class="site-header__nav-icon">
                   <UserIcon />
                 </span>
-                <span class="site-header__nav-text">about me</span>
+                <span class="site-header__nav-text">About me</span>
               </router-link>
             </li>
             <li>
@@ -31,7 +31,7 @@
                 <span class="site-header__nav-icon">
                   <BotIcon />
                 </span>
-                <span class="site-header__nav-text">ai</span>
+                <span class="site-header__nav-text">AI</span>
               </router-link>
             </li>
             <li>
@@ -39,7 +39,7 @@
                 <span class="site-header__nav-icon">
                   <Cog />
                 </span>
-                <span class="site-header__nav-text">projects</span>
+                <span class="site-header__nav-text">Projects</span>
               </router-link>
             </li>
             <li>
@@ -47,7 +47,7 @@
                 <span class="site-header__nav-icon">
                   <BookOpenIcon />
                 </span>
-                <span class="site-header__nav-text">guestbook</span>
+                <span class="site-header__nav-text">Guestbook</span>
               </router-link>
             </li>
           </ul>
@@ -152,13 +152,13 @@ export default defineComponent({
   position: sticky;
   top: 0;
   justify-content: space-between;
-  overflow: hidden;
+  overflow: visible;
   z-index: 100;
 
   nav {
     margin-top: 0.2rem;
     padding: 0rem 1.5rem;
-    max-width: 26.5rem;
+    max-width: 27rem;
 
     ul {
       list-style: none;
@@ -180,7 +180,13 @@ export default defineComponent({
     overflow: hidden;
     border-radius: 2rem;
     box-shadow: var(--shadow-soft);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+    transform: translateY(0) scale(1);
+    transform-origin: center;
+    will-change: transform;
+    transition:
+      transform 0.78s cubic-bezier(0.16, 1, 0.3, 1),
+      border-radius 0.78s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.78s ease;
   }
 
   .site-header__glass-effect {
@@ -223,10 +229,11 @@ export default defineComponent({
   .site-header__dock,
   .site-header__dock > div {
     border-radius: 2.5rem;
+    transition: border-radius 0.78s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .site-header__dock:hover {
-    padding: 0.2rem;
+    transform: translateY(-1px) scale(1.02);
     border-radius: 1rem;
   }
 
@@ -245,16 +252,6 @@ export default defineComponent({
     &:hover {
       color: var(--color-brand-secondary);
       font-weight: 500;
-    }
-
-
-    &.router-link-active::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: -1.25rem;
     }
 
     .site-header__nav-icon {

@@ -1,12 +1,18 @@
 <template>
   <div class="projects">
+    <div class="intro">
+      <h6 class="eyebrow">My treasure</h6>
+      <h1>Project Gallery</h1>
+      <p>Here are some of the work that I've made</p>
+      <small>I need to make them in Assembly</small>
+    </div>
     <div class="projects__intro">
       <img
         :src="ProfilePicture"
         alt="Profile picture of Felipe SBM"
         class="projects__intro-avatar"
       />
-      <p class="projects__intro-text">welcome to my projects!</p>
+      <p class="projects__intro-text">Welcome to my projects!</p>
     </div>
 
     <div class="projects__list">
@@ -48,7 +54,7 @@ export default {
     border: 1px solid var(--color-border);
     border-radius: 10rem;
     padding: 0.15rem 1rem 0.15rem 0.25rem;
-    width: 14.65rem;
+    width: 15rem;
     margin: 0 auto 2rem auto;
     background: color-mix(in srgb, var(--color-surface) 40%, transparent);
   }

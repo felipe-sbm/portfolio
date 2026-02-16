@@ -9,12 +9,12 @@ export interface ProjectData {
 
 export const projects: ProjectData[] = [
   {
-    name: "ibus",
+    name: "Mel APP",
     image: "https://images.pexels.com/photos/2496606/pexels-photo-2496606.jpeg?_gl=1*10nuijr*_ga*MTk5ODIyMDM5Ny4xNzY0NjM2NjE0*_ga_8JE65Q40S6*czE3NjQ5ODgxOTIkbzMkZzEkdDE3NjQ5ODg3MTEkajM0JGwwJGgw",
     imageAlt: "a bus in a city",
-    description: "ibus is an open-source input method framework for Linux systems, designed to provide a flexible and efficient way to manage multiple input methods and languages.",
-    link: "https://github.com/otsuki-dev/ibus",
-    slug: "ibus"
+    description: "Mel is an application that can provide more security and efficiency for buses and passagers.",
+    link: "https://github.com/otsuki-dev/mel",
+    slug: "mel"
   },
   {
     name: "legacy",
@@ -23,14 +23,6 @@ export const projects: ProjectData[] = [
     description: "legacy is an open-source learning platform designed to teach logical reasoning and problem solving through procedurally generated exercises.",
     link: "https://github.com/YZhLu/legacy",
     slug: "legacy"
-  },
-  {
-    name: "nova.jl",
-    image: "https://piembsystech.com/wp-content/uploads/2024/11/julia.jpg",
-    imageAlt: "julia programming language logo",
-    description: "nova.jl is my best project, its a simple, fast, easy and efficient web framework for the Julia programming language, designed to simplify the process of building web applications with a focus on performance and developer experience.",
-    link: "https://github.com/otsuki-dev/nova.jl",
-    slug: "nova-jl"
   },
   {
     name: "insomnia machine",
@@ -42,7 +34,7 @@ export const projects: ProjectData[] = [
     slug: "insomnia-machine",
   },
     {
-    name: "p.a. registration portal",
+    name: "PIAF - UFRN",
     image: "https://images.pexels.com/photos/3763870/pexels-photo-3763870.jpeg?auto=compress&cs=tinysrgb&w=240&h=240&dpr=1",
     imageAlt: "a automatic coffee machine",
     description:
@@ -78,16 +70,7 @@ export const projects: ProjectData[] = [
     name: "duck chess",
     image: "https://images.pexels.com/photos/277092/pexels-photo-277092.jpeg?_gl=1*kyl6yd*_ga*MTk5ODIyMDM5Ny4xNzY0NjM2NjE0*_ga_8JE65Q40S6*czE3NjQ5ODgxOTIkbzMkZzEkdDE3NjQ5ODg4NDkkajQyJGwwJGgw",
     imageAlt: "a linux distributio, made with the goal of rescueing old computers. it is a new distribution, and has a very light desktop environment.",
-    description: "duck chess is a chess game created for learning purposes, featuring an AI opponent and a unique duck piece that adds an extra layer of strategy to the game.",  
-    link: "https://www.github.com/felipe-sbm/yesu-os",
-    slug: "yesu-os",
-  },
-  {
-    name: "linux distro: yesu os",
-    image: "https://images.pexels.com/photos/11034131/pexels-photo-11034131.jpeg?auto=compress&cs=tinysrgb&w=240&h=240&dpr=1",
-    imageAlt: "a pokedex",
-    description:
-      "a linux distributio, made with the goal of rescueing old computers. it is a new distribution, and has a very light desktop environment.",
+    description: "duck chess (Eendenschaak) is a chess game created for learning purposes, featuring an AI opponent and a unique duck piece that adds an extra layer of strategy to the game.",  
     link: "https://www.github.com/felipe-sbm/yesu-os",
     slug: "yesu-os",
   },

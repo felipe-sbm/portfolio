@@ -1,12 +1,18 @@
-$font-family-base: "Red Hat Text", sans-serif;
 
+// Configurações da fonte
+$font-family-base: "Red Hat Text", sans-serif;
 $color-brand-primary-light: #2e7b70;
 $color-brand-secondary-light: #f88d2b;
+$color-brand-primary-dark: #59a89a;
+$color-brand-secondary-dark: #ffb56e;
+
+// Referência das cores e tema: Sidebar do Edge (Microsoft Copilot).
+// Tema Claro
 $color-text-light: #53372a;
 $color-text-strong-light: #3f2b22;
 $color-text-muted-light: rgba(83, 55, 42, 0.78);
-$color-bg-light: #f8f4f2;
-$color-bg-start-light: #f9f4f0;
+$color-bg-start-light: #f8f4f2;
+$color-bg-center-light: #f9f4f0;
 $color-bg-end-light: #f6f1ec;
 $color-border-light: #e7e2de;
 $color-border-strong-light: #ead2be;
@@ -19,13 +25,12 @@ $color-icon-light: #53372a;
 $shadow-soft-light: 0 8px 24px rgba(0, 0, 0, 0.08);
 $shadow-elevated-light: 0 16px 50px rgba(0, 0, 0, 0.1);
 
-$color-brand-primary-dark: #59a89a;
-$color-brand-secondary-dark: #ffb56e;
+// Tema Escuro
 $color-text-dark: #e5ebfa;
 $color-text-strong-dark: #f3f6ff;
 $color-text-muted-dark: rgba(229, 235, 250, 0.78);
-$color-bg-dark: #151a28;
-$color-bg-start-dark: #151a29;
+$color-bg-start-dark: #151a28;
+$color-bg-center-dark: #151a29;
 $color-bg-end-dark: #11141f;
 $color-border-dark: #34394c;
 $color-border-strong-dark: #2a3146;
@@ -48,8 +53,8 @@ $shadow-elevated-dark: 0 18px 56px rgba(0, 0, 0, 0.45);
   --color-text-strong: #{$color-text-strong-light};
   --color-text-muted: #{$color-text-muted-light};
 
-  --color-bg: #{$color-bg-light};
   --color-bg-start: #{$color-bg-start-light};
+  --color-bg-center: #{$color-bg-center-light};
   --color-bg-end: #{$color-bg-end-light};
 
   --color-border: #{$color-border-light};
@@ -76,8 +81,8 @@ $shadow-elevated-dark: 0 18px 56px rgba(0, 0, 0, 0.45);
     --color-text-strong: #{$color-text-strong-dark};
     --color-text-muted: #{$color-text-muted-dark};
 
-    --color-bg: #{$color-bg-dark};
     --color-bg-start: #{$color-bg-start-dark};
+    --color-bg-center: #{$color-bg-center-dark};
     --color-bg-end: #{$color-bg-end-dark};
 
     --color-border: #{$color-border-dark};
@@ -99,9 +104,8 @@ $shadow-elevated-dark: 0 18px 56px rgba(0, 0, 0, 0.45);
 html,
 body,
 #app {
-  height: 100%;
-  background-color: var(--color-bg);
   color: var(--color-text);
+  // text-transform: lowercase;
 }
 
 :root {
@@ -110,7 +114,7 @@ body,
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(90deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+  background-image: linear-gradient(90deg, var(--color-bg-start) 0%, var(--color-bg-center) 50%, var(--color-bg-end) 100%);
 
   scrollbar-color: var(--color-brand-primary) var(--color-bg);
   scrollbar-width: thin;
@@ -183,6 +187,15 @@ a {
 
 .intro {
   padding-top: 1.8rem;
+
+  .eyebrow {
+    margin: 0 0 0.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    font-weight: 700;
+  }
 
   h1 {
     margin: 0;

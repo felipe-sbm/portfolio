@@ -6,6 +6,7 @@ const routes = [
   { path: '/ai', component: () => import('./pages/Ai.vue') },
   { path: '/projects', component: () => import('./pages/Projects.vue') },
   { path: '/guestbook', component: () => import('./pages/Guestbook.vue') },
+  { path: '/:catchAll(.*)*', component: () => import('./pages/NotFound.vue') },
 ];
 
 const router = createRouter({

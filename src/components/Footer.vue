@@ -3,17 +3,17 @@
     <div class="site-footer__menu">
       <ul>
         <li>
-          <router-link class="site-footer__menu-link" to="/">home</router-link>
+          <router-link class="site-footer__menu-link" to="/">Home</router-link>
         </li>
         <li>
-          <router-link class="site-footer__menu-link" to="/about">about me</router-link>
+          <router-link class="site-footer__menu-link" to="/about">About me</router-link>
         </li>
-        <li><router-link class="site-footer__menu-link" to="/ai">ai</router-link></li>
+        <li><router-link class="site-footer__menu-link" to="/ai">AI</router-link></li>
         <li>
-          <router-link class="site-footer__menu-link" to="/projects">projects</router-link>
+          <router-link class="site-footer__menu-link" to="/projects">Projects</router-link>
         </li>
         <li>
-          <router-link class="site-footer__menu-link" to="/guestbook">guestbook</router-link>
+          <router-link class="site-footer__menu-link" to="/guestbook">Guestbook</router-link>
         </li>
       </ul>
     </div>
@@ -53,7 +53,7 @@
     </div>
     <div class="site-footer__meta">
       <router-link class="site-footer__meta-link" to="/about" alt="About the creator">
-        &copy; 2025 felipe sbm.
+        &copy; 2026 Felipe SBM.
       </router-link>
       <a href="https://www.otsuki.dev" alt="Link to Otsuki's website">
         <img :src="Otsuki" alt="Logo da Otsuki LTDA" />
@@ -68,20 +68,20 @@
 <script setup lang="ts">
 import ProfilePicture from "@/assets/images/pfp.webp";
 import Otsuki from "@/assets/images/otsuki-logo.svg";
-import NotByAI from "@/assets/images/Developed-By-Human-CN.png";
+import NotByAI from "@/assets/images/not-by-ai/CN/chinese-dark.png";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
 
 function randomPhrase(): string {
   const phrases = [
-    "stay curious!              ",
-    "code with passion.         ",
-    "embrace the journey.       ",
-    "keep learning.             ",
-    "build something amazing.   ",
-    "dream big, code bigger.    ",
-    "create, innovate, inspire. ",
-    "think outside the box.     ",
-    "God is good all the time.  "
+    "Stay curious!",
+    "Code with passion.",
+    "Embrace the journey.",
+    "Keep learning.",
+    "Build something amazing.",
+    "Dream big, Code bigger.",
+    "Create, innovate, inspire.",
+    "Think outside the box.",
+    "God is good all the time."
   ];
   return phrases[Math.floor(Math.random() * phrases.length)];
 }
@@ -198,7 +198,7 @@ function randomPhrase(): string {
       &.router-link-active::before {
         content: "";
         position: absolute;
-        left: 0;
+        left: 0.5rem;
         top: 50%;
         transform: translateY(-35%);
         width: 0.55rem;
