@@ -1,60 +1,60 @@
 <template>
-  <header>
-    <div class="location-hour">
-      <p class="location">Natal, Brazil</p>
+  <header class="site-header">
+    <div class="site-header__meta">
+      <p class="site-header__location">Natal, Brazil</p>
     </div>
-    <div class="liquid-glass dock">
-      <div class="liquid-glass-effect"></div>
-      <div class="liquid-glass-tint"></div>
-      <div class="liquid-glass-shine"></div>
-      <div class="liquid-glass-content">
+    <div class="site-header__glass site-header__dock">
+      <div class="site-header__glass-effect"></div>
+      <div class="site-header__glass-tint"></div>
+      <div class="site-header__glass-shine"></div>
+      <div class="site-header__glass-content">
         <nav>
           <ul>
             <li>
-              <router-link class="nav-link" to="/">
-                <span class="nav-icon">
+              <router-link class="site-header__nav-link" to="/">
+                <span class="site-header__nav-icon">
                   <HomeIcon />
                 </span>
-                <span class="nav-text">home</span>
+                <span class="site-header__nav-text">home</span>
               </router-link>
             </li>
             <li>
-              <router-link class="nav-link" to="/about">
-                <span class="nav-icon">
+              <router-link class="site-header__nav-link" to="/about">
+                <span class="site-header__nav-icon">
                   <UserIcon />
                 </span>
-                <span class="nav-text">about me</span>
+                <span class="site-header__nav-text">about me</span>
               </router-link>
             </li>
             <li>
-              <router-link class="nav-link" to="/ai">
-                <span class="nav-icon">
+              <router-link class="site-header__nav-link" to="/ai">
+                <span class="site-header__nav-icon">
                   <BotIcon />
                 </span>
-                <span class="nav-text">ai</span>
+                <span class="site-header__nav-text">ai</span>
               </router-link>
             </li>
             <li>
-              <router-link class="nav-link" to="/projects">
-                <span class="nav-icon">
+              <router-link class="site-header__nav-link" to="/projects">
+                <span class="site-header__nav-icon">
                   <Cog />
                 </span>
-                <span class="nav-text">projects</span>
+                <span class="site-header__nav-text">projects</span>
               </router-link>
             </li>
             <li>
-              <router-link class="nav-link" to="/guestbook">
-                <span class="nav-icon">
+              <router-link class="site-header__nav-link" to="/guestbook">
+                <span class="site-header__nav-icon">
                   <BookOpenIcon />
                 </span>
-                <span class="nav-text">guestbook</span>
+                <span class="site-header__nav-text">guestbook</span>
               </router-link>
             </li>
           </ul>
         </nav>
       </div>
     </div>
-    <svg class="liquid-glass-svg" aria-hidden="true">
+    <svg class="site-header__glass-svg" aria-hidden="true">
       <filter
         id="glass-distortion"
         x="0%"
@@ -104,8 +104,8 @@
         />
       </filter>
     </svg>
-    <div class="location-hour">
-      <p class="time">{{ natalTime }}</p>
+    <div class="site-header__meta">
+      <p class="site-header__time">{{ natalTime }}</p>
     </div>
   </header>
 </template>
@@ -146,9 +146,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 @use "@/style.scss" as *;
 
-header {
+.site-header {
   display: flex;
-  justify-content: center;
   align-items: center;
   position: sticky;
   top: 0;
@@ -173,18 +172,18 @@ header {
     }
   }
 
-  .liquid-glass {
+  .site-header__glass {
     position: relative;
     margin: 1rem 0;
     display: flex;
     align-items: center;
     overflow: hidden;
     border-radius: 2rem;
-    box-shadow: 0 0 0.5rem #1a1a1a;
+    box-shadow: var(--shadow-soft);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
   }
 
-  .liquid-glass-effect {
+  .site-header__glass-effect {
     position: absolute;
     z-index: 0;
     inset: 0;
@@ -192,14 +191,14 @@ header {
     filter: url(#glass-distortion);
   }
 
-  .liquid-glass-tint {
+  .site-header__glass-tint {
     z-index: 1;
     position: absolute;
     inset: 0;
-    background: rgba(255, 255, 255, 0.08);
+    background: color-mix(in srgb, var(--color-surface-elevated) 38%, transparent);
   }
 
-  .liquid-glass-shine {
+  .site-header__glass-shine {
     position: absolute;
     inset: 0;
     z-index: 2;
@@ -208,12 +207,12 @@ header {
       inset -1px -1px 1px 1px rgba(255, 255, 255, 0.3);
   }
 
-  .liquid-glass-content {
+  .site-header__glass-content {
     z-index: 3;
     position: relative;
   }
 
-  .liquid-glass-svg {
+  .site-header__glass-svg {
     position: absolute;
     width: 0;
     height: 0;
@@ -221,22 +220,22 @@ header {
     pointer-events: none;
   }
 
-  .dock,
-  .dock > div {
-    border-radius: 2rem;
+  .site-header__dock,
+  .site-header__dock > div {
+    border-radius: 2.5rem;
   }
 
-  .dock:hover {
+  .site-header__dock:hover {
     padding: 0.2rem;
     border-radius: 1rem;
   }
 
-  .dock:hover > div {
-    border-radius: 2.5rem;
+  .site-header__dock:hover > div {
+    border-radius: 1rem;
   }
 
-  .nav-link {
-    color: $text-color;
+  .site-header__nav-link {
+    color: var(--color-text);
     transition: all 0.3s ease-in-out;
     position: relative;
     text-decoration: none;
@@ -244,7 +243,7 @@ header {
     align-items: center;
 
     &:hover {
-      color: $secondary;
+      color: var(--color-brand-secondary);
       font-weight: 500;
     }
 
@@ -258,17 +257,17 @@ header {
       margin-left: -1.25rem;
     }
 
-    .nav-icon {
+    .site-header__nav-icon {
       display: none;
       margin-right: 0.5rem;
     }
 
-    .nav-text {
+    .site-header__nav-text {
       display: inline;
     }
   }
 
-  .location-hour {
+  .site-header__meta {
     position: relative;
     display: flex;
     justify-content: center;
@@ -276,13 +275,13 @@ header {
     padding: 0 2rem 0 2rem;
     width: 3rem;
 
-    .location {
+    .site-header__location {
       position: absolute;
       top: -1.1rem;
       left: 1rem;
     }
 
-    .time {
+    .site-header__time {
       position: absolute;
       top: -1.1rem;
       right: 1rem;
@@ -291,7 +290,7 @@ header {
 }
 
 @media only screen and (max-width: 800px) {
-  header {
+  .site-header {
     flex-direction: column;
     align-items: center;
     padding: 1rem 0;
@@ -299,15 +298,15 @@ header {
     position: sticky;
   }
 
-  header .nav-link .nav-icon {
+  .site-header .site-header__nav-link .site-header__nav-icon {
     display: inline !important;
   }
 
-  header .nav-link .nav-text {
+  .site-header .site-header__nav-link .site-header__nav-text {
     display: none !important;
   }
 
-  header .location-hour {
+  .site-header .site-header__meta {
     display: none !important;
   }
 }

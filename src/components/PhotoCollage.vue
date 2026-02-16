@@ -92,7 +92,7 @@ export default defineComponent({
   transition: box-shadow 0.2s ease;
 
   &:hover {
-    box-shadow: 0 0.75rem 1.2rem rgba(0, 0, 0, 0.14);
+    box-shadow: var(--shadow-soft);
   }
 }
 

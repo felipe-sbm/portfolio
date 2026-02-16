@@ -1,15 +1,15 @@
 <template>
   <div class="projects">
-    <div class="projects--intro">
+    <div class="projects__intro">
       <img
         :src="ProfilePicture"
         alt="Profile picture of Felipe SBM"
-        class="projects--intro-avatar"
+        class="projects__intro-avatar"
       />
-      <p class="projects--intro-text">welcome to my projects!</p>
+      <p class="projects__intro-text">welcome to my projects!</p>
     </div>
 
-    <div class="projects--list">
+    <div class="projects__list">
       <ProjectCard
         v-for="project in projects"
         :key="project.name"
@@ -41,29 +41,30 @@ export default {
 @use "@/style.scss" as *;
 
 .projects {
-  .projects--intro {
+  .projects__intro {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid $border-color;
+    border: 1px solid var(--color-border);
     border-radius: 10rem;
     padding: 0.15rem 1rem 0.15rem 0.25rem;
     width: 14.65rem;
     margin: 0 auto 2rem auto;
+    background: color-mix(in srgb, var(--color-surface) 40%, transparent);
   }
 
-  .projects--intro-avatar {
+  .projects__intro-avatar {
     max-width: 3rem;
     max-height: 3rem;
     border-radius: 50%;
     margin-right: 0.75rem;
   }
 
-  .projects--intro-text {
+  .projects__intro-text {
     margin: 0;
   }
 
-  .projects--list {
+  .projects__list {
     display: grid;
     grid-template-columns: 1fr;
     max-width: 100%;

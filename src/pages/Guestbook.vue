@@ -100,36 +100,17 @@ export default {
 .comment-form,
 .state-card,
 .comment {
-  border: 2px solid #F8F2EE;
+  border: 2px solid var(--color-border-strong);
   border-radius: 1.5rem;
   backdrop-filter: blur(18px) saturate(140%);
+  background-color: var(--color-surface-elevated);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.95) inset,
-    0 24px 48px rgba(0, 0, 0, 0.08);
+    var(--shadow-soft);
 }
 
 .intro {
-  padding: 1.8rem 0;
   margin-bottom: 1rem;
-
-  h1 {
-    margin: 0;
-    line-height: 1.03;
-    letter-spacing: -0.03em;
-    font-weight: 600;
-  }
-
-  p {
-    margin: 0.65rem 0 0;
-    font-size: 1.05rem;
-    max-width: 38rem;
-    line-height: 1.45;
-  }
-
-  small {
-    display: inline-block;
-    margin-top: 0.75rem;
-  }
 }
 
 .comment-form {
@@ -141,7 +122,7 @@ export default {
 
   .auth-section,
   .auth-info {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: 0.95rem;
   }
 
@@ -164,9 +145,9 @@ export default {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: rgba(0, 0, 0, 0.04);
+    background: var(--color-surface-soft);
     border-radius: 999px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--color-border);
     padding: 0.3rem 0.75rem 0.3rem 0.3rem;
     min-width: 0;
 
@@ -182,11 +163,13 @@ export default {
     height: 2rem;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--color-border);
   }
 
   textarea {
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--color-border);
+    background-color: color-mix(in srgb, var(--color-surface-elevated) 90%, transparent);
+    color: var(--color-text);
     border-radius: 1rem;
     min-height: 8.2rem;
     resize: vertical;
@@ -197,12 +180,12 @@ export default {
     transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 
     &::placeholder {
-      color: rgba(29, 29, 31, 0.45);
+      color: var(--color-text-muted);
     }
 
     &:focus {
-      border-color: rgba(0, 113, 227, 0.65);
-      box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
+      border-color: var(--color-brand-primary);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
     }
 
     &:disabled {
@@ -256,7 +239,7 @@ export default {
     height: 2.7rem;
     min-width: 2.7rem;
     border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--color-border);
     object-fit: cover;
     margin-top: 0.1rem;
   }
@@ -279,7 +262,7 @@ export default {
     font-weight: 600;
     text-decoration: none;
     letter-spacing: -0.01em;
-    color: $text-color;
+    color: var(--color-text-strong);
   }
 
   .comment-date {
@@ -289,7 +272,7 @@ export default {
 
   .comment-content {
     margin: 0;
-    color: $text-color;
+    color: var(--color-text);
     line-height: 1.5;
     word-break: break-word;
   }
@@ -314,8 +297,8 @@ export default {
 
 .github-btn,
 .composer-footer button {
-  background: linear-gradient(180deg, $primary, #26665c);
-  color: #fff;
+  background: linear-gradient(180deg, var(--color-brand-primary), color-mix(in srgb, var(--color-brand-primary) 80%, #000));
+  color: var(--color-button-text);
   padding: 0.55rem 1rem;
 
   &:disabled {
@@ -326,12 +309,12 @@ export default {
 }
 
 .logout-btn {
-  background: #00000008;
-  border-color: #0000001f;
+  background: color-mix(in srgb, var(--color-surface-soft) 70%, transparent);
+  border-color: var(--color-border);
   padding: 0.45rem 0.85rem;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.06);
+    background: var(--color-surface-soft);
   }
 }
 
@@ -340,8 +323,8 @@ export default {
   align-items: center;
   gap: 0.28rem;
   padding: 0.32rem 0.65rem;
-  background: rgba(white, 0.75);
-  border-color: $card-border;
+  background: color-mix(in srgb, var(--color-surface-elevated) 85%, transparent);
+  border-color: var(--color-border-strong);
   font-size: 0.82rem;
 
   img {
@@ -350,12 +333,12 @@ export default {
   }
 
   &:hover:not(:disabled) {
-    background: #ececef;
+    background: var(--color-surface-soft);
   }
 
   &.active {
-    background: rgba(0, 113, 227, 0.12);
-    border-color: rgba(0, 113, 227, 0.35);
+    background: color-mix(in srgb, var(--color-brand-primary) 16%, transparent);
+    border-color: color-mix(in srgb, var(--color-brand-primary) 45%, transparent);
   }
 
   &:disabled {
@@ -368,7 +351,7 @@ export default {
     padding-bottom: 1.25rem;
   }
 
-  .intro-card {
+  .intro {
     padding: 1.3rem;
   }
 

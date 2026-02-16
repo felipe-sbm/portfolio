@@ -1,267 +1,209 @@
 <template>
   <div class="page-container">
-    <div class="welcome">
-      <div class="left-div">
-        <h1>hey there! I'm felipe</h1>
-        <ul class="bio">
-          <li>front-end developer<span>&</span></li>
-          <li>computer engineer<span>&</span></li>
-          <li>web-designer<span>&</span></li>
-          <li>ai expert<mark>.</mark></li>
-        </ul>
-      </div>
-      <div class="right-div">
-        <div class="frame"></div>
-      </div>
+    <div class="home__welcome">
+      <h1>hey there! I'm felipe</h1>
+      <ul class="home__bio">
+        <li>front-end developer<span>&</span></li>
+        <li>computer engineer<span>&</span></li>
+        <li>web-designer<span>&</span></li>
+        <li>ai expert<mark>.</mark></li>
+      </ul>
     </div>
+  </div>
 
-    <div class="timeline">
-      <div class="title">
-        <h2>years passes, but this website don't stops</h2>
-      </div>
-      <div class="versions">
-        <div class="year-block">
-          <div class="text">
-            <h3 class="title-22">20<span>22</span></h3>
-            <p>
-              This was my first portfolio. I created that when I joined IMD
-              (Digital Metropolis Institute) so I started to know and learn
-              about programming things. This version has nothing too exciting,
-              it has only my name and a skeleton (that I took from a reference
-              link from IMD material) with a text. It was only a single HTML:5
-              page.
-            </p>
-            <p>
-              Made with:
-              <span>HMLT</span>, <span>CSS</span>, <span>JavaScript</span>.
-            </p>
-          </div>
-          <div class="image">
-            <a href="/visualizer">
-            </a>
-          </div>
-        </div>
+  <div class="home__content">
+    <p class="home__text">
+      I'm a fullstack developer, computer engineer, software student and
+      webdesigner since 2019. <br>
+      I worked in
+      <a href="https://demandaurbana.com.br" alt="Link for the PIAF - UFRN repository">
+        <span class="home__pill home__pill--blue">
+          <img :src="Demanda" alt="Logo of the 'Demanda Urbana', from Arkanus." class="home__pill-icon" />
+          Demanda Urbana
+        </span>
+      </a>
+      and made some projects in my own, like
+      <a href="https://basegpt.com.br" alt="Link for the Otsuki's Website">
+        <span class="home__pill home__pill--purple">
+          <img :src="Base" alt="Logo of the 'BaseGPT'', from DataVence." class="home__pill-icon" />
+          BaseGPT
+        </span>
+      </a>
+      . <br />
+      I keep practicing every day<i class="home__note">/7*</i> and learning new
+      technologies to improve my skills.
+      <span class="home__highlight">欢迎你，朋友！</span>
+    </p>
 
-        <div class="year-block">
-          <div class="text">
-            <h3 class="title-23">20<span>23</span></h3>
-            <p>
-              Here I've learned how to use Next.js with my friend. I used a
-              Vercel template to do this one, my programming skills are getting
-              better but I can't create something without AI helping me. This
-              portfolio had my social media and some projects that I made in
-              2023, but later I needed to replace this website.
-            </p>
-            <p>
-              Made with:
-              <span>Next.js</span>, <span>Tailwind CSS</span>,
-              <span>Contentful</span>.
-            </p>
-          </div>
-          <div class="image">
-            <a href="/visualizer">
-            </a>
-          </div>
-        </div>
-
-        <div class="year-block">
-          <div class="text">
-            <h3 class="title-24">20<span>24</span></h3>
-            <p>
-              With so much time, I started to create a new portfolio of mine,
-              using some references that I've found in Vercel projects. This
-              variant has two themes that automatically changes, a timeline,
-              photo album, project cards, and animations. I decided to create a
-              new programming framework that I never used before.
-            </p>
-            <p>
-              Made with:
-              <span>Vue</span>, <span>Tailwind CSS</span>,
-              <span>TypeScript</span>.
-            </p>
-          </div>
-          <div class="image">
-            <a href="/visualizer">
-            </a>
-          </div>
-        </div>
-
-        <div class="year-block">
-          <div class="text">
-            <h3 class="title-25">20<span>25</span></h3>
-            <p>
-              So far, so good. This portfolio has been developed with 0% AI,
-              only stack overflow, blogs, documentation, and GitHub. It has an
-              AI but don't was made by that! I created a sketch in Figma to be
-              more creative in the production. I didn't use any inspiration,
-              only the ideas that flowed in my mind. This color pallet was a
-              wish from my brother.
-            </p>
-            <p>
-              Made with: <span>Vue</span>, <span>SASS</span>,
-              <span>C# (.net)</span>.
-            </p>
-          </div>
-          <div class="image">
-            <a href="/">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <p class="home__text home__text--section">
+      Some time ago, I just started a Blog and a Youtube Channel to teach people
+      in the dev world. Tutorials, Q&A and news from technologies its just a
+      slice of the content that im actually creating. Making projects and
+      sharing knowledge is my passion, and I'm happy to share it. <br />
+      I can show that
+      <i class="home__skill home__skill--typescript"> C++, </i>
+      <i class="home__skill home__skill--javascript"> Javascript, </i>
+      <i class="home__skill home__skill--julia"> Julia </i>and
+      <i class="home__skill home__skill--csharp"> C# </i> are fun.
+    </p>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" scoped>
+import { defineComponent } from "vue";
+import Demanda from "@/assets/images/demanda-urbana.webp";
+import Base from "@/assets/images/basegpt.webp";
+
+export default defineComponent({
+  data() {
+    return {
+      Demanda,
+      Base,
+    };
+  },
+  name: "PhotoAlbum",
+});
 </script>
 
 <style lang="scss" scoped>
 @use "@/style.scss" as *;
 
-$notosans-jp: "Noto Sans JP", sans-serif;
-$geologica: "Geologica", sans-serif;
-$chocolate-sans: "Chocolate Classical Sans", sans-serif;
-$rubik: "Rubik Puddles", system-ui;
-
-.welcome {
+.home__welcome {
   font-weight: 400;
   font-style: normal;
   white-space: pre;
-  display: flex;
-  flex-direction: row;
 
-  .left-div {
-    display: flex;
-    flex-direction: column;
-    font-size: small;
-
-    .bio {
-      padding: 0;
-
-      li {
-        margin: 0;
-        font-family: $red-hat-text;
-        font-size: medium;
-        list-style: none;
-
-        mark {
-          color: $secondary;
-          background-color: transparent;
-        }
-      }
-    }
-
-    h1 {
-      font-size: 1.75rem;
-      font-weight: medium;
-      margin: 0 0 1rem 0;
-    }
-
-    span {
-      color: $primary;
-    }
-
-    img {
-      max-width: 15rem;
-    }
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin: 0 0 1rem 0;
   }
 
-  .right-div {
-    display: flex;
-    flex-direction: column;
-    width: 50vw;
+  span {
+    color: var(--color-brand-primary);
+  }
 
-    img {
-      max-width: 25rem;
-      border-radius: 1rem;
+  .home__bio {
+    padding: 0;
+
+    li {
+      margin: 0;
+      list-style: none;
+      font-family: var(--font-family-base);
+      font-size: medium;
+
+      mark {
+        color: var(--color-brand-secondary);
+        background-color: transparent;
+      }
     }
   }
 }
 
-.timeline {
-  margin-top: 5rem;
+.home__content {
+  margin: 0 auto;
+}
 
-  .title {
-    margin-bottom: 2rem;
+.home__text {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
 
-    h2 {
-      font-size: 1.8rem;
-    }
+.home__text--spaced {
+  margin-bottom: 2rem;
+}
 
-    span {
-      color: $primary;
-    }
+.home__text--section {
+  margin: 2rem 0;
+}
+
+.home__pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 0.125rem 0.8rem;
+  font-size: 0.875rem;
+}
+
+.home__pill--blue {
+  background-color: #dbeafe;
+  color: #3b82f6;
+}
+
+.home__pill--purple {
+  background-color: #e4e3ff;
+  color: #4741FE;
+}
+
+.home__pill-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-left: -0.25rem;
+  margin-right: 0.375rem;
+}
+
+.home__note {
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+.home__highlight {
+  font-weight: 600;
+}
+
+.home__link {
+  color: var(--color-text-strong);
+  text-decoration: underline;
+}
+
+.home__skill {
+  font-style: italic;
+}
+
+.home__skill--cpp {
+  color: #1d4ed8;
+}
+
+.home__skill--javascript {
+  color: #fbbf24;
+}
+
+.home__skill--julia {
+  color: #7e22ce;
+}
+
+.home__skill--csharp {
+  color: #65a30d;
+}
+
+@media (prefers-color-scheme: dark) {
+  .home__pill--blue {
+    background-color: #3b82f6;
+    color: #eff6ff;
   }
 
-  span {
-    color: $secondary;
+  .home__pill--purple {
+    background-color: #4741FE;
+    color: #f0efff;
   }
 
-  .versions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .home__skill--typescript {
+    color: #3b82f6;
+  }
 
-    .year-block {
-      display: flex;
-      align-items: flex-start;
-      flex-direction: row;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+  .home__skill--javascript {
+    color: #fcd34d;
+  }
 
-      .text {
-        flex: 1;
-        min-width: 300px;
+  .home__skill--julia {
+    color: #a855f7;
+  }
 
-        h3 {
-          font-size: 3rem;
-          margin-bottom: 1rem;
-
-          span {
-            color: $primary;
-          }
-        }
-
-        p {
-          font-family: $red-hat-text;
-          margin: 0.5rem 0;
-        }
-      }
-
-      .image {
-        width: 20rem;
-        flex-shrink: 0;
-
-        img {
-          width: 100%;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: transform 1s ease;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        img:hover {
-          box-shadow: 0 0.5rem 1rem #474747;
-          transition: transform 1s ease;
-        }
-      }
-    }
-
-    .title-22 {
-      font-family: $notosans-jp;
-    }
-
-    .title-23 {
-      font-family: $geologica;
-    }
-
-    .title-24 {
-      font-family: $chocolate-sans;
-    }
-
-    .title-25 {
-      font-family: $rubik;
-    }
+  .home__skill--csharp {
+    color: #84cc16;
   }
 }
 </style>

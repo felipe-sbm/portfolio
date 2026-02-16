@@ -1,16 +1,16 @@
 <template>
   <article class="project-card">
-    <router-link class="project-card--link" :to="`/projects/${slug}`">
-      <div v-if="isLastProject" class="project-card--badge">
+    <router-link class="project-card__link" :to="`/projects/${slug}`">
+      <div v-if="isLastProject" class="project-card__badge">
         <h6>last project</h6>
       </div>
-      <div class="project-card--body">
-        <div class="project-card--media">
-          <img :src="image" :alt="imageAlt" class="project-card--image" />
+      <div class="project-card__body">
+        <div class="project-card__media">
+          <img :src="image" :alt="imageAlt" class="project-card__image" />
         </div>
-        <div class="project-card--content">
-          <h3 class="project-card--title">{{ name }}</h3>
-          <p class="project-card--description">{{ description }}</p>
+        <div class="project-card__content">
+          <h3 class="project-card__title">{{ name }}</h3>
+          <p class="project-card__description">{{ description }}</p>
         </div>
       </div>
     </router-link>
@@ -38,8 +38,8 @@ export default defineComponent({
 @use "@/style.scss" as *;
 
 .project-card {
-  background-color: rgba($card-background, 0.65);
-  border: 2px solid $card-background;
+  background-color: color-mix(in srgb, var(--color-surface) 65%, transparent);
+  border: 2px solid var(--color-border-strong);
   border-radius: 1.5rem;
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
@@ -47,23 +47,23 @@ export default defineComponent({
   width: 100%;
   box-shadow:
     0 1px 5px rgba(255, 255, 255, 0.95) inset,
-    0 6px 24px rgba(0, 0, 0, 0.08);
+    var(--shadow-soft);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-0.12rem);
     box-shadow:
       0 1px 10px rgba(255, 255, 255, 0.95) inset,
-      0 12px 48px rgba(0, 0, 0, 0.1);
+      var(--shadow-elevated);
   }
 
-  .project-card--link {
+  .project-card__link {
     display: block;
     text-decoration: none;
     color: inherit;
   }
 
-  .project-card--badge {
+  .project-card__badge {
     padding: 0.75rem 1rem 0;
 
     h6 {
@@ -71,18 +71,18 @@ export default defineComponent({
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 0.7rem;
-      color: rgba(0, 0, 0, 0.62);
+      color: var(--color-text-muted);
       font-weight: 600;
     }
   }
 
-  .project-card--body {
+  .project-card__body {
     display: flex;
     align-items: center;
     gap: 1rem;
     padding: 1rem 1rem 1.1rem;
 
-    .project-card--media {
+    .project-card__media {
       width: 10rem;
       height: 10rem;
       display: flex;
@@ -91,9 +91,9 @@ export default defineComponent({
       overflow: hidden;
       border-radius: 0.75rem;
       flex-shrink: 0;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--color-border);
 
-      .project-card--image {
+      .project-card__image {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -102,21 +102,21 @@ export default defineComponent({
       }
     }
 
-    .project-card--content {
+    .project-card__content {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
-      .project-card--title {
+      .project-card__title {
         margin: 0 0 0.5rem;
         font-weight: 500;
       }
 
-      .project-card--description {
+      .project-card__description {
         margin: 0;
         line-height: 1.4;
-        color: rgba(29, 29, 31, 0.9);
+        color: var(--color-text);
       }
     }
   }
@@ -126,22 +126,22 @@ export default defineComponent({
   .project-card {
     max-width: 100%;
 
-    .project-card--body {
+    .project-card__body {
       flex-direction: column;
       align-items: stretch;
       padding: 0.5rem;
 
-      .project-card--media {
+      .project-card__media {
         width: 100%;
         height: 200px;
         margin-bottom: 1rem;
       }
 
-      .project-card--content {
-        .project-card--title {
+      .project-card__content {
+        .project-card__title {
           margin: 0 0 0.5rem 0;
         }
-        .project-card--description {
+        .project-card__description {
           margin: 0;
         }
       }

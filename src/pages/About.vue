@@ -5,6 +5,14 @@
     <small>I'm glad of your curiosity</small>
   </div>
   <PhotoCollage></PhotoCollage>
+  <div>
+    <p>I'm Felipe Samuel, a software developer, web designer, and computer engineer. <br>
+      Since childhood, I've been repairing computers and modifying websites with CSS. In 2022, I started my career in
+      development when I joined IMD (a technology sector at UFRN). Since then, I haven't stopped studying and working on
+      projects like this portfolio. You can check out other projects on the <a href="/projects">projects page.</a>
+      Recently, I've been studying Chinese to improve my connection with other cultures. You are ready to see my
+      timeline? Let's go!</p>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -14,28 +22,12 @@ import PhotoCollage from '@/components/PhotoCollage.vue';
 <style lang="scss" scoped>
 @use "@/style.scss" as *;
 
+a {
+  text-decoration-color: var(--color-brand-primary);
+  text-decoration-style: wavy;
+}
 
-.intro {
-  padding: 1.8rem 0;
-  margin-bottom: 1rem;
-
-  h1 {
-    margin: 0;
-    line-height: 1.03;
-    letter-spacing: -0.03em;
-    font-weight: 600;
-  }
-
-  p {
-    margin: 0.65rem 0 0;
-    font-size: 1.05rem;
-    max-width: 38rem;
-    line-height: 1.45;
-  }
-
-  small {
-    display: inline-block;
-    margin-top: 0.75rem;
-  }
+a:hover {
+  text-decoration-color: var(--color-brand-secondary);
 }
 </style>

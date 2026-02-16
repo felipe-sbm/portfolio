@@ -1,96 +1,207 @@
-$primary: #2e7b70;
-$secondary: #f88d2b;
-$text-color: #53372a;
-$background-color: #f8f4f2;
-$background-color-start: #F9F4F0;
-$background-color-end: #F6F1EC;
-$red-hat-text: "Red Hat Text", sans-serif;
+$font-family-base: "Red Hat Text", sans-serif;
 
-$border-color: #e7e2de;
-$button-color: #070710;
-$card-background: #FBE2CE;
-$card-border: #ead2be;
+$color-brand-primary-light: #2e7b70;
+$color-brand-secondary-light: #f88d2b;
+$color-text-light: #53372a;
+$color-text-strong-light: #3f2b22;
+$color-text-muted-light: rgba(83, 55, 42, 0.78);
+$color-bg-light: #f8f4f2;
+$color-bg-start-light: #f9f4f0;
+$color-bg-end-light: #f6f1ec;
+$color-border-light: #e7e2de;
+$color-border-strong-light: #ead2be;
+$color-surface-light: #fbe2ce;
+$color-surface-elevated-light: rgba(255, 255, 255, 0.34);
+$color-surface-soft-light: rgba(0, 0, 0, 0.04);
+$color-button-bg-light: #070710;
+$color-button-text-light: #fff8f5;
+$color-icon-light: #53372a;
+$shadow-soft-light: 0 8px 24px rgba(0, 0, 0, 0.08);
+$shadow-elevated-light: 0 16px 50px rgba(0, 0, 0, 0.1);
+
+$color-brand-primary-dark: #59a89a;
+$color-brand-secondary-dark: #ffb56e;
+$color-text-dark: #e5ebfa;
+$color-text-strong-dark: #f3f6ff;
+$color-text-muted-dark: rgba(229, 235, 250, 0.78);
+$color-bg-dark: #151a28;
+$color-bg-start-dark: #151a29;
+$color-bg-end-dark: #11141f;
+$color-border-dark: #34394c;
+$color-border-strong-dark: #2a3146;
+$color-surface-dark: #1b2338;
+$color-surface-elevated-dark: rgba(24, 34, 55, 0.72);
+$color-surface-soft-dark: rgba(255, 255, 255, 0.06);
+$color-button-bg-dark: #f8f4f2;
+$color-button-text-dark: #101522;
+$color-icon-dark: #e5ebfa;
+$shadow-soft-dark: 0 10px 28px rgba(0, 0, 0, 0.35);
+$shadow-elevated-dark: 0 18px 56px rgba(0, 0, 0, 0.45);
 
 :root {
-  font-family: $red-hat-text;
-  color: $text-color;
-  background-image: linear-gradient(90deg, $background-color-start 0%, $background-color-end 100%);
+  --font-family-base: #{$font-family-base};
+
+  --color-brand-primary: #{$color-brand-primary-light};
+  --color-brand-secondary: #{$color-brand-secondary-light};
+
+  --color-text: #{$color-text-light};
+  --color-text-strong: #{$color-text-strong-light};
+  --color-text-muted: #{$color-text-muted-light};
+
+  --color-bg: #{$color-bg-light};
+  --color-bg-start: #{$color-bg-start-light};
+  --color-bg-end: #{$color-bg-end-light};
+
+  --color-border: #{$color-border-light};
+  --color-border-strong: #{$color-border-strong-light};
+
+  --color-surface: #{$color-surface-light};
+  --color-surface-elevated: #{$color-surface-elevated-light};
+  --color-surface-soft: #{$color-surface-soft-light};
+
+  --color-button-bg: #{$color-button-bg-light};
+  --color-button-text: #{$color-button-text-light};
+  --color-icon: #{$color-icon-light};
+
+  --shadow-soft: #{$shadow-soft-light};
+  --shadow-elevated: #{$shadow-elevated-light};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-brand-primary: #{$color-brand-primary-dark};
+    --color-brand-secondary: #{$color-brand-secondary-dark};
+
+    --color-text: #{$color-text-dark};
+    --color-text-strong: #{$color-text-strong-dark};
+    --color-text-muted: #{$color-text-muted-dark};
+
+    --color-bg: #{$color-bg-dark};
+    --color-bg-start: #{$color-bg-start-dark};
+    --color-bg-end: #{$color-bg-end-dark};
+
+    --color-border: #{$color-border-dark};
+    --color-border-strong: #{$color-border-strong-dark};
+
+    --color-surface: #{$color-surface-dark};
+    --color-surface-elevated: #{$color-surface-elevated-dark};
+    --color-surface-soft: #{$color-surface-soft-dark};
+
+    --color-button-bg: #{$color-button-bg-dark};
+    --color-button-text: #{$color-button-text-dark};
+    --color-icon: #{$color-icon-dark};
+
+    --shadow-soft: #{$shadow-soft-dark};
+    --shadow-elevated: #{$shadow-elevated-dark};
+  }
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+:root {
+  color-scheme: light dark;
+  font-family: var(--font-family-base);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(90deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
 
-  scrollbar-color: $primary $background-color;
+  scrollbar-color: var(--color-brand-primary) var(--color-bg);
   scrollbar-width: thin;
   scrollbar-gutter: stable;
+
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
+
   &::-webkit-scrollbar-track {
-    background: $background-color;
+    background: var(--color-bg);
   }
+
   &::-webkit-scrollbar-thumb {
-    background-color: $primary;
+    background-color: var(--color-brand-primary);
     border-radius: 0.5rem;
-    border: 3px solid $button-color;
+    border: 2px solid var(--color-button-bg);
   }
+}
 
-  a {
-    color: #fff8f5;
-  }
+body {
+  margin: 0;
+  min-height: 100vh;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-  }
+a {
+  color: inherit;
+}
 
-  .profile-picture {
-    border-radius: 100%;
-    border: solid 1px $border-color;
-  }
+.profile-picture {
+  border-radius: 100%;
+  border: 1px solid var(--color-border);
+}
 
-  .dot-alert {
+.dot-alert {
+  position: absolute;
+  display: inline-flex;
+  width: 8px;
+  height: 8px;
+
+  .dot {
     position: absolute;
-    display: inline-flex;
     width: 8px;
     height: 8px;
+    border-radius: 100%;
+    background-color: var(--color-brand-secondary);
 
-    .dot {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 100%;
-      background-color: $secondary;
-      
-      &.animate {
-        background-color: $secondary;
+    &.animate {
+      background-color: var(--color-brand-secondary);
+      opacity: 0.75;
+      animation: ping 1.5s infinite ease-in-out;
+    }
+
+    @keyframes ping {
+      0% {
+        transform: scale(1);
         opacity: 0.75;
-        animation: ping 1.5s infinite ease-in-out;
       }
-      @keyframes ping {
-        0% {
-          transform: scale(1);
-          opacity: 0.75;
-        }
-        100% {
-          transform: scale(2);
-          opacity: 0;
-        }
+
+      100% {
+        transform: scale(2);
+        opacity: 0;
       }
     }
   }
 }
 
-/* Garantir que a área de overscroll mostre fundo preto
-   e que o app ocupe toda a altura para evitar revelar fundo branco. */
-html,
-body,
-#app {
-  background-color: background-color-color;
-  color: $text-color;
-  height: 100%;
-  scrollbar-color: #cfc9c5;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
+.intro {
+  padding-top: 1.8rem;
+
+  h1 {
+    margin: 0;
+    line-height: 1.03;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    color: var(--color-text-strong);
+  }
+
+  p {
+    margin: 0.65rem 0 0;
+    font-size: 1.05rem;
+    max-width: 38rem;
+    line-height: 1.45;
+  }
+
+  small {
+    display: inline-block;
+    margin-top: 0.75rem;
+    color: var(--color-text-muted);
+  }
 }

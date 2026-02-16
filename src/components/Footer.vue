@@ -1,47 +1,47 @@
 <template>
   <footer class="site-footer">
-    <div class="site-footer--menu">
+    <div class="site-footer__menu">
       <ul>
         <li>
-          <router-link class="site-footer--menu-link" to="/">home</router-link>
+          <router-link class="site-footer__menu-link" to="/">home</router-link>
         </li>
         <li>
-          <router-link class="site-footer--menu-link" to="/about">about me</router-link>
+          <router-link class="site-footer__menu-link" to="/about">about me</router-link>
         </li>
-        <li><router-link class="site-footer--menu-link" to="/ai">ai</router-link></li>
+        <li><router-link class="site-footer__menu-link" to="/ai">ai</router-link></li>
         <li>
-          <router-link class="site-footer--menu-link" to="/projects">projects</router-link>
+          <router-link class="site-footer__menu-link" to="/projects">projects</router-link>
         </li>
         <li>
-          <router-link class="site-footer--menu-link" to="/guestbook">guestbook</router-link>
+          <router-link class="site-footer__menu-link" to="/guestbook">guestbook</router-link>
         </li>
       </ul>
     </div>
-    <div class="site-footer--contact">
-      <div class="site-footer--message">
+    <div class="site-footer__contact">
+      <div class="site-footer__message">
         <img :src="ProfilePicture" alt="Profile picture of Felipe SBM" class="profile-picture" />
         <p>{{ randomPhrase() }}</p>
       </div>
-      <div class="site-footer--social">
+      <div class="site-footer__social">
         <ul>
           <li>
             <a href="https://www.instagram.com/felipe_sbm">
-              <Instagram class="site-footer--icon" alt="Instagram" />
+              <Instagram class="site-footer__icon" alt="Instagram" />
             </a>
           </li>
           <li>
             <a href="https://www.linkedin.com/in/felipe-sbm/">
-              <Linkedin class="site-footer--icon" alt="LinkedIn" />
+              <Linkedin class="site-footer__icon" alt="LinkedIn" />
             </a>
           </li>
           <li>
             <a href="https://felipe-sbm.blogspot.com/">
-              <Rss class="site-footer--icon" alt="Blog" />
+              <Rss class="site-footer__icon" alt="Blog" />
             </a>
           </li>
           <li>
             <a href="https://www.github.com/felipe-sbm">
-              <Github class="site-footer--icon" alt="GitHub" />
+              <Github class="site-footer__icon" alt="GitHub" />
               <div class="dot-alert">
                 <span class="dot animate"></span>
                 <span class="dot"></span>
@@ -51,8 +51,8 @@
         </ul>
       </div>
     </div>
-    <div class="site-footer--meta">
-      <router-link class="site-footer--meta-link" to="/about" alt="About the creator">
+    <div class="site-footer__meta">
+      <router-link class="site-footer__meta-link" to="/about" alt="About the creator">
         &copy; 2025 felipe sbm.
       </router-link>
       <a href="https://www.otsuki.dev" alt="Link to Otsuki's website">
@@ -100,7 +100,7 @@ function randomPhrase(): string {
   justify-content: space-between;
   align-items: center;
 
-  .site-footer--meta {
+  .site-footer__meta {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,25 +114,27 @@ function randomPhrase(): string {
     }
   }
 
-  .site-footer--meta-link {
+  .site-footer__meta-link {
     text-decoration: none;
     color: inherit;
   }
 
-  .site-footer--contact {
-    background-color: $card-background;
+  .site-footer__contact {
+    background-color: var(--color-surface);
     border-radius: 1rem;
-    border: 1px solid $border-color;
+    border: 1px solid var(--color-border);
     padding: 0.5rem 1rem 0 1rem;
+    box-shadow: var(--shadow-soft);
 
-    .site-footer--message {
+    .site-footer__message {
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid $border-color;
+      border: 1px solid var(--color-border);
       border-radius: 10rem;
       padding: 0.25rem;
       padding-right: 1rem;
+      background-color: color-mix(in srgb, var(--color-surface) 82%, transparent);
 
       img {
         margin-right: 0.75rem;
@@ -145,7 +147,7 @@ function randomPhrase(): string {
       }
     }
 
-    .site-footer--social {
+    .site-footer__social {
       ul {
         list-style: none;
         padding: 0rem;
@@ -159,28 +161,28 @@ function randomPhrase(): string {
             transition: all 0.3s ease-in-out;
 
             &:hover {
-              color: $primary;
+              color: var(--color-brand-primary);
             }
           }
         }
       }
 
-      .site-footer--icon {
+      .site-footer__icon {
         width: 1.25rem;
         height: 1.25rem;
-        color: $text-color;
+        color: var(--color-icon);
       }
     }
   }
 
-  .site-footer--menu {
+  .site-footer__menu {
     ul {
       list-style: none;
       padding: 0 2rem;
       margin: 0;
     }
 
-    .site-footer--menu-link {
+    .site-footer__menu-link {
       position: relative;
       padding-left: 1.5rem;
       text-decoration: none;
@@ -189,7 +191,7 @@ function randomPhrase(): string {
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        color: $secondary;
+        color: var(--color-brand-secondary);
         font-weight: 500;
       }
 
@@ -202,8 +204,8 @@ function randomPhrase(): string {
         width: 0.55rem;
         height: 0.55rem;
         border-radius: 50%;
-        background: linear-gradient(180deg, $secondary, #f06f00);
-        box-shadow: 0 0 0 0.2rem rgba($secondary, 0.2);
+        background: linear-gradient(180deg, var(--color-brand-secondary), #f06f00);
+        box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-brand-secondary) 20%, transparent);
       }
     }
   }
@@ -215,7 +217,7 @@ function randomPhrase(): string {
     align-items: stretch;
     gap: 2rem;
 
-    .site-footer--menu {
+    .site-footer__menu {
       width: 100%;
 
       ul {
@@ -227,7 +229,7 @@ function randomPhrase(): string {
         gap: 0.5rem;
       }
 
-      .site-footer--menu-link {
+      .site-footer__menu-link {
         padding-left: 0;
         text-align: center;
         display: block;
@@ -239,9 +241,9 @@ function randomPhrase(): string {
       }
     }
 
-    .site-footer--contact,
-    .site-footer--meta,
-    .site-footer--social {
+    .site-footer__contact,
+    .site-footer__meta,
+    .site-footer__social {
       text-align: center;
       justify-content: center;
       margin-top: 1rem;
@@ -251,7 +253,7 @@ function randomPhrase(): string {
 
 @media (max-width: 600px) {
   .site-footer {
-    .site-footer--meta {
+    .site-footer__meta {
       flex-direction: column;
       align-items: center;
 
@@ -261,14 +263,14 @@ function randomPhrase(): string {
       }
     }
 
-    .site-footer--contact {
+    .site-footer__contact {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 0.5rem 1rem;
 
-      .site-footer--message {
+      .site-footer__message {
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
@@ -287,7 +289,7 @@ function randomPhrase(): string {
         }
       }
 
-      .site-footer--social {
+      .site-footer__social {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -295,7 +297,7 @@ function randomPhrase(): string {
       }
     }
 
-    .site-footer--menu {
+    .site-footer__menu {
       ul {
         gap: 0.25rem;
       }
