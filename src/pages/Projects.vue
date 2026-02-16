@@ -1,15 +1,15 @@
 <template>
-  <div class="projects-body">
-    <div class="message">
+  <div class="projects">
+    <div class="projects--intro">
       <img
         :src="ProfilePicture"
         alt="Profile picture of Felipe SBM"
-        class="profile-picture"
+        class="projects--intro-avatar"
       />
-      <p>welcome to my projects!</p>
+      <p class="projects--intro-text">welcome to my projects!</p>
     </div>
 
-    <div class="projects-list">
+    <div class="projects--list">
       <ProjectCard
         v-for="project in projects"
         :key="project.name"
@@ -40,8 +40,8 @@ export default {
 <style lang="scss" scoped>
 @use "@/style.scss" as *;
 
-.projects-body {
-  .message {
+.projects {
+  .projects--intro {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,31 +50,26 @@ export default {
     padding: 0.15rem 1rem 0.15rem 0.25rem;
     width: 14.65rem;
     margin: 0 auto 2rem auto;
-
-    img {
-      max-width: 3rem;
-      max-height: 3rem;
-      border-radius: 50%;
-      margin-right: 0.75rem;
-    }
   }
 
-  .projects-list {
+  .projects--intro-avatar {
+    max-width: 3rem;
+    max-height: 3rem;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+  }
+
+  .projects--intro-text {
+    margin: 0;
+  }
+
+  .projects--list {
     display: grid;
     grid-template-columns: 1fr;
     max-width: 100%;
     gap: 2rem;
     justify-items: center;
     align-items: stretch;
-    margin: 0 auto 2rem auto;
-
-    @media (min-width: 768px) {
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 900px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 }
 </style>

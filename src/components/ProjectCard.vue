@@ -1,20 +1,20 @@
 <template>
-  <div class="card">
-    <router-link :to="`/projects/${slug}`">
-      <div v-if="isLastProject" class="las-project">
+  <article class="project-card">
+    <router-link class="project-card--link" :to="`/projects/${slug}`">
+      <div v-if="isLastProject" class="project-card--badge">
         <h6>last project</h6>
       </div>
-      <div class="card-body">
-        <div class="card-image">
-          <img :src="image" :alt="imageAlt" class="project-image" />
+      <div class="project-card--body">
+        <div class="project-card--media">
+          <img :src="image" :alt="imageAlt" class="project-card--image" />
         </div>
-        <div class="card-text">
-          <h3 class="card-title">{{ name }}</h3>
-          <p class="project-description">{{ description }}</p>
+        <div class="project-card--content">
+          <h3 class="project-card--title">{{ name }}</h3>
+          <p class="project-card--description">{{ description }}</p>
         </div>
       </div>
     </router-link>
-  </div>
+  </article>
 </template>
 
 <script lang="ts">
@@ -37,25 +37,52 @@ export default defineComponent({
 <style lang="scss" scoped>
 @use "@/style.scss" as *;
 
-.card {
-  background-image: $card-background;
-  border-radius: 1rem;
-  border: 1px solid $border-color;
-  max-width: 40rem;
+.project-card {
+  background-color: rgba($card-background, 0.65);
+  border: 2px solid $card-background;
+  border-radius: 1.5rem;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  overflow: hidden;
   width: 100%;
+  box-shadow:
+    0 1px 5px rgba(255, 255, 255, 0.95) inset,
+    0 6px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-  a {
+  &:hover {
+    transform: translateY(-0.12rem);
+    box-shadow:
+      0 1px 10px rgba(255, 255, 255, 0.95) inset,
+      0 12px 48px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-card--link {
+    display: block;
     text-decoration: none;
     color: inherit;
   }
 
-  .card-body {
+  .project-card--badge {
+    padding: 0.75rem 1rem 0;
+
+    h6 {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+      color: rgba(0, 0, 0, 0.62);
+      font-weight: 600;
+    }
+  }
+
+  .project-card--body {
     display: flex;
     align-items: center;
-    padding: 1rem;
-    background-color: $card-background;
+    gap: 1rem;
+    padding: 1rem 1rem 1.1rem;
 
-    .card-image {
+    .project-card--media {
       width: 10rem;
       height: 10rem;
       display: flex;
@@ -64,9 +91,9 @@ export default defineComponent({
       overflow: hidden;
       border-radius: 0.75rem;
       flex-shrink: 0;
-      border: 1px solid $border-color;
+      border: 1px solid rgba(0, 0, 0, 0.1);
 
-      .project-image {
+      .project-card--image {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -75,45 +102,46 @@ export default defineComponent({
       }
     }
 
-    .card-text {
-      margin-left: 1.5rem;
+    .project-card--content {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
-      .card-title {
-        margin: 0 1rem 0.5rem 0;
-        font-weight: medium;
+      .project-card--title {
+        margin: 0 0 0.5rem;
+        font-weight: 500;
       }
 
-      .project-description {
-        margin: 0 1rem 0 0;
+      .project-card--description {
+        margin: 0;
+        line-height: 1.4;
+        color: rgba(29, 29, 31, 0.9);
       }
     }
   }
 }
 
 @media (max-width: 700px) {
-  .card {
+  .project-card {
     max-width: 100%;
-    .card-body {
+
+    .project-card--body {
       flex-direction: column;
       align-items: stretch;
       padding: 0.5rem;
 
-      .card-image {
+      .project-card--media {
         width: 100%;
         height: 200px;
         margin-bottom: 1rem;
       }
 
-      .card-text {
-        margin-left: 0;
-        .card-title {
+      .project-card--content {
+        .project-card--title {
           margin: 0 0 0.5rem 0;
         }
-        .project-description {
+        .project-card--description {
           margin: 0;
         }
       }
