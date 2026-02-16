@@ -1,45 +1,47 @@
 <template>
-  <footer>
-    <div class="page-finder">
+  <footer class="site-footer">
+    <div class="site-footer--menu">
       <ul>
-        <li><router-link class="nav-link" to="/">home</router-link></li>
         <li>
-          <router-link class="nav-link" to="/about">about me</router-link>
-        </li>
-        <li><router-link class="nav-link" to="/ai">ai</router-link></li>
-        <li>
-          <router-link class="nav-link" to="/projects">projects</router-link>
+          <router-link class="site-footer--menu-link" to="/">home</router-link>
         </li>
         <li>
-          <router-link class="nav-link" to="/guestbook">guestbook</router-link>
+          <router-link class="site-footer--menu-link" to="/about">about me</router-link>
+        </li>
+        <li><router-link class="site-footer--menu-link" to="/ai">ai</router-link></li>
+        <li>
+          <router-link class="site-footer--menu-link" to="/projects">projects</router-link>
+        </li>
+        <li>
+          <router-link class="site-footer--menu-link" to="/guestbook">guestbook</router-link>
         </li>
       </ul>
     </div>
-    <div class="contact">
-      <div class="message">
+    <div class="site-footer--contact">
+      <div class="site-footer--message">
         <img :src="ProfilePicture" alt="Profile picture of Felipe SBM" class="profile-picture" />
         <p>{{ randomPhrase() }}</p>
       </div>
-      <div class="social-media">
+      <div class="site-footer--social">
         <ul>
           <li>
             <a href="https://www.instagram.com/felipe_sbm">
-              <Instagram class="icon" alt="Instagram" />
+              <Instagram class="site-footer--icon" alt="Instagram" />
             </a>
           </li>
           <li>
             <a href="https://www.linkedin.com/in/felipe-sbm/">
-              <Linkedin class="icon" alt="LinkedIn" />
+              <Linkedin class="site-footer--icon" alt="LinkedIn" />
             </a>
           </li>
           <li>
             <a href="https://felipe-sbm.blogspot.com/">
-              <Rss class="icon" alt="Blog" />
+              <Rss class="site-footer--icon" alt="Blog" />
             </a>
           </li>
           <li>
             <a href="https://www.github.com/felipe-sbm">
-              <Github class="icon" alt="GitHub" />
+              <Github class="site-footer--icon" alt="GitHub" />
               <div class="dot-alert">
                 <span class="dot animate"></span>
                 <span class="dot"></span>
@@ -49,8 +51,8 @@
         </ul>
       </div>
     </div>
-    <div class="information">
-      <router-link class="nav-link" to="/about" alt="About the creator">
+    <div class="site-footer--meta">
+      <router-link class="site-footer--meta-link" to="/about" alt="About the creator">
         &copy; 2025 felipe sbm.
       </router-link>
       <a href="https://www.otsuki.dev" alt="Link to Otsuki's website">
@@ -88,7 +90,7 @@ function randomPhrase(): string {
 <style lang="scss" scoped>
 @use "@/style.scss" as *;
 
-footer {
+.site-footer {
   max-width: 75rem;
   margin: auto;
   margin-bottom: 1rem;
@@ -98,7 +100,7 @@ footer {
   justify-content: space-between;
   align-items: center;
 
-  .information {
+  .site-footer--meta {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,13 +114,18 @@ footer {
     }
   }
 
-  .contact {
+  .site-footer--meta-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .site-footer--contact {
     background-color: $card-background;
     border-radius: 1rem;
     border: 1px solid $border-color;
     padding: 0.5rem 1rem 0 1rem;
 
-    .message {
+    .site-footer--message {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -138,7 +145,7 @@ footer {
       }
     }
 
-    .social-media {
+    .site-footer--social {
       ul {
         list-style: none;
         padding: 0rem;
@@ -158,7 +165,7 @@ footer {
         }
       }
 
-      .icon {
+      .site-footer--icon {
         width: 1.25rem;
         height: 1.25rem;
         color: $text-color;
@@ -166,14 +173,14 @@ footer {
     }
   }
 
-  .page-finder {
+  .site-footer--menu {
     ul {
       list-style: none;
       padding: 0 2rem;
       margin: 0;
     }
 
-    .nav-link {
+    .site-footer--menu-link {
       position: relative;
       padding-left: 1.5rem;
       text-decoration: none;
@@ -203,12 +210,12 @@ footer {
 }
 
 @media (max-width: 900px) {
-  footer {
+  .site-footer {
     flex-direction: column;
     align-items: stretch;
     gap: 2rem;
 
-    .page-finder {
+    .site-footer--menu {
       width: 100%;
 
       ul {
@@ -220,7 +227,7 @@ footer {
         gap: 0.5rem;
       }
 
-      .nav-link {
+      .site-footer--menu-link {
         padding-left: 0;
         text-align: center;
         display: block;
@@ -232,9 +239,9 @@ footer {
       }
     }
 
-    .contact,
-    .information,
-    .social-media {
+    .site-footer--contact,
+    .site-footer--meta,
+    .site-footer--social {
       text-align: center;
       justify-content: center;
       margin-top: 1rem;
@@ -243,8 +250,8 @@ footer {
 }
 
 @media (max-width: 600px) {
-  footer {
-    .information {
+  .site-footer {
+    .site-footer--meta {
       flex-direction: column;
       align-items: center;
 
@@ -254,14 +261,14 @@ footer {
       }
     }
 
-    .contact {
+    .site-footer--contact {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 0.5rem 1rem;
 
-      .message {
+      .site-footer--message {
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
@@ -280,7 +287,7 @@ footer {
         }
       }
 
-      .social-media {
+      .site-footer--social {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -288,7 +295,7 @@ footer {
       }
     }
 
-    .page-finder {
+    .site-footer--menu {
       ul {
         gap: 0.25rem;
       }

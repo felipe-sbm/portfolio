@@ -6,13 +6,13 @@ import Footer from "@/components/Footer.vue";
 
 <template>
   <div class="app-wrapper">
-    <Header />
+    <Header></Header>
     <main class="main-content">
       <div class="page-container">
         <router-view />
       </div>
     </main>
-    <Footer />
+    <Footer></Footer>
   </div>
 </template>
 
@@ -32,6 +32,8 @@ import Footer from "@/components/Footer.vue";
     width: 100%;
     display: flex;
     justify-content: center;
+    max-width: 55rem;
+    margin: 0 auto;
   }
 
   .page-container {

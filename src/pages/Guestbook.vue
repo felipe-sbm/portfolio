@@ -1,6 +1,6 @@
 <template>
   <div class="guestbook">
-    <section class="intro-card">
+    <section class="intro">
       <h1>Guestbook</h1>
       <p>Leave a thoughtful message. It will stay here as part of this portfolio story.</p>
       <small>Please keep it respectful and kind. 😭🙏</small>
@@ -95,6 +95,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "@/style.scss" as *;
+
 .comment-form,
 .state-card,
 .comment {
@@ -106,7 +108,7 @@ export default {
     0 24px 48px rgba(0, 0, 0, 0.08);
 }
 
-.intro-card {
+.intro {
   padding: 1.8rem 0;
   margin-bottom: 1rem;
 
@@ -277,7 +279,7 @@ export default {
     font-weight: 600;
     text-decoration: none;
     letter-spacing: -0.01em;
-    color: #53372a;
+    color: $text-color;
   }
 
   .comment-date {
@@ -287,7 +289,7 @@ export default {
 
   .comment-content {
     margin: 0;
-    color: rgba(29, 29, 31, 0.9);
+    color: $text-color;
     line-height: 1.5;
     word-break: break-word;
   }
@@ -312,7 +314,7 @@ export default {
 
 .github-btn,
 .composer-footer button {
-  background: linear-gradient(180deg, #1180ef, #0071e3);
+  background: linear-gradient(180deg, $primary, #26665c);
   color: #fff;
   padding: 0.55rem 1rem;
 
@@ -338,8 +340,8 @@ export default {
   align-items: center;
   gap: 0.28rem;
   padding: 0.32rem 0.65rem;
-  background: #f5f5f7;
-  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(white, 0.75);
+  border-color: $card-border;
   font-size: 0.82rem;
 
   img {
