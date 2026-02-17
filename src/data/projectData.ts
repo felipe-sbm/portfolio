@@ -1,3 +1,6 @@
+import OtsukiImage from "@/assets/images/projects/otsuki.webp";
+import InsomniaMachineImage from "@/assets/images/projects/insomnia-machine.webp"
+
 export interface ProjectData {
   name: string;
   image: string;
@@ -25,8 +28,8 @@ export const projects: ProjectData[] = [
     slug: "legacy"
   },
   {
-    name: "insomnia machine",
-    image: "https://images.pexels.com/photos/1233529/pexels-photo-1233529.jpeg?auto=compress&cs=tinysrgb&w=240&h=240&dpr=1",
+    name: "Insomnia Machine",
+    image: InsomniaMachineImage,
     imageAlt: "a automatic coffee machine",
     description:
       "a automatic coffee machine made with C++ and a ESP32. in this project, we explored the IoT area making a very smart and independent coffee machine.",
@@ -83,11 +86,11 @@ export const projects: ProjectData[] = [
     slug: "lasa-official-website",
   },
   {
-    name: "otsuki's",
-    image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg",
-    imageAlt: "a modern website design",
+    name: "Otsuki Development",
+    image: OtsukiImage,
+    imageAlt: "A Open-Source Company",
     description: "otsuki website is the official online presence of otsuki, featuring information about their services, portfolio, and contact details, designed to attract and engage potential clients.",
-    link: "https://www.github.com/otsuki-dev/otsuki-website",
+    link: "https://otsuki.dev",
     slug: "otsuki",
   }
 ];

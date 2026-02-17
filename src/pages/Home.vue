@@ -20,19 +20,12 @@
       I'm a fullstack developer, computer engineer, software student and
       webdesigner since 2019.
       I worked in
-      <a href="https://demandaurbana.com.br" alt="Link for the PIAF - UFRN repository">
-        <span class="home__pill home__pill--blue">
-          <img :src="Demanda" alt="Logo of the 'Demanda Urbana', from Arkanus." class="home__pill-icon" />
-          Demanda Urbana
-        </span>
-      </a>
+      <PillBadge linkUrl="https://demandaurbana.com.br" linkAlt="Link to 'Demanda Urbana' website"
+        pillStyle="pill-badge--blue" :imgUrl="Demanda" imgAlt="Logo of the 'Demanda Urbana', from Arkanus."
+        pillText="Demanda Urbana" />
       and made some projects in my own, like
-      <a href="https://basegpt.com.br" alt="Link for the Otsuki's Website">
-        <span class="home__pill home__pill--purple">
-          <img :src="Base" alt="Logo of the 'BaseGPT'', from DataVence." class="home__pill-icon" />
-          BaseGPT
-        </span>
-      </a>
+      <PillBadge linkUrl="https://basegpt.com.br" linkAlt="Link for the BaseGPT Website" pillStyle="pill-badge--purple"
+        :imgUrl="Base" imgAlt="Logo of the 'BaseGPT'', from DataVence." pillText="BaseGPT" />
       . <br />
       I keep practicing every day<i class="home__note">/7*</i> and learning new
       technologies to improve my skills.
@@ -56,10 +49,14 @@
 <script lang="ts" scoped>
 import { defineComponent } from "vue";
 import Background from "@/assets/images/background.webp"
+import PillBadge from "@/components/PillBadge.vue";
 import Demanda from "@/assets/images/demanda-urbana.webp";
 import Base from "@/assets/images/basegpt.webp";
 
 export default defineComponent({
+  components: {
+    PillBadge,
+  },
   data() {
     return {
       Background,
@@ -91,12 +88,10 @@ export default defineComponent({
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      -90deg,
-      color-mix(in srgb, var(--color-bg-start) 0%, transparent),
-      color-mix(in srgb, var(--color-bg-center) 5%, transparent),
-      color-mix(in srgb, var(--color-bg-end) 85%, transparent)
-    );
+    background: linear-gradient(-90deg,
+        color-mix(in srgb, var(--color-bg-start) 0%, transparent),
+        color-mix(in srgb, var(--color-bg-center) 5%, transparent),
+        color-mix(in srgb, var(--color-bg-end) 85%, transparent));
   }
 
   .hero-background__image {
@@ -164,35 +159,6 @@ export default defineComponent({
   margin: 2rem 0;
 }
 
-.home__pill {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 1rem;
-  padding: 0.125rem 0.8rem;
-  font-size: 0.875rem;
-}
-
-.home__pill--blue {
-  background-color: #dbeafe;
-  color: #3b82f6;
-}
-
-.home__pill--purple {
-  background-color: #e4e3ff;
-  color: #4741FE;
-
-  img {
-    filter: brightness(0) saturate(100%) invert(24%) sepia(90%) saturate(4764%) hue-rotate(241deg) brightness(100%) contrast(100%);
-  }
-}
-
-.home__pill-icon {
-  width: 0.875rem;
-  height: 0.875rem;
-  margin-left: -0.25rem;
-  margin-right: 0.375rem;
-}
-
 .home__note {
   font-size: 0.75rem;
   font-weight: 300;
@@ -228,20 +194,6 @@ export default defineComponent({
 }
 
 @media (prefers-color-scheme: dark) {
-  .home__pill--blue {
-    background-color: #3b82f6;
-    color: #eff6ff;
-  }
-
-  .home__pill--purple {
-    background-color: #4741FE;
-    color: #f0efff;
-
-    img {
-      filter: brightness(0) saturate(100%) invert(91%) sepia(46%) saturate(3265%) hue-rotate(180deg) brightness(109%) contrast(101%);
-    }
-  }
-
   .home__skill--cpp {
     color: #3b82f6;
   }

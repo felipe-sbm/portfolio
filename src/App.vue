@@ -32,7 +32,7 @@ import Footer from "@/components/Footer.vue";
     width: 100%;
     display: flex;
     justify-content: center;
-    max-width: 55rem;
+    max-width: 50rem;
     margin: 0 auto;
   }
 

@@ -55,53 +55,20 @@
       </div>
     </div>
     <svg class="site-header__glass-svg" aria-hidden="true">
-      <filter
-        id="glass-distortion"
-        x="0%"
-        y="0%"
-        width="100%"
-        height="100%"
-        filterUnits="objectBoundingBox"
-      >
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.01 0.01"
-          numOctaves="1"
-          seed="5"
-          result="turbulence"
-        />
+      <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+        <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="5" result="turbulence" />
         <feComponentTransfer in="turbulence" result="mapped">
           <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
           <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
           <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
         </feComponentTransfer>
         <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-        <feSpecularLighting
-          in="softMap"
-          surfaceScale="5"
-          specularConstant="1"
-          specularExponent="100"
-          lighting-color="white"
-          result="specLight"
-        >
+        <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100"
+          lighting-color="white" result="specLight">
           <fePointLight x="-200" y="-200" z="300" />
         </feSpecularLighting>
-        <feComposite
-          in="specLight"
-          operator="arithmetic"
-          k1="0"
-          k2="1"
-          k3="1"
-          k4="0"
-          result="litImage"
-        />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="softMap"
-          scale="150"
-          xChannelSelector="R"
-          yChannelSelector="G"
-        />
+        <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+        <feDisplacementMap in="SourceGraphic" in2="softMap" scale="150" xChannelSelector="R" yChannelSelector="G" />
       </filter>
     </svg>
     <div class="site-header__meta">
@@ -154,6 +121,9 @@ export default defineComponent({
   justify-content: space-between;
   overflow: visible;
   z-index: 100;
+  max-width: 75rem;
+  margin: auto;
+  align-items: center;
 
   nav {
     margin-top: 0.2rem;
@@ -184,16 +154,16 @@ export default defineComponent({
     transform-origin: center;
     will-change: transform;
     transition:
-      transform 0.78s cubic-bezier(0.16, 1, 0.3, 1),
-      border-radius 0.78s cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 0.78s ease;
+      transform 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 1.05s ease;
   }
 
   .site-header__glass-effect {
     position: absolute;
     z-index: 0;
     inset: 0;
-    backdrop-filter: blur(0.25rem);
+    backdrop-filter: blur(0.05rem);
     filter: url(#glass-distortion);
   }
 
@@ -227,17 +197,18 @@ export default defineComponent({
   }
 
   .site-header__dock,
-  .site-header__dock > div {
+  .site-header__dock>div {
     border-radius: 2.5rem;
-    transition: border-radius 0.78s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-radius 1s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .site-header__dock:hover {
     transform: translateY(-1px) scale(1.02);
     border-radius: 1rem;
+    transition: transform 0.25s ease-in;
   }
 
-  .site-header__dock:hover > div {
+  .site-header__dock:hover>div {
     border-radius: 1rem;
   }
 
@@ -274,13 +245,13 @@ export default defineComponent({
 
     .site-header__location {
       position: absolute;
-      top: -1.1rem;
+      top: -1.55rem;
       left: 1rem;
     }
 
     .site-header__time {
       position: absolute;
-      top: -1.1rem;
+      top: -1.55rem;
       right: 1rem;
     }
   }

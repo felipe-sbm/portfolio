@@ -2,7 +2,7 @@
     <div class="not-found">
         <div class="intro">
             <h6 class="eyebrow">404 Error</h6>
-            <h1>nao foi achado boy</h1>
+            <h1>Não foi achado, boy...</h1>
             <p>Looks like you reached something that doesn't exist.</p>
             <small>Go back or go to the Home page</small>
         </div>

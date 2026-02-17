@@ -1,8 +1,9 @@
 <template>
   <div class="guestbook">
     <section class="intro">
+      <h6 class="eyebrow">Community section</h6>
       <h1>Guestbook</h1>
-      <p>Leave a thoughtful message. It will stay here as part of this portfolio story.</p>
+      <p>Leave a thoughtful message. It will stay here as part of this portfolio story</p>
       <small>Please keep it respectful and kind. 😭🙏</small>
     </section>
 

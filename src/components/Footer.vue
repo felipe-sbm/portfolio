@@ -55,9 +55,6 @@
       <router-link class="site-footer__meta-link" to="/about" alt="About the creator">
         &copy; 2026 Felipe SBM.
       </router-link>
-      <a href="https://www.otsuki.dev" alt="Link to Otsuki's website">
-        <img :src="Otsuki" alt="Logo da Otsuki LTDA" />
-      </a>
       <a href="https://notbyai.fyi/how-it-works">
         <img :src="NotByAI" alt="Certificado que não é feito por IA" />
       </a>
@@ -67,7 +64,6 @@
 
 <script setup lang="ts">
 import ProfilePicture from "@/assets/images/pfp.webp";
-import Otsuki from "@/assets/images/otsuki-logo.svg";
 import NotByAI from "@/assets/images/not-by-ai/CN/chinese-dark.png";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
 
@@ -244,9 +240,14 @@ function randomPhrase(): string {
     .site-footer__contact,
     .site-footer__meta,
     .site-footer__social {
+      max-width: 20rem;
       text-align: center;
       justify-content: center;
-      margin-top: 1rem;
+      margin: 1rem auto;
+    }
+
+    .site-footer__social {
+      margin: 0;
     }
   }
 }

@@ -38,17 +38,30 @@ export default defineComponent({
 @use "@/style.scss" as *;
 
 .project-card {
+  position: relative;
   background-color: color-mix(in srgb, var(--color-surface) 65%, transparent);
   border: 2px solid var(--color-border-strong);
   border-radius: 1.5rem;
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
   overflow: hidden;
   width: 100%;
+  isolation: isolate;
+  contain: paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   box-shadow:
     0 1px 5px rgba(255, 255, 255, 0.95) inset,
     var(--shadow-soft);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
 
   &:hover {
     transform: translateY(-0.12rem);
@@ -58,6 +71,8 @@ export default defineComponent({
   }
 
   .project-card__link {
+    position: relative;
+    z-index: 1;
     display: block;
     text-decoration: none;
     color: inherit;
