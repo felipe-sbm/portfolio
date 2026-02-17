@@ -31,6 +31,41 @@ if (!firebaseBaseRaw) {
 const FIREBASE_BASE = firebaseBaseRaw.replace(/\/+$/, '');
 const COMMENTS_PATH = `${FIREBASE_BASE}/comments`;
 const VOTES_PATH = `${FIREBASE_BASE}/votes`;
+const LOGIN_SESSION_KEY = 'guestbook:loginSession';
+const LOGIN_SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+
+let commentsCache: Comment[] | null = null;
+
+interface CachedLoginSession {
+  expiresAt: number;
+}
+
+function readLoginSession(): CachedLoginSession | null {
+  if (typeof localStorage === 'undefined') return null;
+  const raw = localStorage.getItem(LOGIN_SESSION_KEY);
+  if (!raw) return null;
+
+  try {
+    const parsed = JSON.parse(raw) as CachedLoginSession;
+    if (!parsed || typeof parsed.expiresAt !== 'number') return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function writeLoginSession() {
+  if (typeof localStorage === 'undefined') return;
+  const session: CachedLoginSession = {
+    expiresAt: Date.now() + LOGIN_SESSION_TTL_MS,
+  };
+  localStorage.setItem(LOGIN_SESSION_KEY, JSON.stringify(session));
+}
+
+function clearLoginSession() {
+  if (typeof localStorage === 'undefined') return;
+  localStorage.removeItem(LOGIN_SESSION_KEY);
+}
 
 async function fetchComments(): Promise<Comment[]> {
   const url = `${COMMENTS_PATH}.json`;
@@ -143,6 +178,7 @@ export const GuestbookComponent = defineComponent({
     };
   },
   async created() {
+    await this.restoreAuthSession();
     await this.loadData();
   },
   methods: {
@@ -176,7 +212,13 @@ export const GuestbookComponent = defineComponent({
     async loadData() {
       this.isLoading = true;
       try {
+        if (commentsCache) {
+          this.comments = commentsCache;
+          return;
+        }
+
         this.comments = await fetchComments();
+        commentsCache = this.comments;
       } catch (error) {
         this.error = handleError(error, 'Erro ao carregar');
       } finally {
@@ -225,6 +267,7 @@ export const GuestbookComponent = defineComponent({
         this.newComment = { content: '' };
         this.error = null;
         this.setLastCommentTimestamp(Date.now());
+        commentsCache = null;
         await this.loadData();
       } catch (error) {
         console.error('[Guestbook] submitComment error:', error);
@@ -240,6 +283,7 @@ export const GuestbookComponent = defineComponent({
       try {
         await deleteAllComments();
         this.comments = [];
+        commentsCache = [];
       } catch (error) {
         this.error = handleError(error, 'Erro ao apagar');
       } finally {
@@ -272,6 +316,7 @@ export const GuestbookComponent = defineComponent({
 
       // optimistic update
       this.comments[index] = { ...current, thumbsUp: newUp, thumbsDown: newDown };
+      commentsCache = [...this.comments];
       this.userVotes = { ...this.userVotes, [commentId]: type };
 
       try {
@@ -284,6 +329,7 @@ export const GuestbookComponent = defineComponent({
       } catch (error) {
         // rollback on error
         this.comments[index] = current;
+        commentsCache = [...this.comments];
         if (prevVote) {
           const rollbackVotes = { ...this.userVotes };
           rollbackVotes[commentId] = prevVote;
@@ -307,6 +353,7 @@ export const GuestbookComponent = defineComponent({
         };
         this.isAuthenticated = true;
         this.error = null;
+        writeLoginSession();
         await this.loadUserVotes();
         console.log('[Guestbook] GitHub login success:', this.user);
       } catch (error) {
@@ -318,14 +365,48 @@ export const GuestbookComponent = defineComponent({
       try {
         const { getAuthInstance } = await import('./FirebaseAuth');
         await getAuthInstance().signOut();
+        clearLoginSession();
         this.user = null;
         this.isAuthenticated = false;
         this.newComment = { content: '' };
+        this.userVotes = {};
+        this.lastCommentAt = null;
         console.log('[Guestbook] Logged out');
       } catch (error) {
         console.error('[Guestbook] Logout error:', error);
         this.error = handleError(error, 'Erro ao sair');
       }
+    },
+    async restoreAuthSession() {
+      const session = readLoginSession();
+      if (!session) return;
+
+      if (session.expiresAt <= Date.now()) {
+        clearLoginSession();
+        this.user = null;
+        this.isAuthenticated = false;
+        this.userVotes = {};
+        this.lastCommentAt = null;
+        const { getAuthInstance } = await import('./FirebaseAuth');
+        await getAuthInstance().signOut();
+        return;
+      }
+
+      const { getCurrentUser } = await import('./FirebaseAuth');
+      const currentUser = getCurrentUser();
+      if (!currentUser) {
+        clearLoginSession();
+        return;
+      }
+
+      this.user = {
+        uid: currentUser.uid,
+        displayName: currentUser.displayName || undefined,
+        email: currentUser.email || undefined,
+        photoURL: currentUser.photoURL || undefined,
+      };
+      this.isAuthenticated = true;
+      await this.loadUserVotes();
     },
   },
 });

@@ -6,20 +6,32 @@
           <router-link class="site-footer__menu-link" to="/">Home</router-link>
         </li>
         <li>
-          <router-link class="site-footer__menu-link" to="/about">About me</router-link>
-        </li>
-        <li><router-link class="site-footer__menu-link" to="/ai">AI</router-link></li>
-        <li>
-          <router-link class="site-footer__menu-link" to="/projects">Projects</router-link>
+          <router-link class="site-footer__menu-link" to="/about"
+            >About me</router-link
+          >
         </li>
         <li>
-          <router-link class="site-footer__menu-link" to="/guestbook">Guestbook</router-link>
+          <router-link class="site-footer__menu-link" to="/ai">AI</router-link>
+        </li>
+        <li>
+          <router-link class="site-footer__menu-link" to="/projects"
+            >Projects</router-link
+          >
+        </li>
+        <li>
+          <router-link class="site-footer__menu-link" to="/guestbook"
+            >Guestbook</router-link
+          >
         </li>
       </ul>
     </div>
     <div class="site-footer__contact">
       <div class="site-footer__message">
-        <img :src="ProfilePicture" alt="Profile picture of Felipe SBM" class="profile-picture" />
+        <img
+          :src="ProfilePicture"
+          alt="Profile picture of Felipe SBM"
+          class="profile-picture"
+        />
         <p>{{ randomPhrase() }}</p>
       </div>
       <div class="site-footer__social">
@@ -52,20 +64,37 @@
       </div>
     </div>
     <div class="site-footer__meta">
-      <router-link class="site-footer__meta-link" to="/about" alt="About the creator">
+      <router-link
+        class="site-footer__meta-link"
+        to="/about"
+        alt="About the creator"
+      >
         &copy; 2026 Felipe SBM.
       </router-link>
       <a href="https://notbyai.fyi/how-it-works">
-        <img :src="NotByAI" alt="Certificado que não é feito por IA" />
+        <img :src="logoSrc" alt="Certificado que não é feito por IA" />
       </a>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
 import ProfilePicture from "@/assets/images/pfp.webp";
-import NotByAI from "@/assets/images/not-by-ai/CN/chinese-dark.png";
+import NotByAI__Light from "@/assets/images/not-by-ai/CN/chinese-light.png";
+import NotByAI__Dark from "@/assets/images/not-by-ai/CN/chinese-dark.png";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
+
+const logoSrc = ref("");
+function updateBadge(e: MediaQueryList | MediaQueryListEvent) {
+  logoSrc.value = e.matches ? NotByAI__Light : NotByAI__Dark;
+}
+
+onMounted(() => {
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
+  updateBadge(mediaQuery); // inicializa 👌
+  mediaQuery.addEventListener("change", updateBadge); // escuta 👂 mudanças 🚚
+});
 
 function randomPhrase(): string {
   const phrases = [
@@ -77,7 +106,7 @@ function randomPhrase(): string {
     "Dream big, Code bigger.",
     "Create, innovate, inspire.",
     "Think outside the box.",
-    "God is good all the time."
+    "God is good all the time.",
   ];
   return phrases[Math.floor(Math.random() * phrases.length)];
 }
@@ -130,7 +159,11 @@ function randomPhrase(): string {
       border-radius: 10rem;
       padding: 0.25rem;
       padding-right: 1rem;
-      background-color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--color-surface) 82%,
+        transparent
+      );
 
       img {
         margin-right: 0.75rem;
@@ -200,8 +233,13 @@ function randomPhrase(): string {
         width: 0.55rem;
         height: 0.55rem;
         border-radius: 50%;
-        background: linear-gradient(180deg, var(--color-brand-secondary), #f06f00);
-        box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-brand-secondary) 20%, transparent);
+        background: linear-gradient(
+          180deg,
+          var(--color-brand-secondary),
+          #f06f00
+        );
+        box-shadow: 0 0 0 0.2rem
+          color-mix(in srgb, var(--color-brand-secondary) 20%, transparent);
       }
     }
   }

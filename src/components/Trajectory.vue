@@ -14,7 +14,7 @@
     because when I was a child I played with it for fun. Moving forward in time,
     specifically in 2021 (when I was 16 years old), I decided to join the
     technical diploma program at the Federal University of Rio Grande do Norte
-    to gain more knowledge and specialize in the field.
+    to gain more knowledge and specialize in the field. 🖥️
   </p>
   <p>
     I struggled a lot until I reached the end of the course and the end of high
@@ -22,9 +22,11 @@
     in the final stages of the course and high school, which was quite
     conflicting and stressful. To make matters worse, I had to wake up early to
     go to school since I used public transportation and had to travel a distance
-    of 15 km. On some days of the week, I had to leave after lunch to attend the
+    of 15 km. 🚌 On some days of the week, I had to leave after lunch to attend the
     technical course, as I decided to take some courses that were at the same
-    time as my school classes. <br />
+    time as my school classes.
+  </p>
+  <p>
     With the teacher's permission, who knew about my effort and eagerness to
     learn, they allowed me to miss classes without being penalized, but I had to
     study at home to catch up on the lessons. Then I would take two more buses
