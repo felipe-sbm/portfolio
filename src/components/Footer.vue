@@ -3,23 +3,42 @@
     <div class="site-footer__menu">
       <ul>
         <li>
-          <router-link class="site-footer__menu-link" to="/">Home</router-link>
+          <router-link
+            class="site-footer__menu-link"
+            to="/"
+            @click="setFooterScrollIntent"
+            >Home</router-link
+          >
         </li>
         <li>
-          <router-link class="site-footer__menu-link" to="/about"
+          <router-link
+            class="site-footer__menu-link"
+            to="/about"
+            @click="setFooterScrollIntent"
             >About me</router-link
           >
         </li>
         <li>
-          <router-link class="site-footer__menu-link" to="/ai">AI</router-link>
+          <router-link
+            class="site-footer__menu-link"
+            to="/ai"
+            @click="setFooterScrollIntent"
+            >AI</router-link
+          >
         </li>
         <li>
-          <router-link class="site-footer__menu-link" to="/projects"
+          <router-link
+            class="site-footer__menu-link"
+            to="/projects"
+            @click="setFooterScrollIntent"
             >Projects</router-link
           >
         </li>
         <li>
-          <router-link class="site-footer__menu-link" to="/guestbook"
+          <router-link
+            class="site-footer__menu-link"
+            to="/guestbook"
+            @click="setFooterScrollIntent"
             >Guestbook</router-link
           >
         </li>
@@ -67,6 +86,7 @@
       <router-link
         class="site-footer__meta-link"
         to="/about"
+        @click="setFooterScrollIntent"
         alt="About the creator"
       >
         &copy; 2026 Felipe SBM.
@@ -84,6 +104,7 @@ import ProfilePicture from "@/assets/images/pfp.webp";
 import NotByAI__Light from "@/assets/images/not-by-ai/CN/chinese-light.png";
 import NotByAI__Dark from "@/assets/images/not-by-ai/CN/chinese-dark.png";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
+import { setNextNavigationScrollIntent } from "@/services/NavigationScrollIntent";
 
 const logoSrc = ref("");
 function updateBadge(e: MediaQueryList | MediaQueryListEvent) {
@@ -95,6 +116,10 @@ onMounted(() => {
   updateBadge(mediaQuery); // inicializa 👌
   mediaQuery.addEventListener("change", updateBadge); // escuta 👂 mudanças 🚚
 });
+
+function setFooterScrollIntent(): void {
+  setNextNavigationScrollIntent("footer-bottom");
+}
 
 function randomPhrase(): string {
   const phrases = [

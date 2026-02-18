@@ -42,10 +42,10 @@
                   AI made by Human, not by another AI.
                 </span>
                 <!-- Se tiver algum erro, vai exibir da mesma forma 👍-->
-                <span v-if="errorMessage" class="ticker__item">
+                <span v-if="errorMessage" class="ticker__item error">
                   {{ errorMessage }}
                 </span>
-                <span v-if="errorMessage" class="ticker__item">
+                <span v-if="errorMessage" class="ticker__item error">
                   {{ errorMessage }}
                 </span>
               </span>
@@ -60,10 +60,6 @@
             {{ isLoading ? "Thinking..." : "Send" }}
           </button>
         </div>
-      </div>
-
-      <div class="actions" :class="{ 'actions--floating': !messages.length }">
-        <small v-if="errorMessage" class="error">{{ errorMessage }}</small>
       </div>
     </main>
   </div>
@@ -251,8 +247,7 @@ async function sendMessage() {
   }
 
   .error {
-    color: var(--color-brand-secondary);
-    font-size: 0.84rem;
+    color: var(--color-brand-secondary) !important;
   }
 
   button {

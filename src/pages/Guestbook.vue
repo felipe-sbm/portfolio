@@ -348,7 +348,7 @@ export default {
     var(--color-brand-primary),
     color-mix(in srgb, var(--color-brand-primary) 80%, #000)
   );
-  color: var(--color-button-text);
+  color: white;
   padding: 0.55rem 1rem;
 
   &:disabled {

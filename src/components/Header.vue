@@ -11,7 +11,11 @@
         <nav>
           <ul>
             <li>
-              <router-link class="site-header__nav-link" to="/">
+              <router-link
+                class="site-header__nav-link"
+                to="/"
+                @click="setHeaderScrollIntent"
+              >
                 <span class="site-header__nav-icon">
                   <HomeIcon />
                 </span>
@@ -19,7 +23,11 @@
               </router-link>
             </li>
             <li>
-              <router-link class="site-header__nav-link" to="/about">
+              <router-link
+                class="site-header__nav-link"
+                to="/about"
+                @click="setHeaderScrollIntent"
+              >
                 <span class="site-header__nav-icon">
                   <UserIcon />
                 </span>
@@ -27,7 +35,11 @@
               </router-link>
             </li>
             <li>
-              <router-link class="site-header__nav-link" to="/ai">
+              <router-link
+                class="site-header__nav-link"
+                to="/ai"
+                @click="setHeaderScrollIntent"
+              >
                 <span class="site-header__nav-icon">
                   <BotIcon />
                 </span>
@@ -35,7 +47,11 @@
               </router-link>
             </li>
             <li>
-              <router-link class="site-header__nav-link" to="/projects">
+              <router-link
+                class="site-header__nav-link"
+                to="/projects"
+                @click="setHeaderScrollIntent"
+              >
                 <span class="site-header__nav-icon">
                   <Cog />
                 </span>
@@ -43,7 +59,11 @@
               </router-link>
             </li>
             <li>
-              <router-link class="site-header__nav-link" to="/guestbook">
+              <router-link
+                class="site-header__nav-link"
+                to="/guestbook"
+                @click="setHeaderScrollIntent"
+              >
                 <span class="site-header__nav-icon">
                   <BookOpenIcon />
                 </span>
@@ -55,20 +75,53 @@
       </div>
     </div>
     <svg class="site-header__glass-svg" aria-hidden="true">
-      <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
-        <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="5" result="turbulence" />
+      <filter
+        id="glass-distortion"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+        filterUnits="objectBoundingBox"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.01 0.01"
+          numOctaves="1"
+          seed="5"
+          result="turbulence"
+        />
         <feComponentTransfer in="turbulence" result="mapped">
           <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
           <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
           <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
         </feComponentTransfer>
         <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-        <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100"
-          lighting-color="white" result="specLight">
+        <feSpecularLighting
+          in="softMap"
+          surfaceScale="5"
+          specularConstant="1"
+          specularExponent="100"
+          lighting-color="white"
+          result="specLight"
+        >
           <fePointLight x="-200" y="-200" z="300" />
         </feSpecularLighting>
-        <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
-        <feDisplacementMap in="SourceGraphic" in2="softMap" scale="150" xChannelSelector="R" yChannelSelector="G" />
+        <feComposite
+          in="specLight"
+          operator="arithmetic"
+          k1="0"
+          k2="1"
+          k3="1"
+          k4="0"
+          result="litImage"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="softMap"
+          scale="150"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
       </filter>
     </svg>
     <div class="site-header__meta">
@@ -86,12 +139,17 @@ import {
   Cog,
   BookOpenIcon,
 } from "lucide-vue-next";
+import { setNextNavigationScrollIntent } from "@/services/NavigationScrollIntent";
 
 export default defineComponent({
   name: "NatalTime",
   components: { HomeIcon, UserIcon, BotIcon, Cog, BookOpenIcon },
   setup() {
     const natalTime = ref("");
+    const setHeaderScrollIntent = () => {
+      setNextNavigationScrollIntent("header-top");
+    };
+
     const updateTime = () => {
       const date = new Date();
       natalTime.value = new Intl.DateTimeFormat("pt-BR", {
@@ -105,7 +163,7 @@ export default defineComponent({
       updateTime();
       setInterval(updateTime, 1000);
     });
-    return { natalTime };
+    return { natalTime, setHeaderScrollIntent };
   },
 });
 </script>
@@ -171,7 +229,11 @@ export default defineComponent({
     z-index: 1;
     position: absolute;
     inset: 0;
-    background: color-mix(in srgb, var(--color-surface-elevated) 38%, transparent);
+    background: color-mix(
+      in srgb,
+      var(--color-surface-elevated) 38%,
+      transparent
+    );
   }
 
   .site-header__glass-shine {
@@ -197,7 +259,7 @@ export default defineComponent({
   }
 
   .site-header__dock,
-  .site-header__dock>div {
+  .site-header__dock > div {
     border-radius: 2.5rem;
     transition: border-radius 1s cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -208,7 +270,7 @@ export default defineComponent({
     transition: transform 0.25s ease-in;
   }
 
-  .site-header__dock:hover>div {
+  .site-header__dock:hover > div {
     border-radius: 1rem;
   }
 
