@@ -1,4 +1,3 @@
-
 // Configurações da fonte
 $font-family-base: "Red Hat Text", sans-serif;
 $color-brand-primary-light: #2e7b70;
@@ -19,11 +18,13 @@ $color-border-strong-light: #ead2be;
 $color-surface-light: #fbe2ce;
 $color-surface-elevated-light: rgba(255, 255, 255, 0.34);
 $color-surface-soft-light: rgba(0, 0, 0, 0.04);
-$color-button-bg-light: #070710;
-$color-button-text-light: #fff8f5;
+$color-button-bg-light: #FDD5B6;
+$color-button-bg-light--hover: #F8BC8D;
+$color-button-text-light: #8A4B01;
 $color-icon-light: #53372a;
 $shadow-soft-light: 0 8px 24px rgba(0, 0, 0, 0.08);
 $shadow-elevated-light: 0 16px 50px rgba(0, 0, 0, 0.1);
+
 
 // Tema Escuro
 $color-text-dark: #e5ebfa;
@@ -37,8 +38,9 @@ $color-border-strong-dark: #2a3146;
 $color-surface-dark: #1b2338;
 $color-surface-elevated-dark: rgba(24, 34, 55, 0.72);
 $color-surface-soft-dark: rgba(255, 255, 255, 0.06);
-$color-button-bg-dark: #f8f4f2;
-$color-button-text-dark: #101522;
+$color-button-bg-dark: #5369B6;
+$color-button-bg-dark--hover: #4458a0;
+$color-button-text-dark: #D6DEEF;
 $color-icon-dark: #e5ebfa;
 $shadow-soft-dark: 0 10px 28px rgba(0, 0, 0, 0.35);
 $shadow-elevated-dark: 0 18px 56px rgba(0, 0, 0, 0.45);
@@ -65,6 +67,7 @@ $shadow-elevated-dark: 0 18px 56px rgba(0, 0, 0, 0.45);
   --color-surface-soft: #{$color-surface-soft-light};
 
   --color-button-bg: #{$color-button-bg-light};
+  --color-button-bg--hover: #{$color-button-bg-light--hover};
   --color-button-text: #{$color-button-text-light};
   --color-icon: #{$color-icon-light};
 
@@ -93,6 +96,7 @@ $shadow-elevated-dark: 0 18px 56px rgba(0, 0, 0, 0.45);
     --color-surface-soft: #{$color-surface-soft-dark};
 
     --color-button-bg: #{$color-button-bg-dark};
+    --color-button-bg--hover: #{$color-button-bg-dark--hover};
     --color-button-text: #{$color-button-text-dark};
     --color-icon: #{$color-icon-dark};
 
@@ -216,5 +220,40 @@ a {
     display: inline-block;
     margin-top: 0.75rem;
     color: var(--color-text-muted);
+  }
+}
+
+.ticker {
+  --send-control-width: 132px;
+  width: var(--send-control-width);
+  min-width: var(--send-control-width);
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  .ticker__track {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: ticker-move 10s linear infinite;
+
+    .ticker__item {
+      color: var(--color-text-muted);
+      padding-right: 1.4rem;
+    }
+  }
+}
+
+@keyframes ticker-move {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
   }
 }

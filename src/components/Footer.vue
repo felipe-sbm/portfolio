@@ -155,7 +155,7 @@ function randomPhrase(): string {
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--color-border-strong);
       border-radius: 10rem;
       padding: 0.25rem;
       padding-right: 1rem;

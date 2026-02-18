@@ -1,25 +1,33 @@
-export async function sendMessageToDeepSeek(userMessage: string) {
-  const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
-    method: "POST",
+export type ChatRole = 'user' | 'assistant' | 'system';
+
+export interface ChatMessage {
+  role: ChatRole;
+  content: string;
+}
+
+interface ChatResponse {
+  message: string;
+  error?: string;
+}
+
+export async function askChatbot(messages: ChatMessage[]): Promise<string> {
+  const response = await fetch('/api/chat', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_DEEPSEEK_API_KEY}`,
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      model: "deepseek-chat",
-      messages: [
-        {
-          role: "system",
-          content: "こにちわ！.",
-        },
-        {
-          role: "user",
-          content: userMessage,
-        },
-      ],
-    }),
+    body: JSON.stringify({ messages }),
   });
 
-  const data = await response.json();
-  return data.choices?.[0]?.message?.content || "Sem resposta.";
+  const payload = (await response.json()) as ChatResponse;
+
+  if (!response.ok) {
+    throw new Error(payload.error || 'Erro ao consultar o LLM');
+  }
+
+  if (!payload.message) {
+    throw new Error('Resposta vazia do LLM');
+  }
+
+  return payload.message;
 }

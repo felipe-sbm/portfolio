@@ -1,7 +1,11 @@
 <template>
   <div class="page-container">
     <div class="hero-background">
-      <img :src="Background" alt="Background image" class="hero-background__image">
+      <img
+        :src="Background"
+        alt="Background image"
+        class="hero-background__image"
+      />
     </div>
 
     <div class="home__welcome">
@@ -18,14 +22,34 @@
   <div class="home__content">
     <p class="home__text">
       I'm a fullstack developer, computer engineer, software student and
-      webdesigner since 2019.
-      I worked in
-      <PillBadge linkUrl="https://demandaurbana.com.br" linkAlt="Link to 'Demanda Urbana' website"
-        pillStyle="pill-badge--blue" :imgUrl="Demanda" imgAlt="Logo of the 'Demanda Urbana', from Arkanus."
-        pillText="Demanda Urbana" />
-      and made some projects in my own, like
-      <PillBadge linkUrl="https://basegpt.com.br" linkAlt="Link for the BaseGPT Website" pillStyle="pill-badge--purple"
-        :imgUrl="Base" imgAlt="Logo of the 'BaseGPT'', from DataVence." pillText="BaseGPT" />
+      webdesigner since 2019. I worked in
+      <PillBadge
+        linkUrl="https://basegpt.com.br"
+        linkAlt="Link for the BaseGPT Website"
+        pillStyle="pill-badge--purple"
+        :imgUrl="Base"
+        imgAlt="Logo of the 'BaseGPT'', from DataVence."
+        pillText="BaseGPT"
+      />
+      and in
+      <PillBadge
+        linkUrl="https://demandaurbana.com.br"
+        linkAlt="Link to 'Demanda Urbana' website"
+        pillStyle="pill-badge--blue"
+        :imgUrl="Demanda"
+        imgAlt="Logo of the 'Demanda Urbana', from Arkanus."
+        pillText="Demanda Urbana"
+      />
+      at <a href="https://arkanus.app/">Arkanus</a>, and made some projects in
+      my own, like
+      <PillBadge
+        linkUrl="https://otsuki.dev"
+        linkAlt="Link for the Otsuki Website"
+        pillStyle="pill-badge--otsuki"
+        :imgUrl="Otsuki"
+        imgAlt="Logo of the Otsuki."
+        pillText="Otsuki"
+      />
       . <br />
       I keep practicing every day<i class="home__note">/7*</i> and learning new
       technologies to improve my skills.
@@ -39,19 +63,21 @@
       sharing knowledge is my passion, and I'm happy to share it. <br />
       I can show that
       <i class="home__skill home__skill--cpp"> C++, </i>
-      <i class="home__skill home__skill--javascript"> Javascript, </i>
-      <i class="home__skill home__skill--julia"> Julia </i>and
-      <i class="home__skill home__skill--csharp"> C# </i> are fun.
+      <i class="home__skill home__skill--javascript"> Javascript</i>
+      and
+      <i class="home__skill home__skill--julia"> Julia </i>
+      are very cool, so check my channel.
     </p>
   </div>
 </template>
 
 <script lang="ts" scoped>
 import { defineComponent } from "vue";
-import Background from "@/assets/images/background.webp"
+import Background from "@/assets/images/background.webp";
 import PillBadge from "@/components/PillBadge.vue";
 import Demanda from "@/assets/images/demanda-urbana.webp";
 import Base from "@/assets/images/basegpt.webp";
+import Otsuki from "@/assets/images/otsuki.webp";
 
 export default defineComponent({
   components: {
@@ -62,6 +88,7 @@ export default defineComponent({
       Background,
       Demanda,
       Base,
+      Otsuki,
     };
   },
   name: "HomePage",
@@ -88,10 +115,12 @@ export default defineComponent({
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(-90deg,
-        color-mix(in srgb, var(--color-bg-start) 0%, transparent),
-        color-mix(in srgb, var(--color-bg-center) 5%, transparent),
-        color-mix(in srgb, var(--color-bg-end) 85%, transparent));
+    background: linear-gradient(
+      -90deg,
+      color-mix(in srgb, var(--color-bg-start) 0%, transparent),
+      color-mix(in srgb, var(--color-bg-center) 5%, transparent),
+      color-mix(in srgb, var(--color-bg-end) 85%, transparent)
+    );
   }
 
   .hero-background__image {
@@ -189,10 +218,6 @@ export default defineComponent({
   color: #7e22ce;
 }
 
-.home__skill--csharp {
-  color: #65a30d;
-}
-
 @media (prefers-color-scheme: dark) {
   .home__skill--cpp {
     color: #3b82f6;
@@ -204,10 +229,6 @@ export default defineComponent({
 
   .home__skill--julia {
     color: #a855f7;
-  }
-
-  .home__skill--csharp {
-    color: #84cc16;
   }
 }
 

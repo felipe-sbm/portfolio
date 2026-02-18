@@ -67,6 +67,14 @@ function clearLoginSession() {
   localStorage.removeItem(LOGIN_SESSION_KEY);
 }
 
+function sortCommentsByNewest(comments: Comment[]): Comment[] {
+  return [...comments].sort((a, b) => {
+    const aTime = new Date(a.createdAt).getTime();
+    const bTime = new Date(b.createdAt).getTime();
+    return bTime - aTime;
+  });
+}
+
 async function fetchComments(): Promise<Comment[]> {
   const url = `${COMMENTS_PATH}.json`;
   console.log('[Guestbook] fetchComments:', url);
@@ -76,7 +84,7 @@ async function fetchComments(): Promise<Comment[]> {
   const data = await response.json();
   if (!data) return [];
 
-  return Object.keys(data).map((key) => ({
+  const comments = Object.keys(data).map((key) => ({
     id: key,
     username: data[key].username,
     content: data[key].content,
@@ -86,6 +94,8 @@ async function fetchComments(): Promise<Comment[]> {
     thumbsUp: data[key].thumbsUp ?? 0,
     thumbsDown: data[key].thumbsDown ?? 0,
   }));
+
+  return sortCommentsByNewest(comments);
 }
 
 async function addComment(comment: Omit<Comment, 'id' | 'createdAt'>, authToken?: string): Promise<Comment> {
@@ -142,11 +152,6 @@ async function setUserVote(uid: string, commentId: string, reaction: 'up' | 'dow
     console.error('[Guestbook] setUserVote error:', errText);
     throw new Error(`Erro ao salvar voto: ${response.status} ${errText}`);
   }
-}
-
-async function deleteAllComments(): Promise<void> {
-  const response = await fetch(`${COMMENTS_PATH}.json`, { method: 'DELETE' });
-  if (!response.ok) throw new Error('Erro ao apagar comentários');
 }
 
 function formatDate(dateString: string): string {
@@ -213,12 +218,12 @@ export const GuestbookComponent = defineComponent({
       this.isLoading = true;
       try {
         if (commentsCache) {
-          this.comments = commentsCache;
+          this.comments = sortCommentsByNewest(commentsCache);
           return;
         }
 
         this.comments = await fetchComments();
-        commentsCache = this.comments;
+        commentsCache = sortCommentsByNewest(this.comments);
       } catch (error) {
         this.error = handleError(error, 'Erro ao carregar');
       } finally {
@@ -236,7 +241,7 @@ export const GuestbookComponent = defineComponent({
         return;
       }
 
-      // Rate limit: 1 comment per 15 minutes per user
+      // Rate limit de 1 comentário a cada 1/4 de hora.
       const lastTs = this.getLastCommentTimestamp();
       const now = Date.now();
       const windowMs = 15 * 60 * 1000;
@@ -276,20 +281,7 @@ export const GuestbookComponent = defineComponent({
         this.isLoading = false;
       }
     },
-    async deleteAll() {
-      if (!confirm('Apagar todos os comentários?')) return;
-
-      this.isLoading = true;
-      try {
-        await deleteAllComments();
-        this.comments = [];
-        commentsCache = [];
-      } catch (error) {
-        this.error = handleError(error, 'Erro ao apagar');
-      } finally {
-        this.isLoading = false;
-      }
-    },
+    
     async reactToComment(commentId: string, type: 'up' | 'down') {
       if (!this.isAuthenticated || !this.user) {
         this.error = 'Faça login com GitHub para reagir.';
