@@ -1,36 +1,28 @@
 <template>
-    <div class="not-found">
-        <div class="intro">
-            <h6 class="eyebrow">404 Error</h6>
-            <h1>Não foi achado, boy...</h1>
-            <p>Looks like you reached something that doesn't exist.</p>
-            <small>Go back or go to the Home page</small>
-        </div>
-        <img :src=AaFolou alt="Sad Dog">
+  <div class="not-found">
+    <div class="intro">
+      <h6 class="eyebrow">{{ t('notFound.eyebrow') }}</h6>
+      <h1>{{ t('notFound.title') }}</h1>
+      <p>{{ t('notFound.subtitle') }}</p>
+      <small>{{ t('notFound.small') }}</small>
     </div>
+    <img :src="AaFolou" :alt="String(t('notFound.imageAlt'))" />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import AaFolou from "@/assets/images/adobe-express.webp"
+<script setup lang="ts">
+import AaFolou from '@/assets/images/adobe-express.webp';
+import { useI18n } from '@/i18n';
 
-export default defineComponent({
-    data() {
-        return {
-            AaFolou,
-        };
-    },
-    name: "NotFound",
-});
+const { t } = useI18n();
 </script>
 
 <style lang="scss" scoped>
 @use "@/style.scss" as *;
 
 .not-found {
-    
-    img {
-        max-width: 20rem;
-    }
+  img {
+    max-width: 20rem;
+  }
 }
 </style>

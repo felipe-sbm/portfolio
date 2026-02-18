@@ -1,3 +1,5 @@
+import { t } from '@/i18n';
+
 export type ChatRole = 'user' | 'assistant' | 'system';
 
 export interface ChatMessage {
@@ -22,11 +24,13 @@ export async function askChatbot(messages: ChatMessage[]): Promise<string> {
   const payload = (await response.json()) as ChatResponse;
 
   if (!response.ok) {
-    throw new Error(payload.error || 'Erro ao consultar o LLM');
+    const fallback = t('chatbotService.queryError');
+    throw new Error(payload.error || (typeof fallback === 'string' ? fallback : 'LLM request failed'));
   }
 
   if (!payload.message) {
-    throw new Error('Resposta vazia do LLM');
+    const fallback = t('chatbotService.emptyResponse');
+    throw new Error(typeof fallback === 'string' ? fallback : 'Empty LLM response');
   }
 
   return payload.message;

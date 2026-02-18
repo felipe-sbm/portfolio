@@ -7,40 +7,45 @@
             class="site-footer__menu-link"
             to="/"
             @click="setFooterScrollIntent"
-            >Home</router-link
           >
+            {{ t("nav.home") }}
+          </router-link>
         </li>
         <li>
           <router-link
             class="site-footer__menu-link"
             to="/about"
             @click="setFooterScrollIntent"
-            >About me</router-link
           >
+            {{ t("nav.about") }}
+          </router-link>
         </li>
         <li>
           <router-link
             class="site-footer__menu-link"
             to="/ai"
             @click="setFooterScrollIntent"
-            >AI</router-link
           >
+            {{ t("nav.ai") }}
+          </router-link>
         </li>
         <li>
           <router-link
             class="site-footer__menu-link"
             to="/projects"
             @click="setFooterScrollIntent"
-            >Projects</router-link
           >
+            {{ t("nav.projects") }}
+          </router-link>
         </li>
         <li>
           <router-link
             class="site-footer__menu-link"
             to="/guestbook"
             @click="setFooterScrollIntent"
-            >Guestbook</router-link
           >
+            {{ t("nav.guestbook") }}
+          </router-link>
         </li>
       </ul>
     </div>
@@ -48,7 +53,7 @@
       <div class="site-footer__message">
         <img
           :src="ProfilePicture"
-          alt="Profile picture of Felipe SBM"
+          :alt="String(t('common.profilePictureAlt'))"
           class="profile-picture"
         />
         <p>{{ randomPhrase() }}</p>
@@ -56,23 +61,35 @@
       <div class="site-footer__social">
         <ul>
           <li>
-            <a href="https://www.instagram.com/felipe_sbm">
-              <Instagram class="site-footer__icon" alt="Instagram" />
+            <a
+              href="https://www.instagram.com/felipe_sbm"
+              :aria-label="String(t('footer.social.instagram'))"
+            >
+              <Instagram class="site-footer__icon" />
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/in/felipe-sbm/">
-              <Linkedin class="site-footer__icon" alt="LinkedIn" />
+            <a
+              href="https://www.linkedin.com/in/felipe-sbm/"
+              :aria-label="String(t('footer.social.linkedin'))"
+            >
+              <Linkedin class="site-footer__icon" />
             </a>
           </li>
           <li>
-            <a href="https://felipe-sbm.blogspot.com/">
-              <Rss class="site-footer__icon" alt="Blog" />
+            <a
+              href="https://felipe-sbm.blogspot.com/"
+              :aria-label="String(t('footer.social.blog'))"
+            >
+              <Rss class="site-footer__icon" />
             </a>
           </li>
           <li>
-            <a href="https://www.github.com/felipe-sbm">
-              <Github class="site-footer__icon" alt="GitHub" />
+            <a
+              href="https://www.github.com/felipe-sbm"
+              :aria-label="String(t('footer.social.github'))"
+            >
+              <Github class="site-footer__icon" />
               <div class="dot-alert">
                 <span class="dot animate"></span>
                 <span class="dot"></span>
@@ -83,38 +100,101 @@
       </div>
     </div>
     <div class="site-footer__meta">
+      <div class="site-header__language">
+        <label :aria-label="String(t('common.languageLabel'))">
+          <select v-model="selectedLocale">
+            <option
+              v-for="option in localeOptions"
+              :key="option.value"
+              :value="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+        </label>
+      </div>
       <router-link
         class="site-footer__meta-link"
         to="/about"
         @click="setFooterScrollIntent"
-        alt="About the creator"
       >
-        &copy; 2026 Felipe SBM.
+        {{ t("footer.copyright") }}
       </router-link>
       <a href="https://notbyai.fyi/how-it-works">
-        <img :src="logoSrc" alt="Certificado que não é feito por IA" />
+        <img :src="logoSrc" :alt="String(t('footer.notByAiAlt'))" />
       </a>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import ProfilePicture from "@/assets/images/pfp.webp";
-import NotByAI__Light from "@/assets/images/not-by-ai/CN/chinese-light.png";
-import NotByAI__Dark from "@/assets/images/not-by-ai/CN/chinese-dark.png";
+import NotByAIEnLight from "@/assets/images/not-by-ai/EN/english-light.png";
+import NotByAIEnDark from "@/assets/images/not-by-ai/EN/english-dark.png";
+import NotByAIPtLight from "@/assets/images/not-by-ai/BR/portuguese-light.png";
+import NotByAIPtDark from "@/assets/images/not-by-ai/BR/portuguese-dark.png";
+import NotByAIJaLight from "@/assets/images/not-by-ai/JP/japanese-light.png";
+import NotByAIJaDark from "@/assets/images/not-by-ai/JP/japanese-dark.png";
+import NotByAIZhLight from "@/assets/images/not-by-ai/CN/chinese-light.png";
+import NotByAIZhDark from "@/assets/images/not-by-ai/CN/chinese-dark.png";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
 import { setNextNavigationScrollIntent } from "@/services/NavigationScrollIntent";
+import { useI18n } from '@/i18n';
+import type { Locale } from '@/i18n';
+
+const { t, locale, setLocale, localeOptions } = useI18n();
+const selectedLocale = computed<Locale>({
+  get: () => locale.value,
+  set: (value) => setLocale(value),
+});
 
 const logoSrc = ref("");
-function updateBadge(e: MediaQueryList | MediaQueryListEvent) {
-  logoSrc.value = e.matches ? NotByAI__Light : NotByAI__Dark;
+const isLight = ref(false);
+const phraseIndex = ref(0);
+
+const badges = {
+  en: { light: NotByAIEnLight, dark: NotByAIEnDark },
+  pt: { light: NotByAIPtLight, dark: NotByAIPtDark },
+  ja: { light: NotByAIJaLight, dark: NotByAIJaDark },
+  zh: { light: NotByAIZhLight, dark: NotByAIZhDark },
+} as const;
+
+const phrases = computed(() => {
+  const value = t("footer.phrases");
+  return Array.isArray(value) ? value : [];
+});
+
+let mediaQuery: MediaQueryList | null = null;
+
+function updateBadgeSource() {
+  const badgeSet = badges[locale.value];
+  logoSrc.value = isLight.value ? badgeSet.light : badgeSet.dark;
+}
+
+function handleColorScheme(event: MediaQueryList | MediaQueryListEvent) {
+  isLight.value = event.matches;
+  updateBadgeSource();
 }
 
 onMounted(() => {
-  const mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
-  updateBadge(mediaQuery); // inicializa 👌
-  mediaQuery.addEventListener("change", updateBadge); // escuta 👂 mudanças 🚚
+  mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
+  handleColorScheme(mediaQuery);
+  phraseIndex.value = Math.floor(
+    Math.random() * Math.max(phrases.value.length, 1),
+  );
+  mediaQuery.addEventListener("change", handleColorScheme);
+});
+
+onBeforeUnmount(() => {
+  mediaQuery?.removeEventListener("change", handleColorScheme);
+});
+
+watch(locale, () => {
+  updateBadgeSource();
+  phraseIndex.value = Math.floor(
+    Math.random() * Math.max(phrases.value.length, 1),
+  );
 });
 
 function setFooterScrollIntent(): void {
@@ -122,18 +202,7 @@ function setFooterScrollIntent(): void {
 }
 
 function randomPhrase(): string {
-  const phrases = [
-    "Stay curious!",
-    "Code with passion.",
-    "Embrace the journey.",
-    "Keep learning.",
-    "Build something amazing.",
-    "Dream big, Code bigger.",
-    "Create, innovate, inspire.",
-    "Think outside the box.",
-    "God is good all the time.",
-  ];
-  return phrases[Math.floor(Math.random() * phrases.length)];
+  return phrases.value[phraseIndex.value] || "";
 }
 </script>
 
@@ -266,6 +335,19 @@ function randomPhrase(): string {
         box-shadow: 0 0 0 0.2rem
           color-mix(in srgb, var(--color-brand-secondary) 20%, transparent);
       }
+    }
+  }
+
+  .site-header__language {
+    select {
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      background: var(--color-surface-elevated);
+      color: var(--color-text);
+      padding: 0.2rem 0.35rem;
+      font: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
     }
   }
 }

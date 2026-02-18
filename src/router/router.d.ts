@@ -2,7 +2,7 @@ import 'vue-router';
 
 declare module 'vue-router' {
   interface RouteMeta {
-    title?: string;
-    description?: string;
+    titleKey?: string;
+    descriptionKey?: string;
   }
 }

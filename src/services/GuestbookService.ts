@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue';
+import { getIntlLocale, t } from '@/i18n';
 
 interface Comment {
   id: string;
@@ -28,6 +29,7 @@ const firebaseBaseRaw = import.meta.env.VITE_FIREBASE_DATABASE_URL;
 if (!firebaseBaseRaw) {
   throw new Error('[Guestbook] Missing required env var: VITE_FIREBASE_DATABASE_URL');
 }
+
 const FIREBASE_BASE = firebaseBaseRaw.replace(/\/+$/, '');
 const COMMENTS_PATH = `${FIREBASE_BASE}/comments`;
 const VOTES_PATH = `${FIREBASE_BASE}/votes`;
@@ -38,6 +40,11 @@ let commentsCache: Comment[] | null = null;
 
 interface CachedLoginSession {
   expiresAt: number;
+}
+
+function tx(key: string, params?: Record<string, string | number>): string {
+  const value = t(key, params);
+  return typeof value === 'string' ? value : key;
 }
 
 function readLoginSession(): CachedLoginSession | null {
@@ -77,10 +84,8 @@ function sortCommentsByNewest(comments: Comment[]): Comment[] {
 
 async function fetchComments(): Promise<Comment[]> {
   const url = `${COMMENTS_PATH}.json`;
-  console.log('[Guestbook] fetchComments:', url);
   const response = await fetch(url);
-  console.log('[Guestbook] fetchComments response:', response.status, response.statusText);
-  if (!response.ok) throw new Error(`Erro HTTP! status: ${response.status}`);
+  if (!response.ok) throw new Error(`${tx('guestbookService.httpError')}! status: ${response.status}`);
   const data = await response.json();
   if (!data) return [];
 
@@ -100,31 +105,37 @@ async function fetchComments(): Promise<Comment[]> {
 
 async function addComment(comment: Omit<Comment, 'id' | 'createdAt'>, authToken?: string): Promise<Comment> {
   const payload = { ...comment, createdAt: new Date().toISOString(), thumbsUp: 0, thumbsDown: 0 };
-  // Add auth token as URL parameter for Firebase Realtime Database
   const url = authToken ? `${COMMENTS_PATH}.json?auth=${authToken}` : `${COMMENTS_PATH}.json`;
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-  
-  console.log('[Guestbook] addComment:', { url: url.replace(/auth=[^&]+/, 'auth=***'), payload, hasAuth: !!authToken });
+
   const response = await fetch(url, {
     method: 'POST',
     headers,
     body: JSON.stringify(payload),
   });
-  console.log('[Guestbook] addComment response:', response.status, response.statusText);
+
   if (!response.ok) {
     const errText = await response.text();
-    console.error('[Guestbook] addComment error:', errText);
-    throw new Error(`Erro ao enviar comentário: ${response.status} ${errText}`);
+    throw new Error(`${tx('guestbookService.sendError')}: ${response.status} ${errText}`);
   }
+
   const data = await response.json();
-  return { id: data.name, username: payload.username, content: payload.content, createdAt: payload.createdAt, photoURL: payload.photoURL, githubUrl: payload.githubUrl, thumbsUp: 0, thumbsDown: 0 };
+  return {
+    id: data.name,
+    username: payload.username,
+    content: payload.content,
+    createdAt: payload.createdAt,
+    photoURL: payload.photoURL,
+    githubUrl: payload.githubUrl,
+    thumbsUp: 0,
+    thumbsDown: 0,
+  };
 }
 
 async function patchComment(commentId: string, changes: Partial<Comment>, authToken?: string): Promise<void> {
   const url = authToken ? `${COMMENTS_PATH}/${commentId}.json?auth=${authToken}` : `${COMMENTS_PATH}/${commentId}.json`;
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
 
-  console.log('[Guestbook] patchComment:', { url: url.replace(/auth=[^&]+/, 'auth=***'), changes, hasAuth: !!authToken });
   const response = await fetch(url, {
     method: 'PATCH',
     headers,
@@ -133,29 +144,28 @@ async function patchComment(commentId: string, changes: Partial<Comment>, authTo
 
   if (!response.ok) {
     const errText = await response.text();
-    console.error('[Guestbook] patchComment error:', errText);
-    throw new Error(`Erro ao atualizar reação: ${response.status} ${errText}`);
+    throw new Error(`${tx('guestbookService.updateReactionError')}: ${response.status} ${errText}`);
   }
 }
 
 async function setUserVote(uid: string, commentId: string, reaction: 'up' | 'down', authToken?: string): Promise<void> {
   const url = authToken ? `${VOTES_PATH}/${uid}/${commentId}.json?auth=${authToken}` : `${VOTES_PATH}/${uid}/${commentId}.json`;
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-  console.log('[Guestbook] setUserVote:', { url: url.replace(/auth=[^&]+/, 'auth=***'), reaction, hasAuth: !!authToken });
+
   const response = await fetch(url, {
     method: 'PUT',
     headers,
     body: JSON.stringify(reaction),
   });
+
   if (!response.ok) {
     const errText = await response.text();
-    console.error('[Guestbook] setUserVote error:', errText);
-    throw new Error(`Erro ao salvar voto: ${response.status} ${errText}`);
+    throw new Error(`${tx('guestbookService.saveVoteError')}: ${response.status} ${errText}`);
   }
 }
 
 function formatDate(dateString: string): string {
-  return new Date(dateString).toLocaleDateString('pt-BR', {
+  return new Date(dateString).toLocaleDateString(getIntlLocale(), {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -165,7 +175,7 @@ function formatDate(dateString: string): string {
 }
 
 function handleError(error: unknown, defaultMessage: string): string {
-  return error instanceof Error ? `${defaultMessage}: ${error.message}` : `${defaultMessage}: Erro desconhecido`;
+  return error instanceof Error ? `${defaultMessage}: ${error.message}` : `${defaultMessage}: ${tx('guestbookService.unknownError')}`;
 }
 
 export const GuestbookComponent = defineComponent({
@@ -199,8 +209,8 @@ export const GuestbookComponent = defineComponent({
         if (!response.ok) return;
         const data = await response.json();
         this.userVotes = data || {};
-      } catch (error) {
-        console.error('[Guestbook] loadUserVotes error:', error);
+      } catch {
+        // ignored intentionally
       }
     },
     getLastCommentTimestamp(): number | null {
@@ -225,66 +235,61 @@ export const GuestbookComponent = defineComponent({
         this.comments = await fetchComments();
         commentsCache = sortCommentsByNewest(this.comments);
       } catch (error) {
-        this.error = handleError(error, 'Erro ao carregar');
+        this.error = handleError(error, tx('guestbookService.loadError'));
       } finally {
         this.isLoading = false;
       }
     },
     async submitComment() {
       if (!this.newComment.content.trim()) {
-        this.error = 'Escreva um comentário';
+        this.error = tx('guestbookService.emptyComment');
         return;
       }
 
       if (!this.isAuthenticated || !this.user) {
-        this.error = 'Faça login com GitHub para comentar.';
+        this.error = tx('guestbookService.loginToComment');
         return;
       }
 
-      // Rate limit de 1 comentário a cada 1/4 de hora.
       const lastTs = this.getLastCommentTimestamp();
       const now = Date.now();
       const windowMs = 15 * 60 * 1000;
       if (lastTs && now - lastTs < windowMs) {
         const remainingMs = windowMs - (now - lastTs);
         const remainingMin = Math.ceil(remainingMs / 60000);
-        this.error = `Você só pode comentar a cada 15 minutos. Faltam ${remainingMin} minuto(s).`;
+        this.error = `${tx('guestbookService.cooldownPrefix')} ${remainingMin} ${tx('guestbookService.cooldownSuffix')}`;
         return;
       }
 
       this.isLoading = true;
-      console.log('[Guestbook] submitComment:', this.newComment);
       try {
         const { getAuthToken } = await import('./FirebaseAuth');
         const token = await getAuthToken();
-        
-        // Use displayName or email as username, fallback to anonymous
-        const username = this.user?.displayName || this.user?.email || 'Anônimo';
-        const commentWithUsername = { 
-          ...this.newComment, 
+
+        const username = this.user?.displayName || this.user?.email || tx('guestbookService.anonymous');
+        const commentWithUsername = {
+          ...this.newComment,
           username,
           photoURL: this.user?.photoURL,
           githubUrl: this.user?.githubUrl,
         };
-        
+
         await addComment(commentWithUsername, token || undefined);
-        console.log('[Guestbook] submitComment success');
         this.newComment = { content: '' };
         this.error = null;
         this.setLastCommentTimestamp(Date.now());
         commentsCache = null;
         await this.loadData();
       } catch (error) {
-        console.error('[Guestbook] submitComment error:', error);
-        this.error = handleError(error, 'Erro ao enviar');
+        this.error = handleError(error, tx('guestbookService.submitError'));
       } finally {
         this.isLoading = false;
       }
     },
-    
+
     async reactToComment(commentId: string, type: 'up' | 'down') {
       if (!this.isAuthenticated || !this.user) {
-        this.error = 'Faça login com GitHub para reagir.';
+        this.error = tx('guestbookService.loginToReact');
         return;
       }
 
@@ -293,7 +298,7 @@ export const GuestbookComponent = defineComponent({
 
       const current = this.comments[index];
       const prevVote = this.userVotes[commentId];
-      if (prevVote === type) return; // already voted this way
+      if (prevVote === type) return;
 
       const thumbsUp = current.thumbsUp ?? 0;
       const thumbsDown = current.thumbsDown ?? 0;
@@ -304,9 +309,9 @@ export const GuestbookComponent = defineComponent({
       if (prevVote === 'up') newUp = Math.max(0, newUp - 1);
       if (prevVote === 'down') newDown = Math.max(0, newDown - 1);
 
-      if (type === 'up') newUp += 1; else newDown += 1;
+      if (type === 'up') newUp += 1;
+      else newDown += 1;
 
-      // optimistic update
       this.comments[index] = { ...current, thumbsUp: newUp, thumbsDown: newDown };
       commentsCache = [...this.comments];
       this.userVotes = { ...this.userVotes, [commentId]: type };
@@ -319,27 +324,28 @@ export const GuestbookComponent = defineComponent({
           this.user?.uid ? setUserVote(this.user.uid, commentId, type, token || undefined) : Promise.resolve(),
         ]);
       } catch (error) {
-        // rollback on error
         this.comments[index] = current;
         commentsCache = [...this.comments];
+
         if (prevVote) {
           const rollbackVotes = { ...this.userVotes };
           rollbackVotes[commentId] = prevVote;
           this.userVotes = rollbackVotes;
         }
-        console.error('[Guestbook] reactToComment error:', error);
-        this.error = handleError(error, 'Erro ao registrar reação');
+
+        this.error = handleError(error, tx('guestbookService.reactError'));
       }
     },
+
     async loginWithGitHub() {
       try {
         const { signInWithGitHub } = await import('./FirebaseAuth');
         const result = await signInWithGitHub();
         const user = result.user;
-        this.user = { 
-          uid: user.uid, 
-          displayName: user.displayName || undefined, 
-          email: user.email || undefined, 
+        this.user = {
+          uid: user.uid,
+          displayName: user.displayName || undefined,
+          email: user.email || undefined,
           photoURL: user.photoURL || undefined,
           githubUrl: result.githubProfileUrl || undefined,
         };
@@ -347,12 +353,11 @@ export const GuestbookComponent = defineComponent({
         this.error = null;
         writeLoginSession();
         await this.loadUserVotes();
-        console.log('[Guestbook] GitHub login success:', this.user);
       } catch (error) {
-        console.error('[Guestbook] GitHub login error:', error);
-        this.error = handleError(error, 'Erro ao fazer login com GitHub');
+        this.error = handleError(error, tx('guestbookService.logoutError'));
       }
     },
+
     async logout() {
       try {
         const { getAuthInstance } = await import('./FirebaseAuth');
@@ -363,12 +368,11 @@ export const GuestbookComponent = defineComponent({
         this.newComment = { content: '' };
         this.userVotes = {};
         this.lastCommentAt = null;
-        console.log('[Guestbook] Logged out');
       } catch (error) {
-        console.error('[Guestbook] Logout error:', error);
-        this.error = handleError(error, 'Erro ao sair');
+        this.error = handleError(error, tx('guestbookService.loginError'));
       }
     },
+
     async restoreAuthSession() {
       const session = readLoginSession();
       if (!session) return;

@@ -2,7 +2,7 @@
   <article class="project-card">
     <router-link class="project-card__link" :to="`/projects/${slug}`">
       <div v-if="isLastProject" class="project-card__badge">
-        <h6>last project</h6>
+        <h6>{{ t('projects.lastProject') }}</h6>
       </div>
       <div class="project-card__body">
         <div class="project-card__media">
@@ -17,21 +17,20 @@
   </article>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { useI18n } from '@/i18n';
 
-export default defineComponent({
-  name: "ProjectCard",
-  props: {
-    name: { type: String, required: true },
-    image: { type: String, required: true },
-    imageAlt: { type: String, default: "" },
-    description: { type: String, required: true },
-    link: { type: String, required: true },
-    slug: { type: String, required: true },
-    isLastProject: { type: Boolean, default: false },
-  },
-});
+defineProps<{
+  name: string;
+  image: string;
+  imageAlt?: string;
+  description: string;
+  link: string;
+  slug: string;
+  isLastProject?: boolean;
+}>();
+
+const { t } = useI18n();
 </script>
 
 <style lang="scss" scoped>

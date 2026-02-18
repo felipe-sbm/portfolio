@@ -1,77 +1,41 @@
 <template>
   <div class="collage">
     <div class="photo-card photo-card--short">
-      <img
-        :src="Orchestra"
-        alt="Me at orchestra's shalom concert"
-        class="photo"
-      />
+      <img :src="Orchestra" :alt="String(t('photoCollage.orchestra'))" class="photo" />
     </div>
 
     <div class="photo-card photo-card--desktop-tall">
-      <img
-        :src="GoRn"
-        alt="Go-RN, a tech event that I participated in 2023"
-        class="photo photo--top-mobile"
-      />
+      <img :src="GoRn" :alt="String(t('photoCollage.gorn'))" class="photo photo--top-mobile" />
     </div>
 
     <div class="photo-card">
-      <img
-        :src="Lab"
-        alt="ProtoLab, a laboratory in UFRN that I studied in 2024"
-        class="photo"
-      />
+      <img :src="Lab" :alt="String(t('photoCollage.lab'))" class="photo" />
     </div>
 
     <div class="photo-card photo-card--tall">
-      <img
-        :src="Maps"
-        alt="Myself at a google maps"
-        class="photo"
-      />
+      <img :src="Maps" :alt="String(t('photoCollage.maps'))" class="photo" />
     </div>
 
     <div class="photo-card photo-card--tall">
-      <img
-        :src="Subaru"
-        alt="A subaru car that I saw"
-        class="photo"
-      />
+      <img :src="Subaru" :alt="String(t('photoCollage.subaru'))" class="photo" />
     </div>
 
     <div class="photo-card photo-card--short">
-      <img
-        :src="Selfie"
-        alt="My Selfie at school"
-        class="photo"
-      />
+      <img :src="Selfie" :alt="String(t('photoCollage.selfie'))" class="photo" />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import Orchestra from "@/assets/images/photos/shalom.webp";
-import GoRn from "@/assets/images/photos/gorn-2023.webp";
-import Lab from "@/assets/images/photos/laboratory.webp";
-import Maps from "@/assets/images/photos/maps.webp";
-import Selfie from "@/assets/images/photos/classic.webp";
-import Subaru from "@/assets/images/photos/spotting.webp";
+<script setup lang="ts">
+import Orchestra from '@/assets/images/photos/shalom.webp';
+import GoRn from '@/assets/images/photos/gorn-2023.webp';
+import Lab from '@/assets/images/photos/laboratory.webp';
+import Maps from '@/assets/images/photos/maps.webp';
+import Selfie from '@/assets/images/photos/classic.webp';
+import Subaru from '@/assets/images/photos/spotting.webp';
+import { useI18n } from '@/i18n';
 
-export default defineComponent({
-    data() {
-        return {
-            Orchestra,
-            GoRn,
-            Lab,
-            Maps,
-            Selfie,
-            Subaru,
-        };
-    },
-    name: "PhotoAlbum",
-});
+const { t } = useI18n();
 </script>
 
 <style lang="scss" scoped>

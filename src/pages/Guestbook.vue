@@ -1,73 +1,59 @@
 <template>
   <div class="guestbook">
     <section class="intro">
-      <h6 class="eyebrow">Community section</h6>
-      <h1>Guestbook</h1>
-      <p>
-        Leave a thoughtful message. It will stay here as part of this portfolio
-        story
-      </p>
+      <h6 class="eyebrow">{{ t('guestbook.eyebrow') }}</h6>
+      <h1>{{ t('guestbook.title') }}</h1>
+      <p>{{ t('guestbook.subtitle') }}</p>
       <div v-if="!isAuthenticated" class="auth-section">
-        <small>Sign in with GitHub to post and react to comments.</small>
+        <small>{{ t('guestbook.authHintLoggedOut') }}</small>
       </div>
       <div v-if="isAuthenticated" class="auth-section">
-        <small>Please keep it respectful and kind. 😭🙏</small>
+        <small>{{ t('guestbook.authHintLoggedIn') }}</small>
       </div>
     </section>
 
     <section class="comment-form">
       <div v-if="!isAuthenticated" class="auth-section">
         <button @click="loginWithGitHub" class="github-btn">
-          Continue with GitHub
+          {{ t('guestbook.continueWithGitHub') }}
         </button>
       </div>
 
       <div v-else class="auth-info">
         <div class="user-chip">
-          <img
-            :src="user?.photoURL || ProfilePicture"
-            alt="Your profile picture"
-            class="profile-picture"
-          />
+          <img :src="user?.photoURL || ProfilePicture" :alt="String(t('guestbook.profileAlt'))" class="profile-picture" />
           <small>{{ user?.displayName }}</small>
         </div>
-        <button @click="logout" class="logout-btn">Log out</button>
+        <button @click="logout" class="logout-btn">{{ t('guestbook.logout') }}</button>
       </div>
 
       <textarea
         v-model="newComment.content"
-        placeholder="Share a memory, thought, or feedback..."
+        :placeholder="String(t('guestbook.textareaPlaceholder'))"
         :disabled="!isAuthenticated"
       ></textarea>
 
       <div class="composer-footer">
-        <small>{{
-          isAuthenticated
-            ? "Your message is public."
-            : "Login required to post and react."
-        }}</small>
-        <button
-          @click="submitComment"
-          :disabled="!isAuthenticated || !newComment.content.trim()"
-        >
-          Post message
+        <small>{{ isAuthenticated ? t('guestbook.publicMessage') : t('guestbook.loginRequired') }}</small>
+        <button @click="submitComment" :disabled="!isAuthenticated || !newComment.content.trim()">
+          {{ t('guestbook.postMessage') }}
         </button>
       </div>
     </section>
 
     <p v-if="error" class="state-card error">{{ error }}</p>
 
-    <div v-if="isLoading" class="state-card">Loading comments...</div>
+    <div v-if="isLoading" class="state-card">{{ t('common.loading') }}</div>
     <div v-else>
       <div v-if="comments.length === 0" class="state-card no-comments">
-        No comments yet. <span>Be the first to write one.</span>
+        {{ t('guestbook.noComments') }} <span>{{ t('guestbook.beFirst') }}</span>
       </div>
 
       <div v-else class="comments-list">
         <article v-for="comment in comments" :key="comment.id" class="comment">
           <img
             :src="comment.photoURL || ProfilePicture"
-            :alt="`Profile picture of ${comment.username}`"
+            :alt="String(t('guestbook.commentProfileAlt', { name: comment.username }))"
             class="profile-picture"
           />
           <div class="comment-body">
@@ -94,7 +80,7 @@
                 @click="reactToComment(comment.id, 'up')"
                 :disabled="userVotes[comment.id] === 'up'"
               >
-                <img :src="ThumbsUp" alt="Thumbs up" />
+                <img :src="ThumbsUp" :alt="String(t('guestbook.thumbsUpAlt'))" />
                 <span>{{ comment.thumbsUp ?? 0 }}</span>
               </button>
               <button
@@ -103,7 +89,7 @@
                 @click="reactToComment(comment.id, 'down')"
                 :disabled="userVotes[comment.id] === 'down'"
               >
-                <img :src="ThumbsDown" alt="Thumbs down" />
+                <img :src="ThumbsDown" :alt="String(t('guestbook.thumbsDownAlt'))" />
                 <span>{{ comment.thumbsDown ?? 0 }}</span>
               </button>
             </div>
@@ -115,13 +101,19 @@
 </template>
 
 <script lang="ts">
-import ProfilePicture from "@/assets/images/pfp.webp";
-import ThumbsUp from "@/assets/icons/thumbs-up.svg";
-import ThumbsDown from "@/assets/icons/thumbs-down.svg";
-import { GuestbookComponent } from "@/services/GuestbookService";
+import { defineComponent } from 'vue';
+import { GuestbookComponent } from '@/services/GuestbookService';
+import { useI18n } from '@/i18n';
+import ProfilePicture from '@/assets/images/pfp.webp';
+import ThumbsUp from '@/assets/icons/thumbs-up.svg';
+import ThumbsDown from '@/assets/icons/thumbs-down.svg';
 
-export default {
+export default defineComponent({
   extends: GuestbookComponent,
+  setup() {
+    const { t } = useI18n();
+    return { t };
+  },
   data() {
     return {
       ProfilePicture,
@@ -129,7 +121,7 @@ export default {
       ThumbsDown,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
@@ -358,67 +350,43 @@ export default {
   }
 }
 
-.logout-btn {
-  background: color-mix(in srgb, var(--color-surface-soft) 70%, transparent);
+.logout-btn,
+.reaction-btn {
+  background: var(--color-surface-soft);
   border-color: var(--color-border);
-  padding: 0.45rem 0.85rem;
+  color: var(--color-text-strong);
 
   &:hover {
-    background: var(--color-surface-soft);
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-primary);
   }
+}
+
+.logout-btn {
+  padding: 0.45rem 0.95rem;
 }
 
 .reaction-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.28rem;
-  padding: 0.32rem 0.65rem;
-  background: color-mix(
-    in srgb,
-    var(--color-surface-elevated) 85%,
-    transparent
-  );
-  border-color: var(--color-border-strong);
-  font-size: 0.82rem;
+  gap: 0.3rem;
+  padding: 0.35rem 0.65rem;
 
   img {
     width: 0.9rem;
     height: 0.9rem;
   }
 
-  &:hover:not(:disabled) {
-    background: var(--color-surface-soft);
-  }
-
   &.active {
-    background: color-mix(in srgb, var(--color-brand-primary) 16%, transparent);
-    border-color: color-mix(
-      in srgb,
-      var(--color-brand-primary) 45%,
-      transparent
-    );
-  }
-
-  &:disabled {
-    cursor: default;
+    border-color: var(--color-brand-primary);
   }
 }
 
-@media (max-width: 700px) {
-  .guestbook {
-    padding-bottom: 1.25rem;
-  }
-
-  .intro {
-    padding: 1.3rem;
-  }
-
+@media (max-width: 720px) {
   .comment-form {
-    padding: 1rem;
-
     .auth-info {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
     }
 
     .composer-footer {
@@ -432,10 +400,13 @@ export default {
   }
 
   .comment {
+    gap: 0.7rem;
+    padding: 0.75rem;
+
     .comment-header {
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.2rem;
+      gap: 0.25rem;
     }
   }
 }

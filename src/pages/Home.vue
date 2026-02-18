@@ -1,97 +1,76 @@
 <template>
   <div class="page-container">
     <div class="hero-background">
-      <img
-        :src="Background"
-        alt="Background image"
-        class="hero-background__image"
-      />
+      <img :src="Background" :alt="String(t('home.imageAlt.background'))" class="hero-background__image" />
     </div>
 
     <div class="home__welcome">
-      <h1>Hey, I'm Felipe 👋🏼</h1>
+      <h1>{{ t('home.title') }}</h1>
       <ul class="home__bio">
-        <li>AI Engineer<span>&</span></li>
-        <li>Web-designer<span>&</span></li>
-        <li>Computer Engineer<span>&</span></li>
-        <li>Fullstack Software Developer<mark>.</mark></li>
+        <li v-for="(role, index) in roles" :key="role">
+          {{ role }}<span v-if="index < roles.length - 1">&</span><mark v-else>.</mark>
+        </li>
       </ul>
     </div>
   </div>
 
   <div class="home__content">
     <p class="home__text">
-      I'm a fullstack developer, computer engineer, software student and
-      webdesigner since 2019. I worked in
+      {{ t('home.introBeforeBase') }}
       <PillBadge
         linkUrl="https://basegpt.com.br"
-        linkAlt="Link for the BaseGPT Website"
+        :linkAlt="String(t('home.links.base'))"
         pillStyle="pill-badge--purple"
         :imgUrl="Base"
-        imgAlt="Logo of the 'BaseGPT'', from DataVence."
+        :imgAlt="String(t('home.imageAlt.base'))"
         pillText="BaseGPT"
       />
-      and in
+      {{ t('home.introBetweenBaseAndDemanda') }}
       <PillBadge
         linkUrl="https://demandaurbana.com.br"
-        linkAlt="Link to 'Demanda Urbana' website"
+        :linkAlt="String(t('home.links.demanda'))"
         pillStyle="pill-badge--blue"
         :imgUrl="Demanda"
-        imgAlt="Logo of the 'Demanda Urbana', from Arkanus."
+        :imgAlt="String(t('home.imageAlt.demanda'))"
         pillText="Demanda Urbana"
       />
-      at <a href="https://arkanus.app/">Arkanus</a>, and made some projects in
-      my own, like
+      {{ t('home.introAfterDemandaBeforeOtsuki') }}
       <PillBadge
         linkUrl="https://otsuki.dev"
-        linkAlt="Link for the Otsuki Website"
+        :linkAlt="String(t('home.links.otsuki'))"
         pillStyle="pill-badge--otsuki"
         :imgUrl="Otsuki"
-        imgAlt="Logo of the Otsuki."
+        :imgAlt="String(t('home.imageAlt.otsuki'))"
         pillText="Otsuki"
       />
-      . <br />
-      I keep practicing every day<i class="home__note">/7*</i> and learning new
-      technologies to improve my skills.
-      <span class="home__highlight">欢迎你，朋友！</span>
+      {{ t('home.introAfterOtsuki') }}<i class="home__note">/7*</i> {{ t('home.introEnd') }}
+      <span class="home__highlight">{{ t('home.welcomeChinese') }}</span>
     </p>
 
     <p class="home__text home__text--section">
-      Some time ago, I just started a Blog and a Youtube Channel to teach people
-      in the dev world. Tutorials, Q&A and news from technologies its just a
-      slice of the content that im actually creating. Making projects and
-      sharing knowledge is my passion, and I'm happy to share it. <br />
-      I can show that
+      {{ t('home.secondParagraph') }}
       <i class="home__skill home__skill--cpp"> C++, </i>
       <i class="home__skill home__skill--javascript"> Javascript</i>
-      and
+      {{ ' ' }}{{ t('home.andConnector') }}
       <i class="home__skill home__skill--julia"> Julia </i>
-      are very cool, so check my channel.
+      {{ t('home.secondParagraphEnd') }}
     </p>
   </div>
 </template>
 
-<script lang="ts" scoped>
-import { defineComponent } from "vue";
-import Background from "@/assets/images/background.webp";
-import PillBadge from "@/components/PillBadge.vue";
-import Demanda from "@/assets/images/demanda-urbana.webp";
-import Base from "@/assets/images/basegpt.webp";
-import Otsuki from "@/assets/images/otsuki.webp";
+<script setup lang="ts">
+import { computed } from 'vue';
+import Background from '@/assets/images/background.webp';
+import PillBadge from '@/components/PillBadge.vue';
+import Demanda from '@/assets/images/demanda-urbana.webp';
+import Base from '@/assets/images/basegpt.webp';
+import Otsuki from '@/assets/images/otsuki.webp';
+import { useI18n } from '@/i18n';
 
-export default defineComponent({
-  components: {
-    PillBadge,
-  },
-  data() {
-    return {
-      Background,
-      Demanda,
-      Base,
-      Otsuki,
-    };
-  },
-  name: "HomePage",
+const { t } = useI18n();
+const roles = computed(() => {
+  const value = t('home.roles');
+  return Array.isArray(value) ? value : [];
 });
 </script>
 

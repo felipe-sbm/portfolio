@@ -1,7 +1,7 @@
 <template>
   <header class="site-header">
     <div class="site-header__meta">
-      <p class="site-header__location">Natal, Brazil</p>
+      <p class="site-header__location">{{ t('header.location') }}</p>
     </div>
     <div class="site-header__glass site-header__dock">
       <div class="site-header__glass-effect"></div>
@@ -19,7 +19,7 @@
                 <span class="site-header__nav-icon">
                   <HomeIcon />
                 </span>
-                <span class="site-header__nav-text">Home</span>
+                <span class="site-header__nav-text">{{ t('nav.home') }}</span>
               </router-link>
             </li>
             <li>
@@ -31,7 +31,7 @@
                 <span class="site-header__nav-icon">
                   <UserIcon />
                 </span>
-                <span class="site-header__nav-text">About me</span>
+                <span class="site-header__nav-text">{{ t('nav.about') }}</span>
               </router-link>
             </li>
             <li>
@@ -43,7 +43,7 @@
                 <span class="site-header__nav-icon">
                   <BotIcon />
                 </span>
-                <span class="site-header__nav-text">AI</span>
+                <span class="site-header__nav-text">{{ t('nav.ai') }}</span>
               </router-link>
             </li>
             <li>
@@ -55,7 +55,7 @@
                 <span class="site-header__nav-icon">
                   <Cog />
                 </span>
-                <span class="site-header__nav-text">Projects</span>
+                <span class="site-header__nav-text">{{ t('nav.projects') }}</span>
               </router-link>
             </li>
             <li>
@@ -67,7 +67,7 @@
                 <span class="site-header__nav-icon">
                   <BookOpenIcon />
                 </span>
-                <span class="site-header__nav-text">Guestbook</span>
+                <span class="site-header__nav-text">{{ t('nav.guestbook') }}</span>
               </router-link>
             </li>
           </ul>
@@ -130,41 +130,37 @@
   </header>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
-import {
-  HomeIcon,
-  UserIcon,
-  BotIcon,
-  Cog,
-  BookOpenIcon,
-} from "lucide-vue-next";
-import { setNextNavigationScrollIntent } from "@/services/NavigationScrollIntent";
+<script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { HomeIcon, UserIcon, BotIcon, Cog, BookOpenIcon } from 'lucide-vue-next';
+import { setNextNavigationScrollIntent } from '@/services/NavigationScrollIntent';
+import { useI18n } from '@/i18n';
 
-export default defineComponent({
-  name: "NatalTime",
-  components: { HomeIcon, UserIcon, BotIcon, Cog, BookOpenIcon },
-  setup() {
-    const natalTime = ref("");
-    const setHeaderScrollIntent = () => {
-      setNextNavigationScrollIntent("header-top");
-    };
+const { t, getIntlLocale } = useI18n();
+const natalTime = ref('');
+let timer: number | undefined;
 
-    const updateTime = () => {
-      const date = new Date();
-      natalTime.value = new Intl.DateTimeFormat("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        timeZone: "America/Fortaleza",
-      }).format(date);
-    };
-    onMounted(() => {
-      updateTime();
-      setInterval(updateTime, 1000);
-    });
-    return { natalTime, setHeaderScrollIntent };
-  },
+function setHeaderScrollIntent() {
+  setNextNavigationScrollIntent('header-top');
+}
+
+function updateTime() {
+  const date = new Date();
+  natalTime.value = new Intl.DateTimeFormat(getIntlLocale(), {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: 'America/Fortaleza',
+  }).format(date);
+}
+
+onMounted(() => {
+  updateTime();
+  timer = window.setInterval(updateTime, 1000);
+});
+
+onBeforeUnmount(() => {
+  if (timer) window.clearInterval(timer);
 });
 </script>
 
@@ -186,7 +182,7 @@ export default defineComponent({
   nav {
     margin-top: 0.2rem;
     padding: 0rem 1.5rem;
-    max-width: 27rem;
+    max-width: 30rem;
 
     ul {
       list-style: none;

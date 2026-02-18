@@ -3,7 +3,7 @@
     <main class="workspace">
       <div class="messages" ref="messagesContainerRef">
         <p v-if="!messages.length" class="empty">
-          Make a question to start the chat.
+          {{ t('ai.empty') }}
         </p>
 
         <article
@@ -11,21 +11,16 @@
           :key="`${message.role}-${index}-${message.content.slice(0, 12)}`"
           :class="['message', `message--${message.role}`]"
         >
-          <span class="message__role">{{
-            message.role === "user" ? "Você" : "GPT-OSS-120B"
-          }}</span>
+          <span class="message__role">{{ message.role === 'user' ? t('ai.you') : t('ai.roleAssistant') }}</span>
           <p class="message__content">{{ message.content }}</p>
         </article>
       </div>
 
-      <div
-        class="composer-shell"
-        :class="{ 'composer-shell--floating': !messages.length }"
-      >
+      <div class="composer-shell" :class="{ 'composer-shell--floating': !messages.length }">
         <textarea
           v-model="input"
           class="composer-input"
-          placeholder="Write down here..."
+          :placeholder="String(t('ai.placeholder'))"
           rows="2"
           :disabled="isLoading"
           @keydown.enter.exact.prevent="sendMessage"
@@ -36,12 +31,11 @@
             <div class="ticker" aria-hidden="true">
               <span class="ticker__track">
                 <span v-if="!errorMessage" class="ticker__item">
-                  AI made by Human, not by another AI.
+                  {{ t('ai.ticker') }}
                 </span>
                 <span v-if="!errorMessage" class="ticker__item">
-                  AI made by Human, not by another AI.
+                  {{ t('ai.ticker') }}
                 </span>
-                <!-- Se tiver algum erro, vai exibir da mesma forma 👍-->
                 <span v-if="errorMessage" class="ticker__item error">
                   {{ errorMessage }}
                 </span>
@@ -51,13 +45,9 @@
               </span>
             </div>
           </div>
-          <button
-            type="button"
-            :disabled="isLoading || !trimmedInput"
-            @click="sendMessage"
-          >
+          <button type="button" :disabled="isLoading || !trimmedInput" @click="sendMessage">
             <CornerDownRight :size="14" />
-            {{ isLoading ? "Thinking..." : "Send" }}
+            {{ isLoading ? t('ai.thinking') : t('ai.send') }}
           </button>
         </div>
       </div>
@@ -66,14 +56,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, ref } from "vue";
-import { CornerDownRight } from "lucide-vue-next";
-import { askChatbot, type ChatMessage } from "@/services/ChatbotService";
+import { computed, nextTick, ref } from 'vue';
+import { CornerDownRight } from 'lucide-vue-next';
+import { askChatbot, type ChatMessage } from '@/services/ChatbotService';
+import { useI18n } from '@/i18n';
 
-// Variáveis para o funcionamento do chat
-const input = ref("");
+const { t } = useI18n();
+const input = ref('');
 const isLoading = ref(false);
-const errorMessage = ref("");
+const errorMessage = ref('');
 const messages = ref<ChatMessage[]>([]);
 const messagesContainerRef = ref<HTMLElement | null>(null);
 
@@ -85,19 +76,18 @@ function scrollToBottom() {
   container.scrollTop = container.scrollHeight;
 }
 
-// Enviar menssagem
 async function sendMessage() {
   if (isLoading.value || !trimmedInput.value) return;
 
-  errorMessage.value = "";
+  errorMessage.value = '';
 
   const userMessage: ChatMessage = {
-    role: "user",
+    role: 'user',
     content: trimmedInput.value,
   };
 
   messages.value.push(userMessage);
-  input.value = "";
+  input.value = '';
   await nextTick();
   scrollToBottom();
 
@@ -107,12 +97,11 @@ async function sendMessage() {
     const answer = await askChatbot(messages.value);
 
     messages.value.push({
-      role: "assistant",
+      role: 'assistant',
       content: answer,
     });
   } catch (error) {
-    errorMessage.value =
-      error instanceof Error ? error.message : "Erro ao responder.";
+    errorMessage.value = error instanceof Error ? error.message : String(t('ai.unknownError'));
   } finally {
     isLoading.value = false;
     await nextTick();
