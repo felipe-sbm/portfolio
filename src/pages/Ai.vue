@@ -3,7 +3,7 @@
     <main class="workspace">
       <div class="messages" ref="messagesContainerRef">
         <p v-if="!messages.length" class="empty">
-          Faça uma pergunta para iniciar a conversa.
+          Make a question to start the chat.
         </p>
 
         <article
