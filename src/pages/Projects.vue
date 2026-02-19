@@ -22,6 +22,8 @@
         :description="project.description"
         :link="project.link"
         :slug="project.slug"
+        :languages="project.languages"
+        :frameworks="project.frameworks"
       />
     </div>
   </div>

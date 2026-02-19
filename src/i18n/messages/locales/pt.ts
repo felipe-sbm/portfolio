@@ -6,6 +6,7 @@ export const ptMessages: MessageTree = {
     about: { title: 'Sobre | Felipe SBM', description: 'Saiba mais sobre Felipe SBM.' },
     ai: { title: 'IA | Felipe SBM', description: 'Projetos e pesquisas em Inteligência Artificial.' },
     projects: { title: 'Projetos | Felipe SBM', description: 'Projetos desenvolvidos por Felipe SBM.' },
+    projectDetail: { title: 'Projeto | Felipe SBM', description: 'Detalhes de projeto de Felipe SBM.' },
     guestbook: { title: 'Livro de visitas | Felipe SBM', description: 'Deixe uma mensagem para Felipe SBM.' },
     notfound: { title: '404 | Felipe SBM', description: 'Página não encontrada.' },
   },
@@ -113,6 +114,20 @@ export const ptMessages: MessageTree = {
     small: 'Um dia ainda faço um em Assembly.',
     welcome: 'Bem-vindo aos meus projetos!',
     lastProject: 'último projeto',
+    detail: {
+      eyebrow: 'Projeto em foco',
+      small: 'Caso real com contexto, decisões e aprendizados.',
+      back: 'Voltar para projetos',
+      fallback: 'Conteúdo detalhado em breve.',
+      notFound: 'Projeto não encontrado.',
+      openRepository: 'Ver repositório',
+      openProject: 'Visitar projeto',
+      imagePreview: 'Abrir imagem em tela cheia',
+      closePreview: 'Fechar visualização da imagem',
+      imageAlt: 'Imagem do projeto',
+      languages: 'Linguagens',
+      frameworks: 'Frameworks',
+    },
     items: {
       insomnia: {
         name: 'Insomnia Machine',

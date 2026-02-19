@@ -1,19 +1,26 @@
 ---
 title: Insomnia Machine
-summary: "A smart espresso machine built with ESP32 and C++."
-image: /src/assets/images/insomnia.jpg
+summary: "Máquina de café autônoma com ESP32 e C++, focada em IoT e automação embarcada."
 ---
 
-## Overview
+## Contexto
 
-This project explores building an autonomous coffee machine using an ESP32 microcontroller and C++. It includes:
+A **Insomnia Machine** nasceu como um experimento de IoT para unir eletrônica, software embarcado e experiência de usuário em um protótipo funcional de cafeteria automática.
 
-- Temperature control
-- Water reservoir monitoring
-- Scheduling and remote start
+## O que foi construído
 
-## Highlights
+- Controle de preparo por estados (idle, heating, brewing)
+- Leitura de sensores para nível de água e temperatura
+- Acionamento de bomba e resistência com regras de segurança
+- Base de telemetria para avaliar consistência do preparo
 
-Write detailed explanation here about architecture, components, lessons learned, and links.
+## Stack
 
-You can add images, code snippets, or embed videos as needed.
+- C++
+- ESP32
+- Sensores analógicos e digitais
+- Comunicação serial para debug
+
+## Aprendizados
+
+Esse projeto consolidou conceitos importantes de sistemas embarcados: tolerância a falhas, debouncing, controle de tempo sem bloqueio e clareza de arquitetura para firmware.

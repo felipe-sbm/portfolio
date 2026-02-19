@@ -6,6 +6,7 @@ export const jaMessages: MessageTree = {
     about: { title: '自己紹介 | Felipe SBM', description: 'Felipe SBM について。' },
     ai: { title: 'AI | Felipe SBM', description: 'AI のプロジェクトと研究。' },
     projects: { title: 'プロジェクト | Felipe SBM', description: 'Felipe SBM が開発したプロジェクト。' },
+    projectDetail: { title: 'プロジェクト詳細 | Felipe SBM', description: 'Felipe SBM のプロジェクト詳細。' },
     guestbook: { title: 'ゲストブック | Felipe SBM', description: 'Felipe SBM へのメッセージ。' },
     notfound: { title: '404 | Felipe SBM', description: 'ページが見つかりません。' },
   },
@@ -113,6 +114,20 @@ export const jaMessages: MessageTree = {
     small: 'いつかAssemblyでも作りたいです。',
     welcome: 'プロジェクトへようこそ！',
     lastProject: '最新プロジェクト',
+    detail: {
+      eyebrow: '注目プロジェクト',
+      small: '背景、判断、学びをまとめたケースです。',
+      back: 'プロジェクト一覧へ戻る',
+      fallback: '詳細コンテンツは準備中です。',
+      notFound: 'プロジェクトが見つかりません。',
+      openRepository: 'リポジトリを開く',
+      openProject: 'プロジェクトを開く',
+      imagePreview: '画像を全画面で表示',
+      closePreview: '画像プレビューを閉じる',
+      imageAlt: 'プロジェクト画像',
+      languages: '言語',
+      frameworks: 'フレームワーク',
+    },
     items: {
       insomnia: {
         name: 'Insomnia Machine',

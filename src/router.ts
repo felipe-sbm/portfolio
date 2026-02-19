@@ -41,6 +41,15 @@ const routes = [
     },
   },
   {
+    path: '/projects/:slug',
+    name: 'project-detail',
+    component: () => import('./pages/ProjectDetail.vue'),
+    meta: {
+      titleKey: 'routes.projectDetail.title',
+      descriptionKey: 'routes.projectDetail.description',
+    },
+  },
+  {
     path: '/guestbook',
     name: 'guestbook',
     component: () => import('./pages/Guestbook.vue'),

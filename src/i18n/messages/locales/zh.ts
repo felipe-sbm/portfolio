@@ -6,6 +6,7 @@ export const zhMessages: MessageTree = {
     about: { title: '关于 | Felipe SBM', description: '了解 Felipe SBM。' },
     ai: { title: 'AI | Felipe SBM', description: '人工智能项目与研究。' },
     projects: { title: '项目 | Felipe SBM', description: 'Felipe SBM 开发的项目。' },
+    projectDetail: { title: '项目详情 | Felipe SBM', description: 'Felipe SBM 的项目详情。' },
     guestbook: { title: '留言簿 | Felipe SBM', description: '给 Felipe SBM 留言。' },
     notfound: { title: '404 | Felipe SBM', description: '页面未找到。' },
   },
@@ -113,6 +114,20 @@ export const zhMessages: MessageTree = {
     small: '总有一天我会用 Assembly 做一个。',
     welcome: '欢迎来到我的项目！',
     lastProject: '最新项目',
+    detail: {
+      eyebrow: '项目聚焦',
+      small: '包含背景、决策与经验总结的真实案例。',
+      back: '返回项目列表',
+      fallback: '详细内容即将发布。',
+      notFound: '未找到该项目。',
+      openRepository: '查看仓库',
+      openProject: '访问项目',
+      imagePreview: '全屏查看图片',
+      closePreview: '关闭图片预览',
+      imageAlt: '项目图片',
+      languages: '语言',
+      frameworks: '框架',
+    },
     items: {
       insomnia: {
         name: 'Insomnia Machine',

@@ -11,6 +11,20 @@
         <div class="project-card__content">
           <h3 class="project-card__title">{{ name }}</h3>
           <p class="project-card__description">{{ description }}</p>
+          <div class="project-card__tags">
+            <TechPill
+              v-for="language in languages"
+              :key="`${slug}-lang-${language}`"
+              :label="language"
+              variant="language"
+            />
+            <TechPill
+              v-for="framework in frameworks"
+              :key="`${slug}-fw-${framework}`"
+              :label="framework"
+              variant="framework"
+            />
+          </div>
         </div>
       </div>
     </router-link>
@@ -19,6 +33,7 @@
 
 <script setup lang="ts">
 import { useI18n } from '@/i18n';
+import TechPill from '@/components/TechPill.vue';
 
 defineProps<{
   name: string;
@@ -27,6 +42,8 @@ defineProps<{
   description: string;
   link: string;
   slug: string;
+  languages: string[];
+  frameworks: string[];
   isLastProject?: boolean;
 }>();
 
@@ -131,6 +148,13 @@ const { t } = useI18n();
         margin: 0;
         line-height: 1.4;
         color: var(--color-text);
+      }
+
+      .project-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.85rem;
       }
     }
   }

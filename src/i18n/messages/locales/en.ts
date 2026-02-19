@@ -8,6 +8,7 @@ export const enMessages: MessageTree = {
     about: { title: 'About | Felipe SBM', description: 'Learn more about Felipe SBM.' },
     ai: { title: 'AI | Felipe SBM', description: 'Projects and research in Artificial Intelligence.' },
     projects: { title: 'Projects | Felipe SBM', description: 'Projects built by Felipe SBM.' },
+    projectDetail: { title: 'Project | Felipe SBM', description: 'Project details by Felipe SBM.' },
     guestbook: { title: 'Guestbook | Felipe SBM', description: 'Leave a message for Felipe SBM.' },
     notfound: { title: '404 | Felipe SBM', description: 'Page not found.' },
   },
@@ -115,6 +116,20 @@ export const enMessages: MessageTree = {
     small: 'One day I still need to build one in Assembly.',
     welcome: 'Welcome to my projects!',
     lastProject: 'last project',
+    detail: {
+      eyebrow: 'Project spotlight',
+      small: 'A real case with context, decisions and learnings.',
+      back: 'Back to projects',
+      fallback: 'Detailed write-up coming soon.',
+      notFound: 'Project not found.',
+      openRepository: 'Open repository',
+      openProject: 'Visit project',
+      imagePreview: 'Open image in full screen',
+      closePreview: 'Close image preview',
+      imageAlt: 'Project image',
+      languages: 'Languages',
+      frameworks: 'Frameworks',
+    },
     items: {
       insomnia: {
         name: 'Insomnia Machine',
