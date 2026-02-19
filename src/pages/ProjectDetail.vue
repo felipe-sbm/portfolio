@@ -96,7 +96,6 @@ import MarkdownIt from "markdown-it";
 import { useI18n } from "@/i18n";
 import { getProjectBySlug } from "@/data/projectData";
 import TechPill from "@/components/TechPill.vue";
-import { ArrowLeft } from "lucide-vue-next";
 
 const route = useRoute();
 const { t } = useI18n();
