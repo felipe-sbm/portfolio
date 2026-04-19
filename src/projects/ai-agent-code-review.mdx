@@ -1,25 +1,114 @@
 ---
-title: AI Agent Code Review
-summary: "Agente de IA para revisão automatizada de código com foco em qualidade e consistência."
+title: Adonai
+summary: "Agente de revisão de código com IA que transforma diffs/arquivos em feedback técnico estruturado, com UI em Blazor WebAssembly e backend em Python (Flask) integrado a LLM (Groq)."
 ---
 
 ## Contexto
 
-Projeto voltado para acelerar revisão técnica e reduzir gargalos em times de desenvolvimento.
+O **Adonai** surgiu como um projeto acadêmico no **IMD/UFRN**, em parceria com a **Akcit**, com uma ideia bem prática: atacar um problema real de times de software — **retrabalho em revisão de código**.
+
+Na prática, revisão de código consome muito tempo com coisas repetitivas: validar padrão, identificar inconsistência simples, suspeitar de bug, apontar risco, sugerir melhoria básica. Isso é necessário, mas não precisa ser 100% manual.
+
+A proposta do Adonai é funcionar como uma **primeira passada inteligente** no código. Ele não substitui o revisor humano — e nem tenta — mas já entrega uma análise estruturada, levantando pontos importantes antes mesmo do PR ser revisado por alguém.
+
+Além disso, o projeto também serviu para exercitar coisas bem importantes na prática:
+
+- integração entre **frontend e backend**;
+- definição de endpoints para múltiplos tipos de entrada;
+- construção de prompts mais consistentes para LLM;
+- foco em **usabilidade**, principalmente na forma como o feedback é apresentado.
+
+## Proposta do projeto
+
+A ideia foi construir um sistema que recebe alterações de código (diffs ou arquivos) e retorna uma revisão automatizada com:
+
+- foco em **qualidade de código** (clareza, legibilidade, manutenção);
+- identificação de **possíveis problemas** (bugs, regressões, comportamento inesperado);
+- **sugestões diretas** (o que mudar e por quê);
+- saída padronizada, fácil de ler e aplicar.
+
+No fim, o objetivo é simples: usar o agente como um tipo de **checklist inteligente**, seja antes de abrir um PR ou como complemento da revisão tradicional.
+
+## Como funciona
+
+O fluxo é bem direto:
+
+1. O usuário envia código (texto, JSON ou upload).
+2. O backend recebe e organiza esse conteúdo.
+3. O sistema prepara o input (contexto + instruções + dados).
+4. A LLM (via **Groq**) gera a análise.
+5. O resultado volta já estruturado: problema, risco e sugestão.
+
+Mesmo sendo acadêmico, o fluxo já foi pensado de forma que daria para evoluir facilmente para algo integrado em CI/CD.
 
 ## O que foi construído
 
-- Pipeline para análise de diffs e arquivos alterados
-- Geração de feedback técnico com foco em bugs e riscos
-- Regras para priorizar achados por severidade
-- Saída padronizada para facilitar leitura por desenvolvedores
+### Interface (Frontend)
+
+- **Blazor WebAssembly** como base.
+- Interface no estilo chat, deixando o uso mais natural.
+- Estrutura simples e organizada (fácil de manter e evoluir).
+
+### API (Backend)
+
+- Backend em **Flask**, com organização por blueprint.
+- API versionada (`/api/v1`).
+- Endpoint de **health check**, útil para testes e deploy.
+
+### Modos de uso
+
+O sistema aceita diferentes formas de entrada:
+
+- **JSON** → ideal para automação
+- **Upload de arquivos** → ideal para uso manual
+
+A estrutura também já permite expandir para outras funcionalidades no futuro.
+
+### Integração com LLM
+
+- Uso do **Groq** como provedor.
+- Configuração via variável de ambiente (`GROQ_API_KEY`).
+- Trabalho maior na **qualidade do prompt**, para evitar respostas genéricas.
+
+### Documentação
+
+- README com setup completo (frontend + backend).
+- Configuração clara via variáveis de ambiente.
+- `/docs` para testar endpoints rapidamente.
 
 ## Stack
 
-- Python
-- Integrações com APIs de LLM
-- Estrutura orientada a workflows de CI/CD
+- **Frontend:** Blazor WebAssembly + Bootstrap  
+- **Backend:** Flask (Python)  
+- **LLM:** Groq  
+- **API:** versionada (`/api/v1`)  
+- **Execução:** frontend e backend separados (facilita debug)
+
+## Resultado na prática
+
+O Adonai acabou virando um pipeline completo (UI + API) que mostra bem:
+
+- como transformar código em **feedback útil**;
+- como padronizar revisão para evitar ambiguidade;
+- como usar IA como **apoio**, não substituição.
+
+Mesmo sendo um projeto acadêmico, já deixa base para evoluir coisas como:
+
+- classificação por severidade;
+- análise mais específica por linguagem;
+- integração com pipelines de CI/CD;
+- histórico de revisões.
 
 ## Aprendizados
 
-O maior ganho foi modelar prompts e critérios de revisão de forma consistente, evitando respostas genéricas e aumentando a utilidade prática do agente.
+O principal insight foi que o valor não está só em “usar IA”, mas em:
+
+- estruturar bem a **entrada**;
+- padronizar bem a **saída**;
+- definir **critérios claros** de análise.
+
+Além disso, foi importante conectar tudo:
+
+- uma UI que facilita interação,
+- uma API organizada,
+- e uma integração com LLM que realmente agrega valor.

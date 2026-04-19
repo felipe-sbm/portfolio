@@ -31,13 +31,13 @@ export const ptMessages: MessageTree = {
     notByAiAlt: 'Certificado Not By AI',
     phrases: [
       'Mantenha a curiosidade!',
-      'Codifique com paixão.',
-      'Abrace a jornada.',
+      'Programe com paixão.',
+      'Abrace sua jornada.',
       'Continue aprendendo.',
       'Construa algo incrível.',
-      'Sonhe grande, codifique maior.',
+      'Pense grande, desenvolva maior.',
       'Crie, inove e inspire.',
-      'Pense fora da caixa.',
+      'Pense sempre fora da caixa.',
       'Deus é bom o tempo todo.',
     ],
     social: {

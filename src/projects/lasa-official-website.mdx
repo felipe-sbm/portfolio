@@ -1,25 +1,78 @@
 ---
-title: LASA Official Website
-summary: "Website institucional para o Laboratório de Soluções Ambientais (LASA)."
+title: LASA (Laboratório de Soluções Ambientais)
+summary: "Website institucional em Next.js (App Router) para divulgar o Laboratório de Soluções Ambientais (UFRN), com layout responsivo, identidade visual própria e integração com o Blogger para publicações."
 ---
 
 ## Contexto
 
-A proposta foi criar um site institucional claro, confiável e fácil de manter para divulgar projetos, notícias e iniciativas do laboratório.
+O **LASA** é um site institucional desenvolvido para o **Laboratório de Soluções Ambientais** da **UFRN (ECT)**, com o objetivo de centralizar a comunicação do laboratório em um único lugar.
+
+A ideia foi resolver um problema bem comum: informação espalhada e difícil de manter. O site passa a concentrar tudo — apresentação, equipe e principalmente **publicações** — em uma interface moderna e simples de atualizar.
+
+Alguns requisitos guiaram o projeto desde o início:
+
+- boa **performance** e SEO (por ser um site público);
+- layout **responsivo** (uso real em mobile);
+- **identidade visual consistente**;
+- e principalmente: permitir atualizar conteúdo **sem precisar fazer deploy** a cada post.
+
+## Proposta do projeto
+
+Construir uma aplicação que funcione como um hub do laboratório, com:
+
+- uma **home** apresentando o laboratório e destacando posts recentes;
+- uma página de **sobre** com informações institucionais;
+- sistema de **listagem e leitura de publicações**;
+- estrutura de código organizada para evolução contínua.
+
+Para resolver a parte de conteúdo, a escolha foi usar o **Blogger** como fonte externa. Assim, quem gerencia os posts não precisa lidar com código, e o site apenas consome esses dados via API.
 
 ## O que foi construído
 
-- Estrutura de páginas institucionais
-- Organização de conteúdo para comunicação pública
-- Layout responsivo com foco em leitura
-- Base para manutenção contínua e expansão
+- Aplicação em **Next.js** usando **App Router** (`src/app`);
+- Rotas principais:
+  - Home (`page.tsx`)
+  - Sobre (`sobre/page.tsx`)
+  - Not Found customizado
+- Configuração de **metadata** no layout (melhorando SEO e navegação);
+- Sistema de design próprio (cores, tipografia e componentes centralizados em `globals.scss`);
+- Seção de blog com componentes reutilizáveis para exibição de posts;
+- Integração com a **API do Blogger**, incluindo:
+  - listagem de posts
+  - busca por id
+  - extração de imagem do conteúdo HTML
+  - geração de preview de texto
+
+## Como funciona
+
+O fluxo é simples:
+
+1. A Home renderiza no servidor e chama `getPosts()`.
+2. Os dados vindos do Blogger são processados e exibidos em forma de cards.
+3. Cada card mostra:
+   - título
+   - data formatada
+   - imagem (extraída do HTML)
+   - resumo do conteúdo
+4. Ao clicar, o usuário vai para `/posts/[id]`.
+5. O acesso à API é feito via variáveis de ambiente (`BLOGGER_BLOG_ID` e `BLOGGER_API_KEY`).
 
 ## Stack
 
-- Frontend web responsivo
-- Componentização de interface
-- Boas práticas de performance e semântica
+- **Next.js + TypeScript**
+- **App Router**
+- **SCSS** + Tailwind (via `@use`)
+- **next/font**
+- **Blogger API**
+- **next/image**
 
 ## Aprendizados
 
-Esse trabalho reforçou decisões de arquitetura de frontend para projetos institucionais: simplicidade, estabilidade e clareza de conteúdo são prioridades absolutas.
+- Usar um CMS externo (como o Blogger) resolve bem o problema de **gestão de conteúdo sem acoplar backend**.
+- Trabalhar com HTML vindo de API exige tratamento:
+  - extração de imagem,
+  - geração de preview,
+  - fallback para erro de requisição.
+- Definir identidade visual (cores, tipografia, componentes) desde o início faz muita diferença no resultado final.
+
+No geral, foi um projeto mais focado em **estrutura, integração e experiência**, não só em interface.

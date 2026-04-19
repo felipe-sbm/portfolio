@@ -1,24 +1,81 @@
 ---
-title: PIAF - UFRN
-summary: "Sistema para cadastro e organização de atividades físicas no campus da UFRN."
+title: PIAF (UFRN)
+summary: "Portal web em Ruby on Rails para inscrições em atividades físicas da COESPE/UFRN, com gestão de turmas, listas de espera, resultados e painel administrativo."
 ---
 
 ## Contexto
 
-O **PIAF** foi criado para facilitar o fluxo de inscrição e acompanhamento de pessoas interessadas em atividades físicas no ambiente universitário.
+O **PIAF** (Portal de Inscrições de Atividades Físicas) foi criado para resolver um problema bem claro da **COESPE/UFRN**: o processo de inscrição presencial.
 
-## O que foi resolvido
+Em períodos de matrícula, o fluxo tradicional gera fila, burocracia e muito trabalho manual. Isso impacta tanto quem quer se inscrever quanto quem precisa gerenciar as turmas.
 
-- Cadastro centralizado de participantes
-- Organização de turmas e horários
-- Estrutura pronta para evoluir para relatórios e métricas
+A proposta do sistema foi centralizar tudo em uma plataforma única: desde o cadastro até o acompanhamento das atividades, incluindo ferramentas para gestão de vagas, presença e comunicação.
+
+## Proposta do projeto
+
+Construir um portal que:
+
+- simplifique o processo de **inscrição e renovação**;
+- elimine a necessidade de presença física (e, consequentemente, filas);
+- ofereça um fluxo direto para o usuário (ver → se inscrever → acompanhar);
+- dê suporte para administração com ferramentas de **gestão completa**.
+
+Um ponto interessante é o impacto indireto: menos deslocamento em massa durante matrícula → menos impacto logístico e ambiental.
+
+## O que foi construído
+
+### Usuário
+
+- Cadastro e autenticação
+- Visualização de **turmas/modalidades**
+- Fluxo de **inscrição**
+- Área de **Minhas Turmas**
+- Página de **resultados**
+- Suporte a **lista de espera** e **renovação**
+
+### Administração
+
+- **Dashboard** geral
+- Criação e gestão de turmas
+- Controle de inscrições (incluindo remoção de inativos)
+- **Relatórios e métricas**
+- Registro de **presença**
+- Comunicação com usuários (ex.: envio de e-mails)
+
+### Interface
+
+- Layout estruturado com componentes reutilizáveis
+- Separação clara entre área pública e área autenticada
+- Uso de **Bootstrap/Tabler** para consistência visual e responsividade
+
+## Como funciona
+
+O fluxo segue o padrão de uma aplicação web tradicional:
+
+1. Usuário cria conta e faz login.
+2. O sistema lista turmas disponíveis.
+3. Ao se inscrever, o vínculo com a turma é registrado (respeitando vagas e regras).
+4. O usuário acompanha tudo pela área logada.
+5. Administradores acessam funcionalidades extras para gestão e controle.
+
+Do lado de infraestrutura, o projeto já considera cenários mais próximos de produção:
+
+- **Dockerfile** (multi-stage) para build;
+- scripts de setup (`bin/setup`, `bin/docker-entrypoint`);
+- suporte a **Redis/ActionCable** quando necessário.
 
 ## Stack
 
-- Frontend web
-- Backend para persistência de dados
-- Modelagem de domínio para usuários e atividades
+- **Ruby on Rails**
+- **PostgreSQL**
+- **Bootstrap**
+- **JavaScript**
+- **Docker**
 
 ## Aprendizados
 
-A principal evolução aqui foi transformar regras operacionais do dia a dia em um fluxo digital simples, mantendo foco em usabilidade e manutenção futura.
+- Trabalhar com regras reais (vaga, fila de espera, renovação) força uma modelagem de domínio mais madura.
+- Separar bem responsabilidades entre **usuário e admin** evita complexidade futura.
+- Ter setup padronizado (scripts + Docker) desde cedo facilita muito manutenção e deploy.
+
+No geral, foi um projeto bem focado em **resolver um problema operacional real**, não só em construir interface.

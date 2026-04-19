@@ -1,25 +1,79 @@
 ---
-title: Detector de Spam de E-mail
-summary: "Classificação de e-mails com machine learning para identificar e filtrar spam."
+title: Email Spam (IMD/UFRN)
+summary: "Projeto final de Aprendizado de Máquina no IMD/UFRN: classificador de spam usando SVM, explorando referências além do conteúdo de sala e focando em um pipeline completo de ML."
 ---
 
 ## Contexto
 
-Esse projeto aplica **Machine Learning** para classificar mensagens e reduzir ruído na caixa de entrada.
+O **Email Spam** foi desenvolvido como projeto final da disciplina de **Aprendizado de Máquina** no **IMD/UFRN**.
+
+A proposta não era só treinar um modelo, mas construir algo mais completo: um projeto que exigisse **ir além do conteúdo de sala**, tomar decisões técnicas e justificar cada etapa.
+
+Escolhi trabalhar com um problema clássico: **classificação de e-mails em spam vs. não spam**. É um caso bem conhecido, mas que cobre praticamente todo o pipeline de ML — principalmente em dados textuais.
+
+## Proposta do projeto
+
+Construir um classificador que:
+
+- recebe texto (e-mail/mensagem);
+- transforma esse texto em representação numérica;
+- treina um modelo supervisionado;
+- retorna uma predição (**spam** ou **ham**).
+
+Mais do que acertar, o foco foi manter um processo consistente:
+
+- pré-processamento bem definido;
+- escolha de modelo adequada ao tipo de dado;
+- uso de métricas relevantes (não só acurácia).
 
 ## O que foi construído
 
-- Pipeline de pré-processamento de texto
-- Vetorização de mensagens
-- Treinamento e avaliação de modelo de classificação
-- Camada de inferência para classificar novas mensagens
+- Pipeline de **pré-processamento de texto** (limpeza, normalização, etc.)
+- Vetorização do conteúdo (texto → features numéricas)
+- Separação de dados (treino/teste)
+- Treinamento e avaliação do modelo
+- Uso de métricas como **precisão, recall e F1**
+- Iterações ajustando features e parâmetros
+
+## Abordagem (SVM)
+
+O modelo principal foi **SVM (Support Vector Machine)**.
+
+A escolha fez sentido principalmente por:
+
+- lidar bem com **alta dimensionalidade** (comum em texto);
+- ter uma base teórica sólida (margem, hiperplano, etc.);
+- exigir um entendimento mais profundo do que só “usar biblioteca”.
+
+Isso envolveu explorar:
+
+- separação por hiperplano;
+- impacto da margem;
+- escolha de kernel (quando necessário);
+- ajuste de hiperparâmetros.
+
+## Desafios
+
+Alguns pontos que pesaram durante o projeto:
+
+- **Texto não é estruturado** → exige boas decisões de pré-processamento;
+- **Generalização** → evitar overfitting foi parte central;
+- **Trade-offs** → melhorar recall pode piorar precisão;
+- **Pesquisa** → entender SVM e vetorização na prática exigiu estudo fora da disciplina.
 
 ## Stack
 
-- C# .NET
-- Bibliotecas de ML
-- Dataset rotulado para treinamento
+- **Python**
+- **TensorFlow**
+- Pipeline de **classificação de texto**
+- **SVM** como modelo principal
 
 ## Aprendizados
 
-Aprendi bastante sobre qualidade de dados, balanceamento de classes e impacto de feature engineering no desempenho final do classificador.
+O principal ganho foi enxergar ML como um **processo completo**, não só modelo.
+
+- A qualidade da entrada impacta diretamente o resultado;
+- Métrica mal escolhida pode dar uma falsa sensação de desempenho;
+- E o modelo é só uma parte — não o todo.
+
+Também foi um exercício forte de autonomia: pesquisar, testar e justificar decisões técnicas — exatamente o que acontece fora do ambiente acadêmico.
