@@ -1,7 +1,8 @@
-import OtsukiImage from '@/assets/images/projects/otsuki.webp';
+import Inkstone from '@/assets/images/projects/inkstone.webp';
 import InsomniaMachineImage from '@/assets/images/projects/insomnia-machine.webp';
+import OtsukiImage from '@/assets/images/projects/otsuki.webp';
 
-export type ProjectId = 'insomnia' | 'piaf' | 'spam' | 'codeReview' | 'lasa' | 'otsuki';
+export type ProjectId = 'inkstone' | 'insomnia' | 'piaf' | 'spam' | 'codeReview' | 'lasa' | 'otsuki';
 
 export interface ProjectData {
   id: ProjectId;
@@ -14,6 +15,15 @@ export interface ProjectData {
 }
 
 export const projects: ProjectData[] = [
+  {
+    id: 'inkstone',
+    image: Inkstone,
+    link: 'https://www.github.com/felipe-sbm/inkstone',
+    slug: 'inkstone',
+    contentLoader: () => import('@/projects/inkstone.mdx?raw').then((module) => module.default),
+    languages: ['HTML', 'SCSS', 'TypeScript'],
+    frameworks: ['Vue', 'Vite'],
+  },
   {
     id: 'insomnia',
     image: InsomniaMachineImage,

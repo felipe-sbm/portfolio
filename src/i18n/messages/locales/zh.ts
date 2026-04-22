@@ -129,6 +129,11 @@ export const zhMessages: MessageTree = {
       frameworks: '框架',
     },
     items: {
+      inkstone: {
+        name: '砚台 - HSK学习平台',
+        imageAlt: '砚台吉祥物，背景有标志',
+        description: '一个用于学习中文和提升语言技能的网页应用，具有简洁的界面和离线功能。',
+      },
       insomnia: {
         name: 'Insomnia Machine',
         imageAlt: '自动咖啡机',

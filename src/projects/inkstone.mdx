@@ -1,0 +1,41 @@
+---
+title: Inkstone | 砚台
+summary: "Sistema WEB de código aberto para estudos de Chinês, com foco em caligrafia, leitura e escrita. Projeto surgiu mediante o pedido da Universidade Federal do Rio Grande do Norte e a Zhejiang International Studies University."
+---
+
+## Contexto
+
+O **Inkstone** (ou 砚台 (Yàntái), em Chinês), que significa *Tinteiro de Pedra* é um projeto acadêmico que nasceu de uma parceria entre a **Universidade Federal do Rio Grande do Norte** e a **Zhejiang International Studies University**. A ideia era criar um sistema WEB de código aberto para estudantes de Chinês, com foco em caligrafia, leitura e escrita e preparação para exames do HSK.
+
+Inicialmente o desenvolvimento foi iniciado mediante a necessidade de realizar a conversão de Hanzi para Pinyin (por isso na primeira versão chamava-se "Hanzi2Pinyin"), por conta que só havia duas formas de realziar isso:
+
+1. Ou o usuário tinha que usar Inteligências Artificiais (como o Deepseek e ChatGPT) para realizar a conversão, e isso dependia de conexão com a internet e ainda tinha a poluição do meio ambiente, já que servidores de IA consomem **muita energia**;
+2. Ou o usuário precisaria alterar o tipo de entrada e saída de texto nas configurações do sistema operacional, o que não era prático e nem acessível/fácil para a maioria dos usuários.
+
+## Proposta do projeto
+
+A ideia foi construir um sistema simples, leve e fácil de usar, que pudesse ser instalado localmente e rodar offline, sem depender de conexões com a internet ou de servidores externos. O foco era criar uma ferramenta que fosse leve para estudantes de Chinês, especialmente aqueles que estavam se preparando para exames do HSK ou professores que querem material para aula.
+
+- O sistema deveria ser capaz de converter Hanzi para Pinyin, e também oferecer recursos adicionais como prática de caligrafia, leitura e escrita.
+- O projeto também tinha o objetivo de ser uma plataforma de código aberto, permitindo que outros desenvolvedores de todo o mundo pudessem contribuir e melhorar a ferramenta.
+- O sistema deveria ser leve o suficiente para rodar em computadores mais antigos, dispositivos móveis, sem exigir hardware avançado ou conexões rápidas.
+- Não deveria usar nenhum tipo de IA (para não ser hipócrita) no desenvolvimento, nem usar frameworks CSS ou JS pesados, para garantir que o sistema fosse o mais leve possível.
+
+## Como funciona
+
+O sistema é **muito simples**, pois só usamos Frontend, não sendo necessário um backend para o projeto. Ele é construído usando HTML, SCSS, TypeScript e Vue + Vite puro, sem dependências externas, o que garante que ele seja leve e fácil de usar.
+
+Eu me dediquei o máximo possível para deixar claro como funciona, pois toda a conversão de Hanzi para Pinyin é feita através de um banco da dados chamado Unihan, que é muito preciso e confiável. Eu exraí todo o banco de dados e armazenei dentro de um único arquivo para que toda a consulta fosse realizada dentro dele.
+
+Esse banco de dados é responsável por toda a conversão de Hanzi para Pinyin sem a necessidade de ter um servidor, possibilitando o download da página que fará funcionar normalmente. E se usar Electron, pode se transformar em um programa para compuador!
+
+## Aprendizados
+
+Nesse projeto eu aprendi muito sobre como construir um sistema leve e eficiente, sem depender de frameworks ou bibliotecas pesadas. Foi um desafio interessante, pois tive que me virar nos 500 para programar tudo sem um cadinho de IA (que nem esse portfólio). Eu busquei muitas inspirações visuais em diversos sites, como: CodePen, Pinterest, Dribbble, etc.
+
+Eu amei trabalhar com Chineses para fazer o projeto, a opinião deles foi muito importante para o desenvolvimento, e me ajudou a entender melhor as necessidades dos usuários. O projeto também me ensinou muito sobre como organizar um projeto de código aberto, e como criar uma comunidade em torno dele.
+
+Eu só tenho a agradecer a todos que contribuíram, seja com código, feedback ou divulgação. O Inkstone é um projeto que nasceu do zeroooo, e graças à colaboração de algumas pessoas, ele se tornou uma ferramenta útil para estudantes de Chinês em todo o mundo.
+
+Muito obrigado ZISU e UFRN,
+e um agradecimento especial para a professora Joana! 🩵

@@ -131,6 +131,11 @@ export const enMessages: MessageTree = {
       frameworks: 'Frameworks',
     },
     items: {
+      inkstone: {
+        name: 'Inkstone - HSK Study Plataform',
+        imageAlt: 'Inkstone mascot with logo in the background',
+        description: 'A Web application for studying Chinese and improving language skills with a simple UI and offline capabilities.',
+      },
       insomnia: {
         name: 'Insomnia Machine',
         imageAlt: 'An automatic coffee machine',

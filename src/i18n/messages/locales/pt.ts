@@ -129,6 +129,11 @@ export const ptMessages: MessageTree = {
       frameworks: 'Frameworks',
     },
     items: {
+        inkstone: {
+        name: 'Inkstone | Plataforma de estudo para HSK',
+        imageAlt: 'Mascote do Inkstone com logo ao fundo',
+        description: 'Uma aplicação web para estudar chinês e aprimorar habilidades linguísticas com uma interface simples e recursos offline.',
+      },
       insomnia: {
         name: 'Insomnia Machine',
         imageAlt: 'Uma máquina de café automática',

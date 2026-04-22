@@ -129,6 +129,11 @@ export const jaMessages: MessageTree = {
       frameworks: 'フレームワーク',
     },
     items: {
+      inkstone: {
+        name: 'Inkstone - HSK学習プラットフォーム',
+        imageAlt: '背景にロゴがあるインクストーンのマスコット',
+        description: 'シンプルなUIとオフライン機能を備えた、中国語学習と語学スキル向上のためのウェブアプリケーション。',
+      },
       insomnia: {
         name: 'Insomnia Machine',
         imageAlt: '自動コーヒーマシン',
