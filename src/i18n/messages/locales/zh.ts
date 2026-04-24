@@ -150,7 +150,7 @@ export const zhMessages: MessageTree = {
         description: '使用机器学习识别并过滤垃圾邮件的系统，基于 C# .NET 开发。',
       },
       codeReview: {
-        name: '代码审查 | AI 代理',
+        name: 'Adonai | AI 代理',
         imageAlt: '代码审查流程',
         description: '使用 Python 构建的 AI 代理，可自动分析代码并给出改进建议。',
       },

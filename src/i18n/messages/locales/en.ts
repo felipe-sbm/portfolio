@@ -152,7 +152,7 @@ export const enMessages: MessageTree = {
         description: 'A spam detector that uses machine learning to identify and filter spam messages. Built with C# .NET.',
       },
       codeReview: {
-        name: 'Code Review | AI Agent',
+        name: 'Adonai | AI Agent',
         imageAlt: 'Code review process',
         description: 'An AI agent built with Python that automates code review by detecting issues and suggesting improvements.',
       },

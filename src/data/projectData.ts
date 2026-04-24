@@ -1,5 +1,7 @@
 import Inkstone from '@/assets/images/projects/inkstone.webp';
 import InsomniaMachineImage from '@/assets/images/projects/insomnia-machine.webp';
+import Adonai from '@/assets/images/projects/adonai.webp';
+import Lasa from '@/assets/images/projects/lasa.webp';
 import OtsukiImage from '@/assets/images/projects/otsuki.webp';
 
 export type ProjectId = 'inkstone' | 'insomnia' | 'piaf' | 'spam' | 'codeReview' | 'lasa' | 'otsuki';
@@ -53,7 +55,7 @@ export const projects: ProjectData[] = [
   },
   {
     id: 'codeReview',
-    image: 'https://images.pexels.com/photos/614117/pexels-photo-614117.jpeg',
+    image: Adonai,
     link: 'https://www.github.com/felipe-sbm/ai-agent-code-review',
     slug: 'ai-agent-code-review',
     contentLoader: () => import('@/projects/ai-agent-code-review.mdx?raw').then((module) => module.default),
@@ -62,7 +64,7 @@ export const projects: ProjectData[] = [
   },
   {
     id: 'lasa',
-    image: 'https://images.pexels.com/photos/1459495/pexels-photo-1459495.jpeg',
+    image: Lasa,
     link: 'https://www.github.com/felipe-sbm/lasa-official-website',
     slug: 'lasa-official-website',
     contentLoader: () => import('@/projects/lasa-official-website.mdx?raw').then((module) => module.default),

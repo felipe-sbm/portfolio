@@ -150,7 +150,7 @@ export const ptMessages: MessageTree = {
         description: 'Sistema detector de spam que usa machine learning para identificar e filtrar mensagens. Feito com C# .NET.',
       },
       codeReview: {
-        name: 'Code Review | Agente de IA',
+        name: 'Adonai | Agente de IA',
         imageAlt: 'Processo de revisão de código',
         description: 'Agente de IA feito com Python que automatiza revisão de código em qualquer linguagem de programação, detectando problemas e sugerindo melhorias.',
       },

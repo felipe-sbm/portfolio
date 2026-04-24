@@ -150,7 +150,7 @@ export const jaMessages: MessageTree = {
         description: '機械学習でスパムを判定するシステム。C# .NETで開発。',
       },
       codeReview: {
-        name: 'コードレビュー | AIエージェント',
+        name: 'Adonai | AIエージェント',
         imageAlt: 'コードレビューの流れ',
         description: 'Python製AIエージェントで、コードレビューを自動化し改善提案を行います。',
       },
