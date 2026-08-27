@@ -1,6 +1,9 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
+  readonly VITE_CONTENTFUL_SPACE_ID: string;
+  readonly VITE_CONTENTFUL_DELIVERY_API_KEY: string;
+  readonly VITE_CONTENTFUL_PREVIEW_API_KEY?: string;
   readonly VITE_GROQ_API_KEY?: string;
   readonly VITE_FIREBASE_API_KEY: string;
   readonly VITE_FIREBASE_AUTH_DOMAIN: string;

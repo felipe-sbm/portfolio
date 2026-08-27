@@ -30,20 +30,42 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import ProjectCard from '@/components/ProjectCard.vue';
-import { projects } from '@/data/projectData';
+import { getProjects } from '@/services/contentful';
+import type { Project } from '@/types/project';
 import ProfilePicture from '@/assets/images/pfp.webp';
 import { useI18n } from '@/i18n';
 
 const { t } = useI18n();
 
+const projects = ref<Project[]>([]);
+
+onMounted(async () => {
+  try {
+    projects.value = await getProjects();
+  } catch (err) {
+    console.error('Falha ao carregar projetos do Contentful:', err);
+  }
+});
+
 const localizedProjects = computed(() => {
-  return projects.map((project) => ({
+  return projects.value.map((project) => ({
     ...project,
-    name: String(t(`projects.items.${project.id}.name`)),
-    imageAlt: String(t(`projects.items.${project.id}.imageAlt`)),
-    description: String(t(`projects.items.${project.id}.description`)),
+    name: String(
+      t(`projects.items.${project.identifier}.name`) || project.title,
+    ),
+    image: project.image || '',
+    imageAlt: String(
+      t(`projects.items.${project.identifier}.imageAlt`) || project.title,
+    ),
+    description: String(
+      t(`projects.items.${project.identifier}.description`) ||
+        project.description,
+    ),
+    link: project.url || project.github || '#',
+    languages: Array.isArray(project.languages) ? project.languages : [],
+    frameworks: Array.isArray(project.frameworks) ? project.frameworks : [],
   }));
 });
 </script>

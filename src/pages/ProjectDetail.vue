@@ -18,7 +18,7 @@
 
     <a
       class="project-detail__cta"
-      :href="project.link"
+      :href="project.url || project.github || '#'"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -94,7 +94,7 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import MarkdownIt from "markdown-it";
 import { useI18n } from "@/i18n";
-import { getProjectBySlug } from "@/data/projectData";
+import { getProjectBySlug } from "@/services/contentful";
 import TechPill from "@/components/TechPill.vue";
 
 const route = useRoute();
@@ -106,55 +106,16 @@ const markdown = new MarkdownIt({
   typographer: true,
 });
 
-const project = computed(() =>
-  getProjectBySlug(String(route.params.slug ?? "")),
-);
+const project = ref();
 const title = ref("");
 const summary = ref("");
 const htmlContent = ref("");
 const lightboxImage = ref<{ src: string; alt: string } | null>(null);
 
-function stripWrappingQuotes(value: string): string {
-  return value.trim().replace(/^['"]|['"]$/g, "");
-}
-
-function parseMdxSource(source: string): {
-  frontmatter: Record<string, string>;
-  body: string;
-} {
-  if (!source.startsWith("---")) {
-    return { frontmatter: {}, body: source };
-  }
-
-  const endMarkerIndex = source.indexOf("\n---", 3);
-  if (endMarkerIndex === -1) {
-    return { frontmatter: {}, body: source };
-  }
-
-  const headerRaw = source.slice(3, endMarkerIndex).trim();
-  const body = source.slice(endMarkerIndex + 4).trimStart();
-  const frontmatterEntries = headerRaw
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => {
-      const separatorIndex = line.indexOf(":");
-      if (separatorIndex === -1) return null;
-      const key = line.slice(0, separatorIndex).trim();
-      const value = stripWrappingQuotes(line.slice(separatorIndex + 1));
-      return key ? [key, value] : null;
-    })
-    .filter((entry): entry is [string, string] => entry !== null);
-
-  return {
-    frontmatter: Object.fromEntries(frontmatterEntries),
-    body,
-  };
-}
 
 const ctaLabel = computed(() => {
   if (!project.value) return "";
-  const normalizedLink = project.value.link.toLowerCase();
+  const normalizedLink = (project.value.github || project.value.url || "").toLowerCase();
   return normalizedLink.includes("github")
     ? String(t("projects.detail.openRepository"))
     : String(t("projects.detail.openProject"));
@@ -186,6 +147,9 @@ function onKeydown(event: KeyboardEvent) {
 }
 
 async function loadProjectContent() {
+  const slug = String(route.params.slug ?? "");
+  project.value = await getProjectBySlug(slug);
+
   if (!project.value) {
     title.value = "";
     summary.value = "";
@@ -193,24 +157,15 @@ async function loadProjectContent() {
     return;
   }
 
-  const fallbackTitle = String(t(`projects.items.${project.value.id}.name`));
-  const fallbackSummary = String(
-    t(`projects.items.${project.value.id}.description`),
-  );
+  const fallbackTitle = String(t(`projects.items.${project.value.identifier}.name`));
+  const fallbackSummary = String(t(`projects.items.${project.value.identifier}.description`));
 
-  try {
-    const source = await project.value.contentLoader();
-    const parsed = parseMdxSource(source);
-    const rawTitle = parsed.frontmatter.title;
-    const rawSummary = parsed.frontmatter.summary;
+  title.value = project.value.title || fallbackTitle;
+  summary.value = project.value.summary || fallbackSummary;
 
-    title.value = typeof rawTitle === "string" ? rawTitle : fallbackTitle;
-    summary.value =
-      typeof rawSummary === "string" ? rawSummary : fallbackSummary;
-    htmlContent.value = markdown.render(parsed.body);
-  } catch (_error) {
-    title.value = fallbackTitle;
-    summary.value = fallbackSummary;
+  if (project.value.body) {
+    htmlContent.value = markdown.render(project.value.body);
+  } else {
     htmlContent.value = "";
   }
 }
