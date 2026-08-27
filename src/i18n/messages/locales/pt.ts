@@ -112,7 +112,6 @@ export const ptMessages: MessageTree = {
     title: 'Galeria de Projetos',
     subtitle: 'Aqui estão alguns trabalhos que eu fiz.',
     small: 'Um dia ainda faço um em Assembly.',
-    welcome: 'Bem-vindo aos meus projetos!',
     lastProject: 'último projeto',
     detail: {
       eyebrow: 'Projeto em foco',

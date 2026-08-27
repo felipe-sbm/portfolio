@@ -114,7 +114,6 @@ export const enMessages: MessageTree = {
     title: 'Project Gallery',
     subtitle: "Here are some projects I've built.",
     small: 'One day I still need to build one in Assembly.',
-    welcome: 'Welcome to my projects!',
     lastProject: 'last project',
     detail: {
       eyebrow: 'Project spotlight',

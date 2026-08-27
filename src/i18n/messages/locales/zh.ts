@@ -112,7 +112,6 @@ export const zhMessages: MessageTree = {
     title: '项目画廊',
     subtitle: '这里是我做过的一些项目。',
     small: '总有一天我会用 Assembly 做一个。',
-    welcome: '欢迎来到我的项目！',
     lastProject: '最新项目',
     detail: {
       eyebrow: '项目聚焦',

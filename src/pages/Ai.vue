@@ -12,7 +12,8 @@
           :class="['message', `message--${message.role}`]"
         >
           <span class="message__role">{{ message.role === 'user' ? t('ai.you') : t('ai.roleAssistant') }}</span>
-          <p class="message__content">{{ message.content }}</p>
+          <p v-if="message.role === 'user'" class="message__content">{{ message.content }}</p>
+          <div v-else class="message__content message__content--md" v-html="md.render(message.content)"></div>
         </article>
       </div>
 
@@ -60,6 +61,13 @@ import { computed, nextTick, ref } from 'vue';
 import { CornerDownRight } from 'lucide-vue-next';
 import { askChatbot, type ChatMessage } from '@/services/ChatbotService';
 import { useI18n } from '@/i18n';
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt({
+  html: false,
+  linkify: true,
+  typographer: true,
+});
 
 const { t } = useI18n();
 const input = ref('');
@@ -148,7 +156,6 @@ async function sendMessage() {
     border-radius: 14px;
     border: 1px solid var(--color-border);
     background: var(--color-surface-elevated);
-    white-space: pre-wrap;
   }
 
   .message--user {
@@ -173,6 +180,106 @@ async function sendMessage() {
   .message__content {
     margin: 0;
     line-height: 1.45;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .message__content--md {
+    white-space: normal;
+
+    :deep(code) {
+      background: color-mix(in srgb, var(--color-surface) 70%, #fff 30%);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+
+    :deep(pre) {
+      background: color-mix(in srgb, var(--color-surface) 60%, #000 20%);
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 0.6rem 0;
+      border: 1px solid var(--color-border);
+
+      code {
+        background: none;
+        padding: 0;
+        border-radius: 0;
+      }
+    }
+
+    :deep(a) {
+      color: var(--color-brand-primary);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    :deep(h1),
+    :deep(h2),
+    :deep(h3),
+    :deep(h4) {
+      margin: 1rem 0 0.4rem;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    :deep(h1) { font-size: 1.25rem; }
+    :deep(h2) { font-size: 1.1rem; }
+    :deep(h3) { font-size: 1rem; }
+
+    :deep(ul),
+    :deep(ol) {
+      padding-left: 1.4rem;
+      margin: 0.4rem 0;
+    }
+
+    :deep(li) {
+      margin: 0.25rem 0;
+    }
+
+    :deep(blockquote) {
+      border-left: 3px solid var(--color-border-strong);
+      margin: 0.6rem 0;
+      padding: 0.2rem 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    :deep(strong) {
+      font-weight: 600;
+    }
+
+    :deep(table) {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.6rem 0;
+      font-size: 0.9em;
+    }
+
+    :deep(th),
+    :deep(td) {
+      border: 1px solid var(--color-border);
+      padding: 0.4rem 0.6rem;
+      text-align: left;
+    }
+
+    :deep(th) {
+      background: color-mix(in srgb, var(--color-surface) 70%, #fff 20%);
+      font-weight: 600;
+    }
+
+    :deep(hr) {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 1rem 0;
+    }
+
+    :deep(img) {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+    }
   }
 
   .composer-shell {

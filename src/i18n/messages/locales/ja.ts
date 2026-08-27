@@ -112,7 +112,6 @@ export const jaMessages: MessageTree = {
     title: 'プロジェクトギャラリー',
     subtitle: '私が作ったプロジェクトを紹介します。',
     small: 'いつかAssemblyでも作りたいです。',
-    welcome: 'プロジェクトへようこそ！',
     lastProject: '最新プロジェクト',
     detail: {
       eyebrow: '注目プロジェクト',

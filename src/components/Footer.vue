@@ -140,8 +140,8 @@ import NotByAIZhLight from "@/assets/images/not-by-ai/CN/chinese-light.png";
 import NotByAIZhDark from "@/assets/images/not-by-ai/CN/chinese-dark.png";
 import { Github, Instagram, Linkedin, Rss } from "lucide-vue-next";
 import { setNextNavigationScrollIntent } from "@/services/NavigationScrollIntent";
-import { useI18n } from '@/i18n';
-import type { Locale } from '@/i18n';
+import { useI18n } from "@/i18n";
+import type { Locale } from "@/i18n";
 
 const { t, locale, setLocale, localeOptions } = useI18n();
 const selectedLocale = computed<Locale>({
@@ -213,6 +213,7 @@ function randomPhrase(): string {
   max-width: 75rem;
   margin: auto;
   margin-bottom: 1rem;
+  margin-top: 2rem;
   width: 100%;
   display: flex;
   flex-direction: row;
