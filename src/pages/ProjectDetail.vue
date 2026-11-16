@@ -1,7 +1,6 @@
 <template>
   <article v-if="project" class="project-detail">
     <section class="intro">
-      <h6 class="eyebrow">{{ t("projects.detail.eyebrow") }}</h6>
       <h1>{{ title }}</h1>
       <p>{{ summary }}</p>
       <small>{{ t("projects.detail.small") }}</small>

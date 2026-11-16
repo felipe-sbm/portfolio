@@ -49,8 +49,8 @@ export const ptMessages: MessageTree = {
   },
   home: {
     title: 'Alô, me chamo Felipe 👋🏼',
-    roles: ['Engenheiro de IA', 'Web designer', 'Engenheiro da Computação', 'Desenvolvedor Fullstack'],
-    introBeforeBase: 'Sou desenvolvedor fullstack, engenheiro da computação, estudante de software e web designer desde 2019. Trabalhei no',
+    roles: ['Engenheiro de IA', 'Web designer', 'Engenheiro da Computação', 'Desenvolvedor Frontend'],
+    introBeforeBase: 'Sou desenvolvedor Frontend, engenheiro da computação, estudante de software e web designer desde 2019. Trabalhei no',
     introBetweenBaseAndDemanda: 'e no',
     introAfterDemandaBeforeOtsuki: 'na Arkanus, e também fiz projetos próprios, como',
     introAfterOtsuki: '. Eu pratico todos os dias',
@@ -74,7 +74,6 @@ export const ptMessages: MessageTree = {
     },
   },
   about: {
-    eyebrow: 'História e Trajetória',
     title: 'Sobre mim',
     subtitle: 'Leia sobre minha história, conquistas e objetivos.',
     small: 'Fico feliz com sua curiosidade.',
@@ -108,13 +107,11 @@ export const ptMessages: MessageTree = {
     selfie: 'Minha selfie na escola',
   },
   projects: {
-    eyebrow: 'Meu tesouro',
     title: 'Galeria de Projetos',
     subtitle: 'Aqui estão alguns trabalhos que eu fiz.',
     small: 'Um dia ainda faço um em Assembly.',
     lastProject: 'último projeto',
     detail: {
-      eyebrow: 'Projeto em foco',
       small: 'Caso real com contexto, decisões e aprendizados.',
       back: 'Voltar para projetos',
       fallback: 'Conteúdo detalhado em breve.',
@@ -176,7 +173,6 @@ export const ptMessages: MessageTree = {
     roleAssistant: 'GPT-OSS-120B',
   },
   guestbook: {
-    eyebrow: 'Seção da comunidade',
     title: 'Livro de visitas',
     subtitle: 'Deixe uma mensagem com carinho. Ela ficará aqui como parte da história deste portfólio.',
     authHintLoggedOut: 'Entre com GitHub para publicar e reagir aos comentários.',
@@ -195,7 +191,6 @@ export const ptMessages: MessageTree = {
     thumbsDownAlt: 'Descurtir',
   },
   notFound: {
-    eyebrow: 'Erro 404',
     title: 'Não foi achado, boy...',
     subtitle: 'Parece que você chegou em algo que não existe.',
     small: 'Volte ou abra a página inicial.',

@@ -51,13 +51,13 @@ export const enMessages: MessageTree = {
   },
   home: {
     title: "Hey, I'm Felipe 👋🏼",
-    roles: ['AI Engineer', 'Web designer', 'Computer Engineer', 'Fullstack Software Developer'],
-    introBeforeBase: "I'm a fullstack developer, computer engineer, software student and web designer since 2019. I worked in",
+    roles: ['AI Engineer', 'Web designer', 'Computer Engineer', 'Frontend Software Developer'],
+    introBeforeBase: "I'm a Frontend developer, computer engineer, software student and web designer since 2019. I worked in",
     introBetweenBaseAndDemanda: 'and in',
     introAfterDemandaBeforeOtsuki: 'at Arkanus, and built some projects on my own, like',
     introAfterOtsuki: '. I keep practicing every day',
     introEnd: 'and learning new technologies to improve my skills.',
-    welcomeChinese: 'Welcome, my friend!',
+    welcomeChinese: '欢迎你，朋友！',
     secondParagraph:
       "Some time ago, I started a blog and a YouTube channel to teach people in the dev world. Tutorials, Q&A and technology news are part of the content I create. Building projects and sharing knowledge is my passion, and I'm happy to share it. I can show that",
     andConnector: 'and',
@@ -76,7 +76,6 @@ export const enMessages: MessageTree = {
     },
   },
   about: {
-    eyebrow: 'History and Trajectory',
     title: 'About me',
     subtitle: 'Read about my history, achievements and goals.',
     small: "I'm glad for your curiosity.",
@@ -110,13 +109,11 @@ export const enMessages: MessageTree = {
     selfie: 'My school selfie',
   },
   projects: {
-    eyebrow: 'My treasure',
     title: 'Project Gallery',
     subtitle: "Here are some projects I've built.",
     small: 'One day I still need to build one in Assembly.',
     lastProject: 'last project',
     detail: {
-      eyebrow: 'Project spotlight',
       small: 'A real case with context, decisions and learnings.',
       back: 'Back to projects',
       fallback: 'Detailed write-up coming soon.',
@@ -178,7 +175,6 @@ export const enMessages: MessageTree = {
     roleAssistant: 'GPT-OSS-120B',
   },
   guestbook: {
-    eyebrow: 'Community section',
     title: 'Guestbook',
     subtitle: 'Leave a thoughtful message. It will stay here as part of this portfolio story.',
     authHintLoggedOut: 'Sign in with GitHub to post and react to comments.',
@@ -197,7 +193,6 @@ export const enMessages: MessageTree = {
     thumbsDownAlt: 'Thumbs down',
   },
   notFound: {
-    eyebrow: '404 Error',
     title: 'Not found...',
     subtitle: "Looks like you reached something that doesn't exist.",
     small: 'Go back or open the Home page.',

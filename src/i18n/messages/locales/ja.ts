@@ -49,7 +49,7 @@ export const jaMessages: MessageTree = {
   },
   home: {
     title: 'こんにちは、Felipe です 👋🏼',
-    roles: ['AIエンジニア', 'Webデザイナー', 'コンピュータエンジニア', 'フルスタック開発者'],
+    roles: ['AIエンジニア', 'Webデザイナー', 'コンピュータエンジニア', 'フロントエンド開発者'],
     introBeforeBase: '私は2019年からフルスタック開発者、コンピュータエンジニア、ソフトウェア学生、Webデザイナーとして活動しています。',
     introBetweenBaseAndDemanda: 'と',
     introAfterDemandaBeforeOtsuki: 'で働き、Arkanusでも活動し、個人プロジェクトとして',
@@ -74,7 +74,6 @@ export const jaMessages: MessageTree = {
     },
   },
   about: {
-    eyebrow: '歴史と軌跡',
     title: '自己紹介',
     subtitle: '私の歴史、実績、目標を読んでください。',
     small: '興味を持ってくれてありがとう。',
@@ -108,13 +107,11 @@ export const jaMessages: MessageTree = {
     selfie: '学校でのセルフィー',
   },
   projects: {
-    eyebrow: '私の宝物',
     title: 'プロジェクトギャラリー',
     subtitle: '私が作ったプロジェクトを紹介します。',
     small: 'いつかAssemblyでも作りたいです。',
     lastProject: '最新プロジェクト',
     detail: {
-      eyebrow: '注目プロジェクト',
       small: '背景、判断、学びをまとめたケースです。',
       back: 'プロジェクト一覧へ戻る',
       fallback: '詳細コンテンツは準備中です。',
@@ -176,7 +173,6 @@ export const jaMessages: MessageTree = {
     roleAssistant: 'GPT-OSS-120B',
   },
   guestbook: {
-    eyebrow: 'コミュニティ',
     title: 'ゲストブック',
     subtitle: '思いやりのあるメッセージを残してください。このポートフォリオの物語として残ります。',
     authHintLoggedOut: '投稿やリアクションにはGitHubログインが必要です。',
@@ -195,7 +191,6 @@ export const jaMessages: MessageTree = {
     thumbsDownAlt: '低評価',
   },
   notFound: {
-    eyebrow: '404 エラー',
     title: 'ページが見つかりません...',
     subtitle: '存在しないページにアクセスしたようです。',
     small: '戻るか、ホームページを開いてください。',

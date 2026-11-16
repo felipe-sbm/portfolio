@@ -1,7 +1,6 @@
 <template>
   <div class="projects">
     <div class="intro">
-      <h6 class="eyebrow">{{ t('projects.eyebrow') }}</h6>
       <h1>{{ t('projects.title') }}</h1>
       <p>{{ t('projects.subtitle') }}</p>
       <small>{{ t('projects.small') }}</small>
