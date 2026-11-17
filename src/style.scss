@@ -167,7 +167,9 @@ a {
     width: 8px;
     height: 8px;
     border-radius: 100%;
-    background-color: var(--color-brand-secondary);
+    background: linear-gradient(180deg,
+        var(--color-brand-secondary),
+        #f06f00);
 
     &.animate {
       background-color: var(--color-brand-secondary);
@@ -191,15 +193,6 @@ a {
 
 .intro {
   padding-top: 1.8rem;
-
-  .eyebrow {
-    margin: 0 0 0.4rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    font-weight: 700;
-  }
 
   h1 {
     margin: 0;

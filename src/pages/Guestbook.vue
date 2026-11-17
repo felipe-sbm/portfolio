@@ -1,7 +1,6 @@
 <template>
   <div class="guestbook">
     <section class="intro">
-      <h6 class="eyebrow">{{ t('guestbook.eyebrow') }}</h6>
       <h1>{{ t('guestbook.title') }}</h1>
       <p>{{ t('guestbook.subtitle') }}</p>
       <div v-if="!isAuthenticated" class="auth-section">

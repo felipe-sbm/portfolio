@@ -49,13 +49,13 @@ export const zhMessages: MessageTree = {
   },
   home: {
     title: '你好，我是 Felipe 👋🏼',
-    roles: ['AI工程师', '网页设计师', '计算机工程师', '全栈软件开发者'],
+    roles: ['AI工程师', '网页设计师', '计算机工程师', '前端软件开发人员'],
     introBeforeBase: '自 2019 年以来，我一直从事全栈开发、计算机工程学习与网页设计。我曾在',
     introBetweenBaseAndDemanda: '和',
     introAfterDemandaBeforeOtsuki: '工作，也在 Arkanus 参与项目，并独立完成了',
     introAfterOtsuki: '等项目。我每天都在练习',
     introEnd: '并学习新技术来提升能力。',
-    welcomeChinese: '欢迎你，朋友！',
+    welcomeChinese: 'Bem-vindo, amigo(a)!',
     secondParagraph:
       '前段时间我开始写博客并开设 YouTube 频道，向开发者分享内容。教程、问答和技术新闻都是我正在创作的一部分。做项目和分享知识是我的热爱。',
     andConnector: '和',
@@ -74,7 +74,6 @@ export const zhMessages: MessageTree = {
     },
   },
   about: {
-    eyebrow: '历史与轨迹',
     title: '关于我',
     subtitle: '阅读我的经历、成就与目标。',
     small: '感谢你的好奇心。',
@@ -108,14 +107,11 @@ export const zhMessages: MessageTree = {
     selfie: '我在学校的自拍',
   },
   projects: {
-    eyebrow: '我的宝藏',
     title: '项目画廊',
     subtitle: '这里是我做过的一些项目。',
     small: '总有一天我会用 Assembly 做一个。',
-    welcome: '欢迎来到我的项目！',
     lastProject: '最新项目',
     detail: {
-      eyebrow: '项目聚焦',
       small: '包含背景、决策与经验总结的真实案例。',
       back: '返回项目列表',
       fallback: '详细内容即将发布。',
@@ -129,6 +125,11 @@ export const zhMessages: MessageTree = {
       frameworks: '框架',
     },
     items: {
+      inkstone: {
+        name: '砚台 - HSK学习平台',
+        imageAlt: '砚台吉祥物，背景有标志',
+        description: '一个用于学习中文和提升语言技能的网页应用，具有简洁的界面和离线功能。',
+      },
       insomnia: {
         name: 'Insomnia Machine',
         imageAlt: '自动咖啡机',
@@ -145,7 +146,7 @@ export const zhMessages: MessageTree = {
         description: '使用机器学习识别并过滤垃圾邮件的系统，基于 C# .NET 开发。',
       },
       codeReview: {
-        name: '代码审查 | AI 代理',
+        name: 'Adonai | AI 代理',
         imageAlt: '代码审查流程',
         description: '使用 Python 构建的 AI 代理，可自动分析代码并给出改进建议。',
       },
@@ -172,7 +173,6 @@ export const zhMessages: MessageTree = {
     roleAssistant: 'GPT-OSS-120B',
   },
   guestbook: {
-    eyebrow: '社区专区',
     title: '留言簿',
     subtitle: '欢迎留下用心的留言，它会作为这个作品集故事的一部分保留在这里。',
     authHintLoggedOut: '使用 GitHub 登录后可发布和点赞/点踩评论。',
@@ -191,7 +191,6 @@ export const zhMessages: MessageTree = {
     thumbsDownAlt: '踩',
   },
   notFound: {
-    eyebrow: '404 错误',
     title: '没有找到这个页面...',
     subtitle: '你似乎访问了一个不存在的地址。',
     small: '返回上一页或前往首页。',
